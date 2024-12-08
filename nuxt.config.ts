@@ -20,6 +20,13 @@ export default defineNuxtConfig({
   typescript: { shim: false },
 
   build: { transpile: ["vuetify"] },
+  
+  ssr: true, // Это включает серверный рендеринг (SSR)
+
+  // Пути к папкам и файлам
+  rootDir: './', // Это основной каталог проекта
+  buildDir: '.nuxt', // Каталог для сборки
+
 
   // Based on docs found here - https://vuetifyjs.com/en/getting-started/installation/#using-nuxt-3
   vite: {
