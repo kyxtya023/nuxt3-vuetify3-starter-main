@@ -1,6 +1,5 @@
 node_modules
 *.log*
-.nuxt
 .nitro
 .cache
 
@@ -132,8 +131,6 @@ web_modules/
 out
 
 # Nuxt.js build / generate output
-.nuxt
-dist
 
 # Gatsby files
 .cache/
@@ -183,8 +180,6 @@ dist
 
 ### NuxtJS ###
 # Generated dirs
-.nuxt-*
-.output
 .gen
 
 # Node dependencies

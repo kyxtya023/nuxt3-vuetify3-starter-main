@@ -142,29 +142,19 @@ const processAnswers = (answers: Answer): Answer => {
 };
 
 const sendRequest = async () => {
-  // Обработка данных перед отправкой
-  const processedAnswers = processAnswers(answers.value);
-
-  const payload = {
-    answers: processedAnswers, // Используем обработанные ответы
-    contactInfo: contactInfo.value,
-  };
-
-  console.log("Отправляемые данные:", payload);
-
   try {
-    await $fetch('/api/send-message', {
+    const response = await $fetch('/api/send-message', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: payload, // Не нужно вручную преобразовывать в JSON
     });
 
-    alert("Сообщение успешно отправлено!");
+    console.log('Ответ от API:', response);
+    alert('Ответ от API: ' + response.message);
   } catch (error) {
-    console.error("Ошибка:", error);
-    alert("Ошибка при отправке сообщения.");
+    console.error('Ошибка:', error);
+    alert('Ошибка при отправке запроса.');
   }
 };
 
