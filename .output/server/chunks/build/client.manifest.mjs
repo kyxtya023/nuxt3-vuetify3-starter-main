@@ -1,4 +1,4 @@
-{
+const client_manifest = {
   "_C-UmGJFK.js": {
     "resourceType": "script",
     "module": true,
@@ -275,4 +275,7 @@
     "prefetch": true,
     "mimeType": "image/png"
   }
-}
+};
+
+export { client_manifest as default };
+//# sourceMappingURL=client.manifest.mjs.map
