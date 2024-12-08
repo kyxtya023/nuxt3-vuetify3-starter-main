@@ -142,19 +142,30 @@ const processAnswers = (answers: Answer): Answer => {
 };
 
 const sendRequest = async () => {
+  // Обработка данных перед отправкой
+  const processedAnswers = processAnswers(answers.value);
+
+  const payload = {
+    answers: processedAnswers, // Используем обработанные ответы
+    contactInfo: contactInfo.value,
+  };
+
+  console.log("Отправляемые данные:", payload);
+
   try {
-    const response = await $fetch('/api/send-message', {
+    await $fetch('/api/send-message', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': 'Bearer xRF9NvGgXDzlI0JdNle9WhhW'  // Добавляем токен авторизации
       },
+      body: payload, // Не нужно вручную преобразовывать в JSON
     });
 
-    console.log('Ответ от API:', response);
-    alert('Ответ от API: ' + response.message);
+    alert("Сообщение успешно отправлено!");
   } catch (error) {
-    console.error('Ошибка:', error);
-    alert('Ошибка при отправке запроса.');
+    console.error("Ошибка:", error);
+    alert("Ошибка при отправке сообщения.");
   }
 };
 
