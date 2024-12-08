@@ -30,8 +30,6 @@ export default defineNuxtConfig({
     },
   },
 
-  ssr: true,
-
   modules: [
     "nuxt-swiper"
   ],
