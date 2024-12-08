@@ -94,33 +94,9 @@ function createError(input) {
   }
   return err;
 }
-function sendError(event, error, debug) {
-  if (event.handled) {
-    return;
-  }
-  const h3Error = isError(error) ? error : createError(error);
-  const responseBody = {
-    statusCode: h3Error.statusCode,
-    statusMessage: h3Error.statusMessage,
-    stack: [],
-    data: h3Error.data
-  };
-  if (event.handled) {
-    return;
-  }
-  const _code = Number.parseInt(h3Error.statusCode);
-  setResponseStatus(event, _code, h3Error.statusMessage);
-  event.node.res.setHeader("content-type", MIMES.json);
-  event.node.res.end(JSON.stringify(responseBody, void 0, 2));
-}
 function isError(input) {
   return input?.constructor?.__h3_error__ === true;
 }
-
-const MIMES = {
-  html: "text/html",
-  json: "application/json"
-};
 
 const DISALLOWED_STATUS_CHARS = /[^\u0009\u0020-\u007E]/g;
 function sanitizeStatusMessage(statusMessage = "") {
@@ -140,17 +116,6 @@ function sanitizeStatusCode(statusCode, defaultStatusCode = 200) {
 }
 
 typeof setImmediate === "undefined" ? (fn) => fn() : setImmediate;
-function setResponseStatus(event, code, text) {
-  if (code) {
-    event.node.res.statusCode = sanitizeStatusCode(
-      code,
-      event.node.res.statusCode
-    );
-  }
-  if (text) {
-    event.node.res.statusMessage = sanitizeStatusMessage(text);
-  }
-}
 
 function defineEventHandler(handler) {
   if (typeof handler === "function") {
@@ -191,5 +156,5 @@ async function _callHandler(event, handler, hooks) {
   return response.body;
 }
 
-export { sanitizeStatusCode as a, createError as c, defineEventHandler as d, sendError as s };
+export { createError as c, defineEventHandler as d, sanitizeStatusCode as s };
 //# sourceMappingURL=index.mjs.map

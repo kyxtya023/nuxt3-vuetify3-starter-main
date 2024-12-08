@@ -3,7 +3,7 @@ import http from 'node:http';
 import https from 'node:https';
 import { k as destr, l as defu } from '../_/nitro.mjs';
 import { b as baseURL } from '../routes/renderer.mjs';
-import { a as sanitizeStatusCode, c as createError$1 } from '../_/index.mjs';
+import { s as sanitizeStatusCode, c as createError$1 } from '../_/index.mjs';
 import { defineHeadPlugin, composableNames } from '@unhead/shared';
 import { getActiveHead, CapoPlugin } from 'unhead';
 import { useRoute as useRoute$1, RouterView, createMemoryHistory, createRouter as createRouter$1, START_LOCATION } from 'vue-router';
@@ -1686,7 +1686,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-CZsobUjY.mjs')
+    component: () => import('./index-BWbUqWXl.mjs')
   }
 ];
 const _wrapIf = (component, props, slots) => {

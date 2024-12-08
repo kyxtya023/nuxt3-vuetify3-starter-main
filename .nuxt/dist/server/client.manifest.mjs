@@ -1,11 +1,22 @@
 export default {
-  "_C-UmGJFK.js": {
+  "_BBsLew0i.js": {
     "resourceType": "script",
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "C-UmGJFK.js",
+    "file": "BBsLew0i.js",
     "name": "vue.8fc199ce",
+    "imports": [
+      "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "_BODn7nkl.js": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "BODn7nkl.js",
+    "name": "nuxt-link",
     "imports": [
       "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/entry.js"
     ]
@@ -17,17 +28,6 @@ export default {
     "preload": true,
     "file": "CxZrXy87.js",
     "name": "get-element-params"
-  },
-  "_DlPm5tSt.js": {
-    "resourceType": "script",
-    "module": true,
-    "prefetch": true,
-    "preload": true,
-    "file": "DlPm5tSt.js",
-    "name": "nuxt-link",
-    "imports": [
-      "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/entry.js"
-    ]
   },
   "assets/img/76636daefdd44b058addb6c6bd1ac107.jpg": {
     "resourceType": "image",
@@ -91,7 +91,7 @@ export default {
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "DeM49UYl.js",
+    "file": "Bx1521i_.js",
     "name": "default",
     "src": "layouts/default.vue",
     "isDynamicEntry": true,
@@ -104,14 +104,14 @@ export default {
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "618zUiro.js",
+    "file": "CoIgq58Y.js",
     "name": "error-404",
     "src": "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/components/error-404.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_DlPm5tSt.js",
+      "_BODn7nkl.js",
       "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/entry.js",
-      "_C-UmGJFK.js"
+      "_BBsLew0i.js"
     ],
     "css": []
   },
@@ -126,13 +126,13 @@ export default {
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "wx6cDT4s.js",
+    "file": "Bz2Ew5rl.js",
     "name": "error-500",
     "src": "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/components/error-500.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/entry.js",
-      "_C-UmGJFK.js"
+      "_BBsLew0i.js"
     ],
     "css": []
   },
@@ -147,7 +147,7 @@ export default {
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "BfWo4pmB.js",
+    "file": "DLLplJTT.js",
     "name": "entry",
     "src": "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/entry.js",
     "isEntry": true,
@@ -200,13 +200,13 @@ export default {
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "ECrdsm4A.js",
+    "file": "BM-Y9G1T.js",
     "name": "index",
     "src": "pages/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/entry.js",
-      "_DlPm5tSt.js"
+      "_BODn7nkl.js"
     ],
     "css": [],
     "assets": [
@@ -221,8 +221,8 @@ export default {
       "Frame.B4Do8DPS.png"
     ]
   },
-  "index.CCsLM18g.css": {
-    "file": "index.CCsLM18g.css",
+  "index.RUZYNZbe.css": {
+    "file": "index.RUZYNZbe.css",
     "resourceType": "style",
     "prefetch": true,
     "preload": true
