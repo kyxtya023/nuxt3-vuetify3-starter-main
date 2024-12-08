@@ -142,31 +142,37 @@ const processAnswers = (answers: Answer): Answer => {
 };
 
 const sendRequest = async () => {
-  // Обработка данных перед отправкой
-  const processedAnswers = processAnswers(answers.value);
-
-  const payload = {
-    answers: processedAnswers, // Используем обработанные ответы
-    contactInfo: contactInfo.value,
-  };
-
-  console.log("Отправляемые данные:", payload);
-
   try {
-    await $fetch('/api/send-message', {
+    const processedAnswers = processAnswers(answers.value);
+    const payload = {
+      answers: processedAnswers,
+      contactInfo: contactInfo.value,
+    };
+
+    console.log("Отправляемые данные:", payload);
+
+    // Используем $fetch
+    const response = await $fetch('/api/send-message', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: payload, // Не нужно вручную преобразовывать в JSON
+      body: payload, // JSON.stringify здесь не требуется
     });
 
-    alert("Сообщение успешно отправлено!");
-  } catch (error) {
-    console.error("Ошибка:", error);
-    alert("Ошибка при отправке сообщения.");
+    if (response?.success) {
+      alert("Сообщение успешно отправлено!");
+    } else {
+      alert(response?.message || 'Ошибка при отправке сообщения.');
+    }
+  } catch (err) {
+    console.error("Ошибка при отправке:", err);
+    alert("Ошибка при отправке сообщения. Пожалуйста, попробуйте позже.");
   }
 };
+
+
+
 
 
 

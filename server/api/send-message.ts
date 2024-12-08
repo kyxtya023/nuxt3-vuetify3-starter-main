@@ -1,10 +1,10 @@
-import { defineEventHandler, sendError, createError, EventHandlerRequest, H3Event } from 'h3';
+import { defineEventHandler, sendError, createError } from 'h3';
 import TelegramBot from 'node-telegram-bot-api';
 
 // Токен бота и chatId
-const BOT_TOKEN = 'YOUR_BOT_TOKEN';
+const BOT_TOKEN = '8141959117:AAEepDUMRWkLExLZOm5nN-kjxnWdjWVYvMM';
 const bot = new TelegramBot(BOT_TOKEN, { polling: false });
-const chatId = 'YOUR_CHAT_ID';
+const chatId = 6017439095;
 
 interface ContactInfo {
   name: string;
@@ -29,7 +29,7 @@ interface Answers {
 
 // Основная функция для обработки POST-запроса
 export default defineEventHandler(async (event) => {
-  const { contactInfo, answers }: { contactInfo: ContactInfo; answers: Answers } = await useBody(event);  // useBody используется здесь для получения данных
+  const { contactInfo, answers }: { contactInfo: ContactInfo; answers: Answers } = await readBody(event);  // useBody используется здесь для получения данных
 
   // Формируем сообщение
   const formattedMessage = `
@@ -61,7 +61,5 @@ ${contactInfo.message ? `Дополнительное сообщение: ${cont
     return sendError(event, createError({ statusCode: 500, message: 'Ошибка при отправке сообщения.' }));
   }
 });
-function useBody(event: H3Event<EventHandlerRequest>): { contactInfo: ContactInfo; answers: Answers; } | PromiseLike<{ contactInfo: ContactInfo; answers: Answers; }> {
-  throw new Error('Function not implemented.');
-}
+
 
