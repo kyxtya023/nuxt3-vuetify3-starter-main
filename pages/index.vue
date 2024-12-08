@@ -152,7 +152,7 @@ const sendRequest = async () => {
     console.log("Отправляемые данные:", payload);
 
     // Используем $fetch
-    const response = await $fetch('/api/send-message', {
+    const response = await useFetch('/api/send-message', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -160,10 +160,10 @@ const sendRequest = async () => {
       body: payload, // JSON.stringify здесь не требуется
     });
 
-    if (response?.success) {
+    if (response) {
       alert("Сообщение успешно отправлено!");
     } else {
-      alert(response?.message || 'Ошибка при отправке сообщения.');
+      alert(response || 'Ошибка при отправке сообщения.');
     }
   } catch (err) {
     console.error("Ошибка при отправке:", err);
