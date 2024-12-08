@@ -34,7 +34,7 @@ export default defineNuxtConfig({
     "nuxt-swiper"
   ],
   nitro: {
-    preset: 'node-server', // Или другое, если необходимо
+    preset: 'vercel', // Или другое, если необходимо
     routeRules: {
       '/api/**': {
         headers: {
