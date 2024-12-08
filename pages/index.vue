@@ -157,7 +157,6 @@ const sendRequest = async () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer xRF9NvGgXDzlI0JdNle9WhhW'  // Добавляем токен авторизации
       },
       body: payload, // Не нужно вручную преобразовывать в JSON
     });
