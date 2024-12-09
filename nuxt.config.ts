@@ -1,5 +1,16 @@
 import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
+import process from "node:process";
+
+const isDev = process.env.NODE_ENV === "development";
+
+// Определяем базовый URL для API в зависимости от среды
+const apiBaseUrl = isDev
+  ? "http://localhost:3001"
+  : process.env.NUXT_PUBLIC_API_BASE_URL || "https://nuxt3-vuetify3-starter-main.vercel.app";
+
+
+
 // PWA Config
 const title = "Vuetify 3 + Nuxt 3 Starter";
 const shortTitle = "Vuetify 3 + Nuxt 3 Starter";
@@ -20,13 +31,6 @@ export default defineNuxtConfig({
   typescript: { shim: false },
 
   build: { transpile: ["vuetify"] },
-  
-  ssr: true, // Это включает серверный рендеринг (SSR)
-
-  // Пути к папкам и файлам
-  rootDir: './', // Это основной каталог проекта
-  buildDir: '.nuxt', // Каталог для сборки
-
 
   // Based on docs found here - https://vuetifyjs.com/en/getting-started/installation/#using-nuxt-3
   vite: {
@@ -37,20 +41,23 @@ export default defineNuxtConfig({
     },
   },
 
+  ssr: true,
+
   modules: [
     "nuxt-swiper"
   ],
+  routeRules: {
+    '/**': isDev ? {} : { cache: { swr: true, maxAge: 120, staleMaxAge: 60, headersOnly: true } },
+  },
+  runtimeConfig: {
+    public: {
+      apiBaseUrl,
+    },
+  },
   nitro: {
-    preset: 'vercel', // Или другое, если необходимо
     routeRules: {
-      '/api/**': {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-        }
-      }
-    }
+      '/**': { isr: false },
+    },
   },
 
   app: {
