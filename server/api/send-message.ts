@@ -1,9 +1,8 @@
 import { defineEventHandler, sendError, createError } from 'h3';
-import TelegramBot from 'node-telegram-bot-api';
 
 // Токен бота и chatId
 const BOT_TOKEN = '8141959117:AAEepDUMRWkLExLZOm5nN-kjxnWdjWVYvMM';
-const bot = new TelegramBot(BOT_TOKEN, { polling: false });
+const TELEGRAM_API_URL = `https://api.telegram.org/bot${BOT_TOKEN}`;
 const chatId = 6017439095;
 
 interface ContactInfo {
@@ -29,7 +28,7 @@ interface Answers {
 
 // Основная функция для обработки POST-запроса
 export default defineEventHandler(async (event) => {
-  const { contactInfo, answers }: { contactInfo: ContactInfo; answers: Answers } = await readBody(event);  // useBody используется здесь для получения данных
+  const { contactInfo, answers }: { contactInfo: ContactInfo; answers: Answers } = await readBody(event);
 
   // Формируем сообщение
   const formattedMessage = `
@@ -54,12 +53,23 @@ ${contactInfo.message ? `Дополнительное сообщение: ${cont
 
   try {
     // Отправка сообщения через Telegram API
-    await bot.sendMessage(chatId, formattedMessage);
-    return { success: true, message: 'Сообщение успешно отправлено!' };
+    const response = await $fetch(`${TELEGRAM_API_URL}/sendMessage`, {
+      method: 'POST',
+      body: {
+        chat_id: chatId,
+        text: formattedMessage,
+        parse_mode: 'HTML',
+      },
+    });
+
+    if (response) {
+      return { success: true, message: 'Сообщение успешно отправлено!' };
+    } else {
+      console.error('Ответ от Telegram:', response);
+      throw new Error('Ошибка при отправке сообщения в Telegram');
+    }
   } catch (error) {
     console.error('Ошибка отправки сообщения в Telegram:', error);
     return sendError(event, createError({ statusCode: 500, message: 'Ошибка при отправке сообщения.' }));
   }
 });
-
-

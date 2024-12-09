@@ -2,8 +2,8 @@ const interopDefault = r => r.default || r || []
 export default {
   "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/entry.js": () => import('./_nuxt/entry-styles.sqlPOVhp.mjs').then(interopDefault),
   "app.vue": () => import('./_nuxt/app-styles.DfwQenu2.mjs').then(interopDefault),
-  "pages/index.vue": () => import('./_nuxt/index-styles.CsJmD7F3.mjs').then(interopDefault),
   "app.vue?vue&type=style&index=0&scoped=2e881962&lang.scss": () => import('./_nuxt/app-styles.C_kfO0PZ.mjs').then(interopDefault),
+  "pages/index.vue": () => import('./_nuxt/index-styles.CsJmD7F3.mjs').then(interopDefault),
   "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/components/error-500.vue": () => import('./_nuxt/error-500-styles.LnwVcrwF.mjs').then(interopDefault),
   "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/components/error-404.vue": () => import('./_nuxt/error-404-styles.mrawvCGS.mjs').then(interopDefault),
   "pages/index.vue?vue&type=style&index=0&scoped=d20a0538&lang.scss": () => import('./_nuxt/index-styles.qFO6nmtx.mjs').then(interopDefault),

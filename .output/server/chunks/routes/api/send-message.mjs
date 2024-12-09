@@ -1,5 +1,4 @@
 import { d as defineEventHandler, r as readBody, s as sendError, c as createError } from '../../_/index.mjs';
-import TelegramBot from 'node-telegram-bot-api';
 import '../../_/nitro.mjs';
 import 'node:http';
 import 'node:https';
@@ -8,7 +7,7 @@ import 'node:url';
 import 'node:path';
 
 const BOT_TOKEN = "8141959117:AAEepDUMRWkLExLZOm5nN-kjxnWdjWVYvMM";
-const bot = new TelegramBot(BOT_TOKEN, { polling: false });
+const TELEGRAM_API_URL = `https://api.telegram.org/bot${BOT_TOKEN}`;
 const chatId = 6017439095;
 const sendMessage = defineEventHandler(async (event) => {
   const { contactInfo, answers } = await readBody(event);
@@ -31,8 +30,20 @@ ${contactInfo.message ? `\u0414\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\
     return sendError(event, createError({ statusCode: 400, message: "\u041D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E \u0443\u043A\u0430\u0437\u0430\u0442\u044C chatId \u0438 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435." }));
   }
   try {
-    await bot.sendMessage(chatId, formattedMessage);
-    return { success: true, message: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u043E\u0442\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u043E!" };
+    const response = await $fetch(`${TELEGRAM_API_URL}/sendMessage`, {
+      method: "POST",
+      body: {
+        chat_id: chatId,
+        text: formattedMessage,
+        parse_mode: "HTML"
+      }
+    });
+    if (response) {
+      return { success: true, message: "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u043E\u0442\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u043E!" };
+    } else {
+      console.error("\u041E\u0442\u0432\u0435\u0442 \u043E\u0442 Telegram:", response);
+      throw new Error("\u041E\u0448\u0438\u0431\u043A\u0430 \u043F\u0440\u0438 \u043E\u0442\u043F\u0440\u0430\u0432\u043A\u0435 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \u0432 Telegram");
+    }
   } catch (error) {
     console.error("\u041E\u0448\u0438\u0431\u043A\u0430 \u043E\u0442\u043F\u0440\u0430\u0432\u043A\u0438 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \u0432 Telegram:", error);
     return sendError(event, createError({ statusCode: 500, message: "\u041E\u0448\u0438\u0431\u043A\u0430 \u043F\u0440\u0438 \u043E\u0442\u043F\u0440\u0430\u0432\u043A\u0435 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F." }));
