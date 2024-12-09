@@ -1,11 +1,12 @@
-import { effectScope, shallowReactive, reactive, getCurrentScope, hasInjectionContext, getCurrentInstance, inject, toRef, version, unref, h, shallowRef, isReadonly, isRef, isShallow, isReactive, toRaw, defineAsyncComponent, defineComponent, computed, ref, provide, Suspense, nextTick, mergeProps, Transition, watch, Fragment, withCtx, createVNode, useSSRContext, onErrorCaptured, onServerPrefetch, resolveDynamicComponent, createApp } from "vue";
+import { effectScope, shallowReactive, reactive, getCurrentScope, hasInjectionContext, getCurrentInstance, inject, toRef, h, shallowRef, isReadonly, isRef, isShallow, isReactive, toRaw, defineAsyncComponent, defineComponent, computed, unref, ref, provide, Suspense, nextTick, mergeProps, Transition, watch, Fragment, withCtx, createVNode, useSSRContext, onErrorCaptured, onServerPrefetch, resolveDynamicComponent, createApp } from "vue";
 import { $fetch } from "ofetch";
 import { baseURL } from "#internal/nuxt/paths";
 import { createHooks } from "hookable";
 import { getContext } from "unctx";
-import { sanitizeStatusCode, createError as createError$1 } from "h3";
-import { defineHeadPlugin, composableNames } from "@unhead/shared";
-import { getActiveHead, CapoPlugin } from "unhead";
+import { sanitizeStatusCode, createError as createError$1, appendHeader } from "h3";
+import { setHeadInjectionHandler } from "@unhead/vue";
+import { composableNames } from "@unhead/shared";
+import { CapoPlugin } from "unhead";
 import { START_LOCATION, createMemoryHistory, createRouter as createRouter$1, useRoute as useRoute$1, RouterView } from "vue-router";
 import { toRouteMatcher, createRouter } from "radix3";
 import { defu } from "defu";
@@ -357,57 +358,6 @@ const createError = (error) => {
   });
   return nuxtError;
 };
-version[0] === "3";
-function resolveUnref(r) {
-  return typeof r === "function" ? r() : unref(r);
-}
-function resolveUnrefHeadInput(ref2) {
-  if (ref2 instanceof Promise || ref2 instanceof Date || ref2 instanceof RegExp)
-    return ref2;
-  const root = resolveUnref(ref2);
-  if (!ref2 || !root)
-    return root;
-  if (Array.isArray(root))
-    return root.map((r) => resolveUnrefHeadInput(r));
-  if (typeof root === "object") {
-    const resolved = {};
-    for (const k in root) {
-      if (!Object.prototype.hasOwnProperty.call(root, k)) {
-        continue;
-      }
-      if (k === "titleTemplate" || k[0] === "o" && k[1] === "n") {
-        resolved[k] = unref(root[k]);
-        continue;
-      }
-      resolved[k] = resolveUnrefHeadInput(root[k]);
-    }
-    return resolved;
-  }
-  return root;
-}
-defineHeadPlugin({
-  hooks: {
-    "entries:resolve": (ctx) => {
-      for (const entry2 of ctx.entries)
-        entry2.resolvedInput = resolveUnrefHeadInput(entry2.input);
-    }
-  }
-});
-const headSymbol = "usehead";
-const _global = typeof globalThis !== "undefined" ? globalThis : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
-const globalKey$1 = "__unhead_injection_handler__";
-function setHeadInjectionHandler(handler) {
-  _global[globalKey$1] = handler;
-}
-function injectHead() {
-  if (globalKey$1 in _global) {
-    return _global[globalKey$1]();
-  }
-  const head = inject(headSymbol);
-  if (!head && process.env.NODE_ENV !== "production")
-    console.warn("Unhead is missing Vue context, falling back to shared context. This may have unexpected results.");
-  return head || getActiveHead();
-}
 const coreComposableNames = [
   "injectHead"
 ];
@@ -564,22 +514,22 @@ const generateRouteKey$1 = (routeProps, override) => {
 const wrapInKeepAlive = (props, children) => {
   return { default: () => children };
 };
-function toArray(value) {
+function toArray$1(value) {
   return Array.isArray(value) ? value : [value];
 }
 async function getRouteRules(url) {
   {
-    const _routeRulesMatcher = toRouteMatcher(
+    const _routeRulesMatcher2 = toRouteMatcher(
       createRouter({ routes: (/* @__PURE__ */ useRuntimeConfig()).nitro.routeRules })
     );
-    return defu({}, ..._routeRulesMatcher.matchAll(url).reverse());
+    return defu({}, ..._routeRulesMatcher2.matchAll(url).reverse());
   }
 }
 const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import("./_nuxt/index-BJ8el8Kr.js")
+    component: () => import("./_nuxt/index-BLhSgwM0.js")
   }
 ];
 const _wrapIf = (component, props, slots) => {
@@ -718,7 +668,7 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
       routerBase += "#";
     }
     const history = ((_a = routerOptions.history) == null ? void 0 : _a.call(routerOptions, routerBase)) ?? createMemoryHistory(routerBase);
-    const routes = routerOptions.routes ? ([__temp, __restore] = executeAsync(() => routerOptions.routes(_routes)), __temp = await __temp, __restore(), __temp) ?? _routes : _routes;
+    const routes2 = routerOptions.routes ? ([__temp, __restore] = executeAsync(() => routerOptions.routes(_routes)), __temp = await __temp, __restore(), __temp) ?? _routes : _routes;
     let startPosition;
     const router = createRouter$1({
       ...routerOptions,
@@ -739,7 +689,7 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
         }
       },
       history,
-      routes
+      routes: routes2
     });
     nuxtApp.vueApp.use(router);
     const previousRoute = shallowRef(router.currentRoute.value);
@@ -821,7 +771,7 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
           if (!componentMiddleware) {
             continue;
           }
-          for (const entry2 of toArray(componentMiddleware)) {
+          for (const entry2 of toArray$1(componentMiddleware)) {
             middlewareEntries.add(entry2);
           }
         }
@@ -920,14 +870,70 @@ const revive_payload_server_CuQcAXWGjA = /* @__PURE__ */ defineNuxtPlugin({
 const components_plugin_KR1HBZs4kY = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:global-components"
 });
+function toArray(value) {
+  return Array.isArray(value) ? value : [value];
+}
+function useRequestEvent(nuxtApp = useNuxtApp()) {
+  var _a;
+  return (_a = nuxtApp.ssrContext) == null ? void 0 : _a.event;
+}
+function prerenderRoutes(path) {
+  if (!import.meta.prerender) {
+    return;
+  }
+  const paths = toArray(path);
+  appendHeader(useRequestEvent(), "x-nitro-prerender", paths.map((p) => encodeURIComponent(p)).join(", "));
+}
+let routes;
+let _routeRulesMatcher = void 0;
+const prerender_server_4rdU5KxDlR = /* @__PURE__ */ defineNuxtPlugin(async () => {
+  let __temp, __restore;
+  if (!import.meta.prerender || routerOptions.hashMode) {
+    return;
+  }
+  if (routes && !routes.length) {
+    return;
+  }
+  (/* @__PURE__ */ useRuntimeConfig()).nitro.routeRules;
+  routes || (routes = Array.from(processRoutes(([__temp, __restore] = executeAsync(() => {
+    var _a;
+    return (_a = routerOptions.routes) == null ? void 0 : _a.call(routerOptions, _routes);
+  }), __temp = await __temp, __restore(), __temp) ?? _routes)));
+  const batch = routes.splice(0, 10);
+  prerenderRoutes(batch);
+});
+const OPTIONAL_PARAM_RE = /^\/?:.*(?:\?|\(\.\*\)\*)$/;
+function shouldPrerender(path) {
+  return !_routeRulesMatcher;
+}
+function processRoutes(routes2, currentPath = "/", routesToPrerender = /* @__PURE__ */ new Set()) {
+  var _a;
+  for (const route of routes2) {
+    if (OPTIONAL_PARAM_RE.test(route.path) && !((_a = route.children) == null ? void 0 : _a.length) && shouldPrerender()) {
+      routesToPrerender.add(currentPath);
+    }
+    if (route.path.includes(":")) {
+      continue;
+    }
+    const fullPath = joinURL(currentPath, route.path);
+    {
+      routesToPrerender.add(fullPath);
+    }
+    if (route.children) {
+      processRoutes(route.children, fullPath, routesToPrerender);
+    }
+  }
+  return routesToPrerender;
+}
 const plugins = [
   unhead_YFUQL4d9Vf,
   plugin,
   revive_payload_server_CuQcAXWGjA,
-  components_plugin_KR1HBZs4kY
+  components_plugin_KR1HBZs4kY,
+  prerender_server_4rdU5KxDlR
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import("./_nuxt/default-D1DBcD8u.js"))
+  default: defineAsyncComponent(() => import("./_nuxt/default-BFdpeQd6.js"))
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -1155,7 +1161,7 @@ const __nuxt_component_1 = defineComponent({
 function _mergeTransitionProps(routeProps) {
   const _props = routeProps.map((prop) => ({
     ...prop,
-    onAfterLeave: prop.onAfterLeave ? toArray(prop.onAfterLeave) : void 0
+    onAfterLeave: prop.onAfterLeave ? toArray$1(prop.onAfterLeave) : void 0
   }));
   return defu(..._props);
 }
@@ -1226,8 +1232,8 @@ const _sfc_main$1 = {
     const statusMessage = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description = _error.message || _error.toString();
     const stack = void 0;
-    const _Error404 = defineAsyncComponent(() => import("./_nuxt/error-404-4wdcxkkn.js"));
-    const _Error = defineAsyncComponent(() => import("./_nuxt/error-500-j-jRnTgA.js"));
+    const _Error404 = defineAsyncComponent(() => import("./_nuxt/error-404-BAtF-DoM.js"));
+    const _Error = defineAsyncComponent(() => import("./_nuxt/error-500-QNc7Nkge.js"));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(ErrorTemplate), mergeProps({ statusCode: unref(statusCode), statusMessage: unref(statusMessage), description: unref(description), stack: unref(stack) }, _attrs), null, _parent));
@@ -1309,14 +1315,12 @@ let entry;
 const entry$1 = (ssrContext) => entry(ssrContext);
 export {
   _export_sfc as _,
-  resolveRouteObject as a,
-  navigateTo as b,
-  useNuxtApp as c,
-  useRuntimeConfig as d,
+  navigateTo as a,
+  useNuxtApp as b,
+  useRuntimeConfig as c,
   entry$1 as default,
-  injectHead as i,
   nuxtLinkDefaults as n,
-  resolveUnrefHeadInput as r,
+  resolveRouteObject as r,
   useRouter as u
 };
 //# sourceMappingURL=server.mjs.map

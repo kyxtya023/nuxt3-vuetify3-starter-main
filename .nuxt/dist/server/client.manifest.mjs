@@ -1,10 +1,21 @@
 export default {
-  "_BZ-cpLmj.js": {
+  "_BNRwoZOI.js": {
     "resourceType": "script",
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "BZ-cpLmj.js",
+    "file": "BNRwoZOI.js",
+    "name": "nuxt-link",
+    "imports": [
+      "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "_BxTacili.js": {
+    "resourceType": "script",
+    "module": true,
+    "prefetch": true,
+    "preload": true,
+    "file": "BxTacili.js",
     "name": "vue.8fc199ce",
     "imports": [
       "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/entry.js"
@@ -17,17 +28,6 @@ export default {
     "preload": true,
     "file": "CxZrXy87.js",
     "name": "get-element-params"
-  },
-  "_DpC1i0fL.js": {
-    "resourceType": "script",
-    "module": true,
-    "prefetch": true,
-    "preload": true,
-    "file": "DpC1i0fL.js",
-    "name": "nuxt-link",
-    "imports": [
-      "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/entry.js"
-    ]
   },
   "assets/img/76636daefdd44b058addb6c6bd1ac107.jpg": {
     "resourceType": "image",
@@ -91,7 +91,7 @@ export default {
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "ZhV4wJhr.js",
+    "file": "DoOONX9U.js",
     "name": "default",
     "src": "layouts/default.vue",
     "isDynamicEntry": true,
@@ -104,14 +104,14 @@ export default {
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "C6jVBy5w.js",
+    "file": "CvTjs3FE.js",
     "name": "error-404",
     "src": "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/components/error-404.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_DpC1i0fL.js",
+      "_BNRwoZOI.js",
       "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/entry.js",
-      "_BZ-cpLmj.js"
+      "_BxTacili.js"
     ],
     "css": []
   },
@@ -126,13 +126,13 @@ export default {
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "BskcTJQw.js",
+    "file": "C-MttyxE.js",
     "name": "error-500",
     "src": "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/components/error-500.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/entry.js",
-      "_BZ-cpLmj.js"
+      "_BxTacili.js"
     ],
     "css": []
   },
@@ -147,7 +147,7 @@ export default {
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "DGotSLP6.js",
+    "file": "C9TT5QfX.js",
     "name": "entry",
     "src": "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/entry.js",
     "isEntry": true,
@@ -200,13 +200,13 @@ export default {
     "module": true,
     "prefetch": true,
     "preload": true,
-    "file": "Bva5nn42.js",
+    "file": "LPfATR2w.js",
     "name": "index",
     "src": "pages/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/app/entry.js",
-      "_DpC1i0fL.js"
+      "_BNRwoZOI.js"
     ],
     "css": [],
     "assets": [
@@ -221,8 +221,8 @@ export default {
       "Frame.B4Do8DPS.png"
     ]
   },
-  "index.D1_Ezd8M.css": {
-    "file": "index.D1_Ezd8M.css",
+  "index.Cty3Bu89.css": {
+    "file": "index.Cty3Bu89.css",
     "resourceType": "style",
     "prefetch": true,
     "preload": true

@@ -1,6 +1,6 @@
 {
-  "date": "2024-12-07T17:05:02.104Z",
-  "preset": "nitro-prerender",
+  "date": "2024-12-09T22:16:12.193Z",
+  "preset": "cloudflare-pages",
   "framework": {
     "name": "nuxt",
     "version": "3.14.1592"
@@ -9,7 +9,7 @@
     "nitro": "2.10.4"
   },
   "commands": {
-    "preview": "npx serve ./",
+    "preview": "npx nuxthub preview",
     "deploy": "npx nuxthub deploy"
   },
   "config": {}

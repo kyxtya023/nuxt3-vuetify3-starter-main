@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
-import { SwiperSlide } from "swiper/vue";
 
 import TheHeader from "../components/TheHeader.vue";
 import Accordeon from "../components/Accordeon.vue";
@@ -56,6 +55,7 @@ interface ContactInfo {
 // Локальные состояния
 const isMobile = ref(false);
 const currentStep = ref(1);
+
 const answers = ref<Answer>({
   area: 1,
   doorways: null,
@@ -65,6 +65,7 @@ const answers = ref<Answer>({
   installation: null,
   schedule: null,
 });
+
 const contactInfo = ref<ContactInfo>({
   name: "",
   phone: "",
@@ -172,10 +173,6 @@ const sendRequest = async () => {
 };
 
 
-
-
-
-
 // Форматирование номера телефона
 const formatPhone = () => {
   const rawValue = contactInfo.value.phone.replace(/\D/g, "");
@@ -186,6 +183,13 @@ const formatPhone = () => {
   if (rawValue.length > 9) formattedValue += `-${rawValue.slice(9, 11)}`;
   contactInfo.value.phone = formattedValue;
 };
+
+function scrollToSection(id: string): void {
+  const target = document.getElementById(id);
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
 
 // Обработка окна
 const updateIsMobile = () => {
@@ -381,6 +385,7 @@ const selectedTab = ref<string>("tape");
 const changeTab = (tabName: string) => {
   selectedTab.value = tabName;
 };
+
 </script>
 
 <template>
@@ -418,7 +423,7 @@ const changeTab = (tabName: string) => {
             <h2 class="feedback-customer__title">Отзывы клиентов</h2>
           </div> -->
           <div class="feedback-customer__items">
-            <div class="feedback">
+            <div class="feedback" @click="scrollToSection('works')">
               <div class="feedback__item">
                 <div class="feedback__item-image" style="position: relative">
                   <img
@@ -464,7 +469,7 @@ const changeTab = (tabName: string) => {
                 <h2 class="feedback__item-title">Наши работы</h2>
               </div>
             </div>
-            <div class="feedback">
+            <div class="feedback" @click="scrollToSection('price')">
               <div class="feedback__item">
                 <div class="feedback__item-image" style="position: relative">
                   <img
@@ -510,7 +515,7 @@ const changeTab = (tabName: string) => {
                 <h2 class="feedback__item-title">Услуги</h2>
               </div>
             </div>
-            <div class="feedback">
+            <div class="feedback" @click="scrollToSection('advantages')">
               <div class="feedback__item">
                 <div class="feedback__item-image" style="position: relative">
                   <img
@@ -1020,19 +1025,46 @@ const changeTab = (tabName: string) => {
 
     </div>
 
-  <section class="why" id="why">
+    <section class="why">
     <h2 class="why__title">Почему выбирают <span class="orange">нас?</span></h2>
       <div class="why__inner">
         <ClientOnly>
         <swiper-container ref="containerRef"
-          :slides-per-view="6"
-          :space-between="60"
-          :pagination="{clickable: true}"
-          :breakpoints="{
-        320: {  spaceBetween: 20 },
-        479.98: { spaceBetween: 30 },
-      }"
-          class="why__slider"
+        :slides-per-view="5" 
+  :space-between="60"
+  :breakpoints="{
+    0: { 
+      spaceBetween: 20, 
+      slidesPerView: 1,
+    },
+    479: { 
+      spaceBetween: 30,
+      slidesPerView: 1,
+    },
+    575: {
+      slidesPerView: 1.5,
+    },
+    768: {
+      spaceBetween: 40,
+      slidesPerView: 2,
+    },
+    1024: {
+      spaceBetween: 40,
+      slidesPerView: 2.5,
+    },
+    1440: {
+      spaceBetween: 40,
+      slidesPerView: 3.5,
+    },
+    1920: {
+      slidesPerView: 4,
+    },
+    2560: {
+      spaceBetween: 60,
+      slidesPerView: 4,
+    }
+  }"
+  class="why__slider"
         >
           <swiper-slide 
           v-for="(card, idx) in cards"
@@ -1053,7 +1085,7 @@ const changeTab = (tabName: string) => {
         </swiper-container>
       </ClientOnly>
       </div>
-  </section>
+    </section>
 
   <section class="material" id="material">
     <div class="container">
@@ -1288,24 +1320,20 @@ const changeTab = (tabName: string) => {
 }
 
 .why {
-  position: relative;
-  padding: 40px 0;
-  display: flex;
-  flex-direction: column;
   margin-bottom: 14rem;
+
+&__inner {
+  margin: 0 auto;
   overflow-x: hidden;
+  position: relative;
   &::before {
     content: '';
     position: absolute;
     background: linear-gradient(180deg, rgb(255 255 255 / 0%) 50%, #82dbf7 100%);
     width: 100%;
     height: 35rem;
-    top: 150px;
+    top: 0;
   }
-
-&__inner {
-  margin: 0 auto;
-  overflow-x: hidden;
 }
 
 &__title {
@@ -1316,19 +1344,18 @@ const changeTab = (tabName: string) => {
     line-height: 150%;
     margin: 0 auto;
     color: #212121;
+    text-align: center;
     margin-bottom: 4rem;
 }
 
 &__slider {
   width: 100%; /* Устанавливает ширину контейнера слайдера */
-  padding: 20px 0;
+  padding: 2rem 2rem;
   overflow:visible;
-  margin-left: 6rem;
 }
 
 &__card {
   position: relative;
-  width: 45rem !important;
 }
 
 &__card-arc {
@@ -1346,7 +1373,6 @@ const changeTab = (tabName: string) => {
 }
 
 &__image {
-  width: 45rem;
     height: 60rem;
     &>img {
       object-fit: cover;
@@ -1403,17 +1429,8 @@ const changeTab = (tabName: string) => {
 }
 
 @media (max-width: 575.98px) {
-  .why__slider {
-    margin-left: 2rem;
-  }
-
-  .why__card {
-    width: 35rem !important;
-  }
-
   .why__image {
     height: 45rem !important;
-    width: 35rem !important;
   }
 
   .why__card-title {
@@ -1434,13 +1451,8 @@ const changeTab = (tabName: string) => {
     font-size: 2.3rem;
   }
 
-  .why__card {
-    width: 30rem !important;
-  }
-
   .why__image {
     height: 40rem !important;
-    width: 30rem !important;
   }
 
   .why__card-title {
@@ -1458,13 +1470,8 @@ const changeTab = (tabName: string) => {
 
 @media (max-width: 379.98px) {
 
-  .why__card {
-    width: 25rem !important;
-  }
-
   .why__image {
     height: 35rem !important;
-    width: 25rem !important;
   }
 
   .why__card-title {
@@ -2816,6 +2823,12 @@ position: relative;
 }
 
 .feedback {
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  &:hover {
+    box-shadow: 0px 4px 28px 7px rgb(130 219 247 / 50%);
+  }
   &__item {
     background: #ffffff;
     box-shadow: 0px 4px 35px 12px rgba(0, 0, 0, 0.04);

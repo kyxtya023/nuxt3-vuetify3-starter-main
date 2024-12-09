@@ -61,7 +61,11 @@ body._lock .floating-btn {
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-  transition: transform 0.3s ease; /* Для анимации перехода */
+  transition: all 0.3s ease;
+  &:hover {
+    background: rgb(167, 229, 247);
+  }
+
   &>i>svg {
     width: 3rem;
     height: 3rem;
@@ -91,6 +95,8 @@ body._lock .floating-btn {
   align-items: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, opacity 0.3s ease;
+  width: 5rem;
+  height: 5rem;
 }
 
 @media (max-width:479.98px) {
@@ -112,6 +118,8 @@ body._lock .floating-btn {
 
 .floating-btn-item.phone-btn {
   background-color: #fff; /* Синий для телефона */
+  width: 5rem;
+  height: 5rem;
 }
 
 .floating-btn-item.whatsapp-btn {
@@ -121,6 +129,18 @@ body._lock .floating-btn {
   /* Начальная позиция кнопки WhatsApp: скрыта за кнопкой для звонка */
   transform: translateY(30px) scale(0); 
   opacity: 0;
+  width: 5rem;
+  height: 5rem;
+}
+
+.fa.fa-whatsapp {
+  width: 100%;
+  height: 100%;
+}
+
+.fa.fa-phone {
+  width: 100%;
+  height: 100%;
 }
 
 /* Анимация для появления кнопок */

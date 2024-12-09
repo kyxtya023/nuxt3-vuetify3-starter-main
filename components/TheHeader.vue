@@ -5,7 +5,11 @@
         <div class="container">
           <div class="header__buttons">
             <div class="block-text" style="display: flex; gap: 1.5rem">
-              <a class="header__button-link" href="#">+7 (977) 263-40-00</a>
+              <a class="header__button-link" 
+              href="tel:+1234567890" 
+              target="_blank" 
+              aria-label="Позвонить"
+              >+7 (977) 263-40-00</a>
               <a class="header__button-link" href="mailto:">yt@ya.ru</a>
             </div>
             <div class="header__logo">

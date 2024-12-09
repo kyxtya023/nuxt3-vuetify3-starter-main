@@ -28,7 +28,7 @@ interface Answers {
 
 // Основная функция для обработки POST-запроса
 export default defineEventHandler(async (event) => {
-  const { contactInfo, answers }: { contactInfo: ContactInfo; answers: Answers } = await readBody(event);
+  const { contactInfo, answers }: { contactInfo: ContactInfo; answers: Answers } = await readBody(event);  // useBody используется здесь для получения данных
 
   // Формируем сообщение
   const formattedMessage = `
@@ -63,7 +63,7 @@ ${contactInfo.message ? `Дополнительное сообщение: ${cont
     });
 
     if (response) {
-      return { success: true, message: 'Сообщение успешно отправлено!' };
+    return { success: true, message: 'Сообщение успешно отправлено!' };
     } else {
       console.error('Ответ от Telegram:', response);
       throw new Error('Ошибка при отправке сообщения в Telegram');
