@@ -3,20 +3,32 @@ import type { Serialize, Simplify } from "nitropack/types";
 declare module "nitropack/types" {
   type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T
   interface InternalApi {
+    '/api/images': {
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/images').default>>>>
+    }
     '/api/send-message': {
       'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../server/api/send-message').default>>>>
     }
     '/api/_hub/**:feature': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxthub+core@0.8.7_ioredis@5.4.1_magicast@0.3.5_rollup@4.28.1_vite@5.4.11_@types+node@22.10._xj7oxkn3yz2jxrlphmssqd7g7q/node_modules/@nuxthub/core/dist/runtime/base/server/api/_hub/[...feature]').default>>>>
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/@nuxthub/core/dist/runtime/base/server/api/_hub/[...feature]').default>>>>
     }
     '/api/_hub': {
-      'head': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxthub+core@0.8.7_ioredis@5.4.1_magicast@0.3.5_rollup@4.28.1_vite@5.4.11_@types+node@22.10._xj7oxkn3yz2jxrlphmssqd7g7q/node_modules/@nuxthub/core/dist/runtime/base/server/api/_hub/index.head').default>>>>
+      'head': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/@nuxthub/core/dist/runtime/base/server/api/_hub/index.head').default>>>>
     }
     '/api/_hub/manifest': {
-      'get': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/@nuxthub+core@0.8.7_ioredis@5.4.1_magicast@0.3.5_rollup@4.28.1_vite@5.4.11_@types+node@22.10._xj7oxkn3yz2jxrlphmssqd7g7q/node_modules/@nuxthub/core/dist/runtime/base/server/api/_hub/manifest.get').default>>>>
+      'get': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/@nuxthub/core/dist/runtime/base/server/api/_hub/manifest.get').default>>>>
+    }
+    '/api/_hub/openapi': {
+      'get': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/@nuxthub/core/dist/runtime/openapi/server/api/_hub/openapi.get').default>>>>
     }
     '/__nuxt_error': {
-      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/core/runtime/nitro/renderer').default>>>>
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/nuxt/dist/core/runtime/nitro/renderer').default>>>>
+    }
+    '/api/_nuxt_icon/:collection': {
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/@nuxt/icon/dist/runtime/server/api').default>>>>
+    }
+    '/api/_hub/openapi.json': {
+      'default': Simplify<Serialize<Awaited<ReturnType<typeof import('../../node_modules/nitropack/dist/runtime/internal/routes/openapi').default>>>>
     }
   }
 }

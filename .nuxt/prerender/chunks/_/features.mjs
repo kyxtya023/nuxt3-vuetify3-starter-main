@@ -1,5 +1,5 @@
 import { createError } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/h3/dist/index.mjs';
-import { a as useRuntimeConfig } from './nitro.mjs';
+import { u as useRuntimeConfig } from './nitro.mjs';
 
 const featureMessages = {
   ai: [

@@ -5,17 +5,17 @@
         <div class="container">
           <div class="header__buttons">
             <div class="block-text" style="display: flex; gap: 1.5rem">
-              <a class="header__button-link" 
-              href="tel:+1234567890" 
-              target="_blank" 
-              aria-label="Позвонить"
-              >+7 (977) 263-40-00</a>
+              <a
+                class="header__button-link"
+                href="tel:+1234567890"
+                target="_blank"
+                aria-label="Позвонить"
+                >+7 (977) 263-40-00</a
+              >
               <a class="header__button-link" href="mailto:">yt@ya.ru</a>
             </div>
             <div class="header__logo">
-              <NuxtLink to="/"
-                ><img src="../assets/svg/logo.svg" alt="Logo"
-              /></NuxtLink>
+              <NuxtLink to="/"><img src="../assets/svg/logo.svg" alt="Logo" /></NuxtLink>
             </div>
             <div class="block-text">
               <p class="text">Работаем ежедневно</p>
@@ -27,54 +27,47 @@
       <div class="block" style="width: 100%">
         <div class="container">
           <div class="header__menu-block">
-            <nav
-              class="header__menu menu"
-              :class="showMobileMenu ? 'active' : ''"
-            >
+            <nav class="header__menu menu" :class="showMobileMenu ? 'active' : ''">
               <ul class="menu__list">
-                <li
-                  class="menu__list-item"
-                  v-for="(item, index) in menuList"
-                  :key="index"
-                >
-                <NuxtLink 
-  class="menu__list-item-link" 
-  :to="item.path" 
-  @click.prevent="scrollToElement(item.path)">
-  {{ item.name }}
-</NuxtLink>
+                <li class="menu__list-item" v-for="(item, index) in menuList" :key="index">
+                  <NuxtLink
+                    class="menu__list-item-link"
+                    :to="item.path"
+                    @click.prevent="scrollToElement(item.path)"
+                  >
+                    {{ item.name }}
+                  </NuxtLink>
                 </li>
               </ul>
               <div class="header__buttons">
-            <div class="block-text" style="display: flex; gap: 1.5rem">
-              <a class="header__button-link" href="#">+7 (977) 263-40-00</a>
-              <a class="header__button-link" href="mailto:">yt@ya.ru</a>
-            </div>
-            <div class="block-text">
-              <p class="text">Работаем ежедневно</p>
-              <p class="text">с 10:00 до 19:00</p>
-            </div>
-          </div>
+                <div class="block-text" style="display: flex; gap: 1.5rem">
+                  <a class="header__button-link" href="#">+7 (977) 263-40-00</a>
+                  <a class="header__button-link" href="mailto:">yt@ya.ru</a>
+                </div>
+                <div class="block-text">
+                  <p class="text">Работаем ежедневно</p>
+                  <p class="text">с 10:00 до 19:00</p>
+                </div>
+              </div>
             </nav>
             <div class="header__logo">
-              <NuxtLink to="/"
-                ><img src="../assets/svg/logo.svg" alt="Logo"
-              /></NuxtLink>
+              <NuxtLink to="/"><img src="../assets/svg/logo.svg" alt="Logo" /></NuxtLink>
             </div>
-            <v-btn
+            <NuxtLink
               class="header__button"
-              title="Быстрый заказ"
-              :headerButton="true"
-              :orange="true"
+              href="tel:+1234567890" 
+              target="_blank" 
+              aria-label="Позвонить"
             >
-            </v-btn>
+              Быстрый заказ
+            </NuxtLink>
             <nav
-  class="header__burger"
-  :class="showMobileMenu ? 'active' : ''"
-  @click="toggleMobileMenu"
->
-  <span></span>
-</nav>
+              class="header__burger"
+              :class="showMobileMenu ? 'active' : ''"
+              @click="toggleMobileMenu"
+            >
+              <span></span>
+            </nav>
           </div>
         </div>
       </div>
@@ -83,8 +76,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import vBtn from './AppButton.vue';
+import { ref } from "vue";
 
 // Тип для элементов меню
 interface MenuItem {
@@ -94,11 +86,11 @@ interface MenuItem {
 
 // Список меню
 const menuList: MenuItem[] = [
-  { name: 'Цены', path: '#price' },
-  { name: 'Материалы', path: '#material' },
-  { name: 'Почему мы?', path: '#why' },
-  { name: 'Преимущества', path: '#advantages' },
-  { name: 'Частые вопросы', path: '#faq' },
+  { name: "Цены", path: "#price" },
+  { name: "Материалы", path: "#material" },
+  { name: "Почему мы?", path: "#why" },
+  { name: "Преимущества", path: "#advantages" },
+  { name: "Частые вопросы", path: "#faq" },
 ];
 
 // Состояния
@@ -107,18 +99,19 @@ const showMobileMenu = ref(false);
 // Методы
 const toggleMobileMenu = () => {
   showMobileMenu.value = !showMobileMenu.value;
-  document.querySelector('body')?.classList.toggle('_lock');
+  document.querySelector("body")?.classList.toggle("_lock");
 };
 
 const scrollToElement = (target: string) => {
   const element = document.querySelector(target);
   if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
+    element.scrollIntoView({ behavior: "smooth" });
   }
+  // Закрыть мобильное меню
+  showMobileMenu.value = false;
+  document.querySelector("body")?.classList.remove("_lock");
 };
 </script>
-
-
 
 <style scoped lang="scss">
 .header {
@@ -222,11 +215,6 @@ const scrollToElement = (target: string) => {
       display: none;
     }
 
-    &__button {
-      margin-left: auto;
-      margin-right: 8rem;
-    }
-
     .header__buttons {
       flex-direction: column-reverse;
     }
@@ -248,15 +236,13 @@ const scrollToElement = (target: string) => {
     }
 
     &__menu > &__buttons {
-        display: none;
+      display: none;
     }
   }
 
   @media (max-width: 575.98px) {
-    .header {
-      &__button {
-        display: none;
-      }
+    &__button {
+      display: none;
     }
   }
 
@@ -303,10 +289,28 @@ const scrollToElement = (target: string) => {
       margin-bottom: 2rem;
     }
   }
+
   &__button {
-    padding: 1.3rem 2rem;
+    font-family: "Nunito Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 133%;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition-duration: 0.15s;
+    background: #82DBF7;
+    padding: 1.5rem 2rem;
+    color: #212121;
     white-space: nowrap;
+    &:hover {
+      background: rgb(167 229 247);
+    }
   }
+
   &__btn-login {
     font-family: "Nunito Sans";
     font-style: normal;

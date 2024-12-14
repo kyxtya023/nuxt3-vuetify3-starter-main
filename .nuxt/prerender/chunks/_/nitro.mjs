@@ -1,19 +1,21 @@
-import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import { getRequestHeader, splitCookiesString, setResponseStatus, setResponseHeader, send, getRequestHeaders, eventHandler, appendResponseHeader, removeResponseHeader, createError, getResponseHeader, defineEventHandler, handleCacheHeaders, createEvent, fetchWithEvent, isEvent, setHeaders, sendRedirect, proxyRequest, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatus, setResponseHeaders } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/h3/dist/index.mjs';
+import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import { getRequestHeader, splitCookiesString, setResponseStatus, setResponseHeader, send, getRequestHeaders, eventHandler, appendResponseHeader, removeResponseHeader, createError, getResponseHeader, defineEventHandler, handleCacheHeaders, createEvent, fetchWithEvent, isEvent, getResponseStatus, setResponseHeaders, setHeaders, sendRedirect, proxyRequest, getQuery as getQuery$1, getRequestURL, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/h3/dist/index.mjs';
+import { withQuery, joinURL, decodePath, withLeadingSlash, withoutTrailingSlash, parseURL, withoutBase, getQuery, joinRelativeURL } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/ufo/dist/index.mjs';
 import destr from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/destr/dist/index.mjs';
 import { createHooks } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/hookable/dist/index.mjs';
 import { createFetch as createFetch$1, Headers as Headers$1 } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/ofetch/dist/node.mjs';
 import { createCall, createFetch } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/unenv/runtime/fetch/index.mjs';
-import { withQuery, joinURL, decodePath, withLeadingSlash, withoutTrailingSlash, parseURL, withoutBase, getQuery } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/ufo/dist/index.mjs';
+import { promises } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve, basename } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/pathe/dist/index.mjs';
+import { getIcons } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/@iconify/utils/lib/index.mjs';
+import { hash } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/ohash/dist/index.mjs';
+import { consola } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/unenv/runtime/npm/consola.mjs';
 import { klona } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/klona/dist/index.mjs';
 import defu, { defuFn } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/defu/dist/defu.mjs';
 import { snakeCase } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/scule/dist/index.mjs';
-import { promises } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { dirname, resolve } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/pathe/dist/index.mjs';
-import { hash } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/ohash/dist/index.mjs';
 import { createStorage, prefixStorage } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/unstorage/dist/index.mjs';
 import unstorage_47drivers_47fs from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/unstorage/drivers/fs.mjs';
-import file_58_47_47_47D_58_47nuxt3_45vuetify3_45starter_45main_47node_modules_47_46pnpm_47nuxt_643_4614_461592__64parcel_43watcher_642_465_460__64types_43node_6422_4610_461_ioredis_645_464_461_magicast_640_463_465_rollup_64_wkb5vlqe3fydsakbajvypkvc54_47node_modules_47nuxt_47dist_47core_47runtime_47nitro_47cache_45driver_46js from 'file:///D:/nuxt3-vuetify3-starter-main/node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/core/runtime/nitro/cache-driver.js';
+import file_58_47_47_47D_58_47nuxt3_45vuetify3_45starter_45main_47node_modules_47nuxt_47dist_47core_47runtime_47nitro_47cache_45driver_46js from 'file:///D:/nuxt3-vuetify3-starter-main/node_modules/nuxt/dist/core/runtime/nitro/cache-driver.js';
 import unstorage_47drivers_47fs_45lite from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/unstorage/drivers/fs-lite.mjs';
 import { AsyncLocalStorage } from 'node:async_hooks';
 import { getContext } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/unctx/dist/index.mjs';
@@ -149,726 +151,19 @@ const errorHandler = (async function errorhandler(error, event) {
   return send(event, html);
 });
 
+const script = "\"use strict\";(()=>{const t=window,e=document.documentElement,c=[\"dark\",\"light\"],n=getStorageValue(\"localStorage\",\"nuxt-color-mode\")||\"system\";let i=n===\"system\"?u():n;const r=e.getAttribute(\"data-color-mode-forced\");r&&(i=r),l(i),t[\"__NUXT_COLOR_MODE__\"]={preference:n,value:i,getColorScheme:u,addColorScheme:l,removeColorScheme:d};function l(o){const s=\"\"+o+\"\",a=\"\";e.classList?e.classList.add(s):e.className+=\" \"+s,a&&e.setAttribute(\"data-\"+a,o)}function d(o){const s=\"\"+o+\"\",a=\"\";e.classList?e.classList.remove(s):e.className=e.className.replace(new RegExp(s,\"g\"),\"\"),a&&e.removeAttribute(\"data-\"+a)}function f(o){return t.matchMedia(\"(prefers-color-scheme\"+o+\")\")}function u(){if(t.matchMedia&&f(\"\").media!==\"not all\"){for(const o of c)if(f(\":\"+o).matches)return o}return\"light\"}})();function getStorageValue(t,e){switch(t){case\"localStorage\":return window.localStorage.getItem(e);case\"sessionStorage\":return window.sessionStorage.getItem(e);case\"cookie\":return getCookie(e);default:return null}}function getCookie(t){const c=(\"; \"+window.document.cookie).split(\"; \"+t+\"=\");if(c.length===2)return c.pop()?.split(\";\").shift()}";
+
+const _P9nGilXUOF = (function(nitro) {
+  nitro.hooks.hook("render:html", (htmlContext) => {
+    htmlContext.head.push(`<script>${script}<\/script>`);
+  });
+});
+
 const plugins = [
-  
+  _P9nGilXUOF
 ];
 
-const assets$1 = {
-  "/base.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"4fd-0uxo1+82O8zHxkgK0KzSeJJ9OSA\"",
-    "mtime": "2023-04-21T15:14:12.000Z",
-    "size": 1277,
-    "path": "../../.output/public/base.css"
-  },
-  "/favicon.ico": {
-    "type": "image/vnd.microsoft.icon",
-    "etag": "\"10be-n8egyE9tcb7sKGr/pYCaQ4uWqxI\"",
-    "mtime": "2024-11-20T16:44:22.000Z",
-    "size": 4286,
-    "path": "../../.output/public/favicon.ico"
-  },
-  "/fonts.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"0-2jmj7l5rSw0yVb/vlWAYkK/YBwk\"",
-    "mtime": "2023-04-23T10:17:54.000Z",
-    "size": 0,
-    "path": "../../.output/public/fonts.css"
-  },
-  "/main.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"4f1-xgHYIvSdvfvNuxF6PzjFIDrUOdI\"",
-    "mtime": "2024-11-26T22:04:43.722Z",
-    "size": 1265,
-    "path": "../../.output/public/main.css"
-  },
-  "/robots.txt": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"1-rcg7GeeTSRscbqD9i0bNnzLlkvw\"",
-    "mtime": "2024-11-20T16:44:22.000Z",
-    "size": 1,
-    "path": "../../.output/public/robots.txt"
-  },
-  "/svg/Arrow-spoiler.svg": {
-    "type": "image/svg+xml",
-    "etag": "\"1f2-4Ig0NVOMTwT/HzuMEIBbVke92Rc\"",
-    "mtime": "2023-04-23T13:29:06.000Z",
-    "size": 498,
-    "path": "../../.output/public/svg/Arrow-spoiler.svg"
-  },
-  "/svg/Arrow.svg": {
-    "type": "image/svg+xml",
-    "etag": "\"1e9-/9qGZfBC0cTHs++TOLxzH+mkrwg\"",
-    "mtime": "2023-04-23T08:42:18.000Z",
-    "size": 489,
-    "path": "../../.output/public/svg/Arrow.svg"
-  },
-  "/svg/Chat.svg": {
-    "type": "image/svg+xml",
-    "etag": "\"233-rmvh53fOo9iudCsfHBBBrmkg3Y4\"",
-    "mtime": "2023-04-23T15:31:52.000Z",
-    "size": 563,
-    "path": "../../.output/public/svg/Chat.svg"
-  },
-  "/svg/check.svg": {
-    "type": "image/svg+xml",
-    "etag": "\"f8-jM9pZ2tNHMzQ8LmUMo6+F4XbmZA\"",
-    "mtime": "2024-11-30T15:28:54.828Z",
-    "size": 248,
-    "path": "../../.output/public/svg/check.svg"
-  },
-  "/svg/E-mail.svg": {
-    "type": "image/svg+xml",
-    "etag": "\"2df-vm8NiMKOYDbNoTV3JyVEURFtur4\"",
-    "mtime": "2023-04-23T15:31:40.000Z",
-    "size": 735,
-    "path": "../../.output/public/svg/E-mail.svg"
-  },
-  "/svg/icons8-done-16.png": {
-    "type": "image/png",
-    "etag": "\"a4-w7C88c9mGfI349kBO0NHwYr4VJ0\"",
-    "mtime": "2024-11-30T15:31:49.055Z",
-    "size": 164,
-    "path": "../../.output/public/svg/icons8-done-16.png"
-  },
-  "/svg/logo.svg": {
-    "type": "image/svg+xml",
-    "etag": "\"1423-SklCHPv2HNCA0QTg44Ych6CjgyY\"",
-    "mtime": "2023-04-21T15:05:56.000Z",
-    "size": 5155,
-    "path": "../../.output/public/svg/logo.svg"
-  },
-  "/svg/plus.svg": {
-    "type": "image/svg+xml",
-    "etag": "\"d1-lCMiqKs2YSH9jnMZ/yiy6AZOfos\"",
-    "mtime": "2024-12-02T21:28:47.946Z",
-    "size": 209,
-    "path": "../../.output/public/svg/plus.svg"
-  },
-  "/img/1000x1000.jpg": {
-    "type": "image/jpeg",
-    "etag": "\"40fa-PYPVP9kFOB4JlDcGor7XeY8/wyI\"",
-    "mtime": "2024-11-26T21:22:30.145Z",
-    "size": 16634,
-    "path": "../../.output/public/img/1000x1000.jpg"
-  },
-  "/img/13.png": {
-    "type": "image/png",
-    "etag": "\"3c42e-XVHIcwa6IrdIzuUpslwelna+D7o\"",
-    "mtime": "2024-11-30T21:20:01.988Z",
-    "size": 246830,
-    "path": "../../.output/public/img/13.png"
-  },
-  "/img/13647644.jpg": {
-    "type": "image/jpeg",
-    "etag": "\"58fc-QVpK3n2KQKvpeZelSFkF2lXdEMI\"",
-    "mtime": "2024-11-30T21:18:17.878Z",
-    "size": 22780,
-    "path": "../../.output/public/img/13647644.jpg"
-  },
-  "/img/1687511931_en-idei-club-p-pink-gradient-background-dizain-74.jpg": {
-    "type": "image/jpeg",
-    "etag": "\"e90e-CBaU5r7EK1h8rOnLHgsAMokAmvI\"",
-    "mtime": "2024-11-26T21:50:18.115Z",
-    "size": 59662,
-    "path": "../../.output/public/img/1687511931_en-idei-club-p-pink-gradient-background-dizain-74.jpg"
-  },
-  "/img/283e4840e0cd71f95599d1c67132e034.jpg": {
-    "type": "image/jpeg",
-    "etag": "\"1d085-j5tk23HrIzXe+dpaPKySxgaejhQ\"",
-    "mtime": "2024-11-30T21:04:09.450Z",
-    "size": 118917,
-    "path": "../../.output/public/img/283e4840e0cd71f95599d1c67132e034.jpg"
-  },
-  "/img/541549a6-a184-4cab-8.jpg": {
-    "type": "image/jpeg",
-    "etag": "\"914d7-/l7V9cJSTGuri5k/eNf3XJysT6Y\"",
-    "mtime": "2024-11-30T21:06:30.703Z",
-    "size": 595159,
-    "path": "../../.output/public/img/541549a6-a184-4cab-8.jpg"
-  },
-  "/img/6631983144.jpg": {
-    "type": "image/jpeg",
-    "etag": "\"382b1-Yz/iWCO/+uARU1TZ2AAzKVFjZGs\"",
-    "mtime": "2024-11-30T21:02:25.105Z",
-    "size": 230065,
-    "path": "../../.output/public/img/6631983144.jpg"
-  },
-  "/img/76636daefdd44b058addb6c6bd1ac107.jpg": {
-    "type": "image/jpeg",
-    "etag": "\"36dc4-5eydGWUS1P4CT83wq9lnegOcuv8\"",
-    "mtime": "2024-11-30T21:40:44.045Z",
-    "size": 224708,
-    "path": "../../.output/public/img/76636daefdd44b058addb6c6bd1ac107.jpg"
-  },
-  "/img/artistic-blurry-colorful-wallpaper-background_58702-8245.avif": {
-    "type": "image/avif",
-    "etag": "\"8a0-5jBzYHhcfFcNq+J0T3i2tboDpgg\"",
-    "mtime": "2024-12-02T20:33:33.026Z",
-    "size": 2208,
-    "path": "../../.output/public/img/artistic-blurry-colorful-wallpaper-background_58702-8245.avif"
-  },
-  "/img/b7f82cb2bd75744ca9c2a9730cc26cc4.jpeg": {
-    "type": "image/jpeg",
-    "etag": "\"1b222-o26/OC7G+YGfhZ+WY24UhLwB4dQ\"",
-    "mtime": "2024-11-30T21:07:16.516Z",
-    "size": 111138,
-    "path": "../../.output/public/img/b7f82cb2bd75744ca9c2a9730cc26cc4.jpeg"
-  },
-  "/img/BannerBG.png": {
-    "type": "image/png",
-    "etag": "\"2ad9-zpjna5wIVOiK92lRw6N0cSAHuLU\"",
-    "mtime": "2023-04-23T14:12:14.000Z",
-    "size": 10969,
-    "path": "../../.output/public/img/BannerBG.png"
-  },
-  "/img/diploma.webp": {
-    "type": "image/webp",
-    "etag": "\"2cae6-QthupjxkBxsl/DzTvo+kXK2qLT0\"",
-    "mtime": "2024-11-30T20:55:00.196Z",
-    "size": 183014,
-    "path": "../../.output/public/img/diploma.webp"
-  },
-  "/img/e22dc2b399dbd7e7da4e88dc20c4f7c0.jpg": {
-    "type": "image/jpeg",
-    "etag": "\"57fde-hlUyNeDui+TrXisfl4EAGIdAUzE\"",
-    "mtime": "2024-11-26T21:06:29.738Z",
-    "size": 360414,
-    "path": "../../.output/public/img/e22dc2b399dbd7e7da4e88dc20c4f7c0.jpg"
-  },
-  "/img/FeedbackPeople.png": {
-    "type": "image/png",
-    "etag": "\"5eb-AXuJajvh7GxRy/wnDixgKyEnEOw\"",
-    "mtime": "2023-04-23T08:11:30.000Z",
-    "size": 1515,
-    "path": "../../.output/public/img/FeedbackPeople.png"
-  },
-  "/img/Frame.png": {
-    "type": "image/png",
-    "etag": "\"4bb9-dY1t1BVOdu0Dg0yFk+//R0YgqAo\"",
-    "mtime": "2023-04-23T14:16:18.000Z",
-    "size": 19385,
-    "path": "../../.output/public/img/Frame.png"
-  },
-  "/img/gradations-of-red-and-yellow-free-vector.jpg": {
-    "type": "image/jpeg",
-    "etag": "\"bf0c-csSXjcngH8ZyCBf3D7pNXxQj6yU\"",
-    "mtime": "2024-11-26T22:32:12.414Z",
-    "size": 48908,
-    "path": "../../.output/public/img/gradations-of-red-and-yellow-free-vector.jpg"
-  },
-  "/img/HomeHeroBg.png": {
-    "type": "image/png",
-    "etag": "\"1e1fc-qQAEZM6ocMeRNKI5/ajwkCVTSp4\"",
-    "mtime": "2023-04-22T11:29:32.000Z",
-    "size": 123388,
-    "path": "../../.output/public/img/HomeHeroBg.png"
-  },
-  "/img/i.webp": {
-    "type": "image/webp",
-    "etag": "\"307a-sQqmf/y6RvO8jvMouP+pN3pw6fw\"",
-    "mtime": "2024-11-26T21:33:08.664Z",
-    "size": 12410,
-    "path": "../../.output/public/img/i.webp"
-  },
-  "/img/IconQuickOrderComments.png": {
-    "type": "image/png",
-    "etag": "\"5b6-XAdBoT4CjY4DxjA51mLzp87efio\"",
-    "mtime": "2023-04-23T09:27:40.000Z",
-    "size": 1462,
-    "path": "../../.output/public/img/IconQuickOrderComments.png"
-  },
-  "/img/IconQuickOrderFacebook.png": {
-    "type": "image/png",
-    "etag": "\"569-GsenRY3iITYz1yua02LVnpyQ05Q\"",
-    "mtime": "2023-04-23T08:36:24.000Z",
-    "size": 1385,
-    "path": "../../.output/public/img/IconQuickOrderFacebook.png"
-  },
-  "/img/IconQuickOrderIGTV.png": {
-    "type": "image/png",
-    "etag": "\"6a7-/1A0LErRywbhI6MeEKIIoHHazzk\"",
-    "mtime": "2023-04-23T09:27:24.000Z",
-    "size": 1703,
-    "path": "../../.output/public/img/IconQuickOrderIGTV.png"
-  },
-  "/img/IconQuickOrderInstagram.png": {
-    "type": "image/png",
-    "etag": "\"125e-NC8R05Utny+QgiEjLd8FGgVnmLs\"",
-    "mtime": "2023-04-23T08:35:32.000Z",
-    "size": 4702,
-    "path": "../../.output/public/img/IconQuickOrderInstagram.png"
-  },
-  "/img/IconQuickOrderLikes.png": {
-    "type": "image/png",
-    "etag": "\"513-oz6dJMxTTFekTaaP9GL8YCEWfA8\"",
-    "mtime": "2023-04-23T09:26:32.000Z",
-    "size": 1299,
-    "path": "../../.output/public/img/IconQuickOrderLikes.png"
-  },
-  "/img/IconQuickOrderReels.png": {
-    "type": "image/png",
-    "etag": "\"618-Qja+wGSkCrenmSgJRD9j9U0A2lI\"",
-    "mtime": "2023-04-23T09:27:50.000Z",
-    "size": 1560,
-    "path": "../../.output/public/img/IconQuickOrderReels.png"
-  },
-  "/img/IconQuickOrderRutube.png": {
-    "type": "image/png",
-    "etag": "\"52d-agunr8v1FiV0S+o7NhdYydz4LM4\"",
-    "mtime": "2023-04-23T08:36:46.000Z",
-    "size": 1325,
-    "path": "../../.output/public/img/IconQuickOrderRutube.png"
-  },
-  "/img/IconQuickOrderSpectator.png": {
-    "type": "image/png",
-    "etag": "\"6a4-Qrqg1AnmzMrRQXmSmK7W6rvOeyk\"",
-    "mtime": "2023-04-23T09:26:08.000Z",
-    "size": 1700,
-    "path": "../../.output/public/img/IconQuickOrderSpectator.png"
-  },
-  "/img/IconQuickOrderStatistics.png": {
-    "type": "image/png",
-    "etag": "\"4f6-wpXObiZePT+esvuwipKv9yYQGnQ\"",
-    "mtime": "2023-04-23T09:26:50.000Z",
-    "size": 1270,
-    "path": "../../.output/public/img/IconQuickOrderStatistics.png"
-  },
-  "/img/IconQuickOrderSubscribers.png": {
-    "type": "image/png",
-    "etag": "\"61c-I0Qqs/ptDP+RXRou72m9NskLHe0\"",
-    "mtime": "2023-04-23T09:25:48.000Z",
-    "size": 1564,
-    "path": "../../.output/public/img/IconQuickOrderSubscribers.png"
-  },
-  "/img/IconQuickOrderTelegram.png": {
-    "type": "image/png",
-    "etag": "\"8ae-p38Fb3NP7i2VB9RGcuvtK1zBFxE\"",
-    "mtime": "2023-04-23T08:36:18.000Z",
-    "size": 2222,
-    "path": "../../.output/public/img/IconQuickOrderTelegram.png"
-  },
-  "/img/IconQuickOrderTikTok.png": {
-    "type": "image/png",
-    "etag": "\"4a3-GC+QkOsp161LDJ+KnNpkGjgX+FA\"",
-    "mtime": "2023-04-23T08:36:30.000Z",
-    "size": 1187,
-    "path": "../../.output/public/img/IconQuickOrderTikTok.png"
-  },
-  "/img/IconQuickOrderTwitch.png": {
-    "type": "image/png",
-    "etag": "\"3d6-/cjZNjTW41JQNOVlWg0RaMcHi4s\"",
-    "mtime": "2023-04-23T08:36:36.000Z",
-    "size": 982,
-    "path": "../../.output/public/img/IconQuickOrderTwitch.png"
-  },
-  "/img/IconQuickOrderTwitter.png": {
-    "type": "image/png",
-    "etag": "\"529-yKrBEUZiBrboHAARiaWYR/R6xyM\"",
-    "mtime": "2023-04-23T08:35:20.000Z",
-    "size": 1321,
-    "path": "../../.output/public/img/IconQuickOrderTwitter.png"
-  },
-  "/img/IconQuickOrderViews.png": {
-    "type": "image/png",
-    "etag": "\"672-Yoy6zUMZBixheepxoo1zKYXscP0\"",
-    "mtime": "2023-04-23T09:27:08.000Z",
-    "size": 1650,
-    "path": "../../.output/public/img/IconQuickOrderViews.png"
-  },
-  "/img/IconQuickOrderVK.png": {
-    "type": "image/png",
-    "etag": "\"498-U6R2HagQ32kE/my1hSFDLLY09Xo\"",
-    "mtime": "2023-04-23T08:35:48.000Z",
-    "size": 1176,
-    "path": "../../.output/public/img/IconQuickOrderVK.png"
-  },
-  "/img/IconQuickOrderYouTube.png": {
-    "type": "image/png",
-    "etag": "\"308-jcn4G1FPRudYnHf0Ef/IClqh7wE\"",
-    "mtime": "2023-04-23T08:35:58.000Z",
-    "size": 776,
-    "path": "../../.output/public/img/IconQuickOrderYouTube.png"
-  },
-  "/img/icons8-handmade-96.png": {
-    "type": "image/png",
-    "etag": "\"bc4-2jbC38CPYKNnRKxe5Yh097oH6TU\"",
-    "mtime": "2024-11-23T03:30:47.143Z",
-    "size": 3012,
-    "path": "../../.output/public/img/icons8-handmade-96.png"
-  },
-  "/img/icons8-sum-96.png": {
-    "type": "image/png",
-    "etag": "\"7a7-ytbvfvt8Woe/gcqItL2XFSjekPc\"",
-    "mtime": "2024-11-23T04:03:53.519Z",
-    "size": 1959,
-    "path": "../../.output/public/img/icons8-sum-96.png"
-  },
-  "/img/icons8-tools-96.png": {
-    "type": "image/png",
-    "etag": "\"86d-cCul+i9+0yGTLKaLNYJCUeUDzRU\"",
-    "mtime": "2024-11-23T03:43:03.023Z",
-    "size": 2157,
-    "path": "../../.output/public/img/icons8-tools-96.png"
-  },
-  "/img/icons8-безопасная-зона-для-детей-96 (1).png": {
-    "type": "image/png",
-    "etag": "\"fd0-GOYSOCZ0/WZN/5/0bpfFP80WG9Q\"",
-    "mtime": "2024-11-24T17:35:28.307Z",
-    "size": 4048,
-    "path": "../../.output/public/img/icons8-безопасная-зона-для-детей-96 (1).png"
-  },
-  "/img/icons8-безопасная-зона-для-детей-96.png": {
-    "type": "image/png",
-    "etag": "\"d00-WL/oEDcLRzNYO5Z9Kyb51pAfKgo\"",
-    "mtime": "2024-11-24T17:30:17.789Z",
-    "size": 3328,
-    "path": "../../.output/public/img/icons8-безопасная-зона-для-детей-96.png"
-  },
-  "/img/icons8-защита-96.png": {
-    "type": "image/png",
-    "etag": "\"671-JgROGKcpw1QTpDU76z8dYoIAQqs\"",
-    "mtime": "2024-11-24T17:23:35.530Z",
-    "size": 1649,
-    "path": "../../.output/public/img/icons8-защита-96.png"
-  },
-  "/img/icons8-календарь-96.png": {
-    "type": "image/png",
-    "etag": "\"58e-D+btEgleDtvYFgCNct06kH+mJuU\"",
-    "mtime": "2024-11-24T17:22:59.053Z",
-    "size": 1422,
-    "path": "../../.output/public/img/icons8-календарь-96.png"
-  },
-  "/img/icons8-календарь-961.png": {
-    "type": "image/png",
-    "etag": "\"1c8-4qqbXli7Pekls+jkXZGbXXbthwM\"",
-    "mtime": "2024-11-24T17:23:08.279Z",
-    "size": 456,
-    "path": "../../.output/public/img/icons8-календарь-961.png"
-  },
-  "/img/icons8-кошелек-96.png": {
-    "type": "image/png",
-    "etag": "\"353-tO8DjYIX9OUn60KmpWpfuMhKmqk\"",
-    "mtime": "2024-11-24T17:29:06.501Z",
-    "size": 851,
-    "path": "../../.output/public/img/icons8-кошелек-96.png"
-  },
-  "/img/icons8-сердце-96.png": {
-    "type": "image/png",
-    "etag": "\"55b-hDBKcw4C8hNPyHU53hBIAmX3KlY\"",
-    "mtime": "2024-11-24T17:21:25.810Z",
-    "size": 1371,
-    "path": "../../.output/public/img/icons8-сердце-96.png"
-  },
-  "/img/icons8-солнце-96.png": {
-    "type": "image/png",
-    "etag": "\"50e-+RIQxV8G8mR1TrxCDSBfkFLQvos\"",
-    "mtime": "2024-11-24T17:22:18.642Z",
-    "size": 1294,
-    "path": "../../.output/public/img/icons8-солнце-96.png"
-  },
-  "/img/IMG_5872.jfif": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"8285b-hkQi+LdlVJAdxRM0iz/L5+VDfmY\"",
-    "mtime": "2024-11-24T18:00:21.085Z",
-    "size": 534619,
-    "path": "../../.output/public/img/IMG_5872.jfif"
-  },
-  "/img/IMG_5909.jfif": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"6c37d-zhb1cARdCLUe7/WT4jufkG+Znlo\"",
-    "mtime": "2024-11-24T18:00:16.625Z",
-    "size": 443261,
-    "path": "../../.output/public/img/IMG_5909.jfif"
-  },
-  "/img/IMG_5910.jfif": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"75d49-4fmcTregotSe7rLjojlawGnefMk\"",
-    "mtime": "2024-11-24T17:59:39.576Z",
-    "size": 482633,
-    "path": "../../.output/public/img/IMG_5910.jfif"
-  },
-  "/img/IMG_5911.jfif": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"452d6-ge4uqbWkWW7/LJ6vKFA/SUZt/nw\"",
-    "mtime": "2024-11-24T18:00:34.523Z",
-    "size": 283350,
-    "path": "../../.output/public/img/IMG_5911.jfif"
-  },
-  "/img/IMG_5912.jfif": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"7c34e-zbnKrr/OcHkM+hn3g3aePppw0X8\"",
-    "mtime": "2024-11-24T17:58:35.858Z",
-    "size": 508750,
-    "path": "../../.output/public/img/IMG_5912.jfif"
-  },
-  "/img/IMG_7449.jfif": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"c398f-G3inH64eoaKzpp/NPJU6jjvbR/E\"",
-    "mtime": "2024-11-24T15:55:44.674Z",
-    "size": 801167,
-    "path": "../../.output/public/img/IMG_7449.jfif"
-  },
-  "/img/IMG_7823.jfif": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"51a65-V9aHwGpswvbo47i/zfSwQOryUbE\"",
-    "mtime": "2024-11-24T15:55:29.087Z",
-    "size": 334437,
-    "path": "../../.output/public/img/IMG_7823.jfif"
-  },
-  "/img/istock-187398417.jpg": {
-    "type": "image/jpeg",
-    "etag": "\"612877-IHvrxP2uDihl1tHb81/3Wd7zY7s\"",
-    "mtime": "2024-11-30T19:36:37.389Z",
-    "size": 6367351,
-    "path": "../../.output/public/img/istock-187398417.jpg"
-  },
-  "/img/light-red-gradient-blur-template-vector.jpg": {
-    "type": "image/jpeg",
-    "etag": "\"ae6d-n3yUGoqH3RDvUETgHoxxayA/uYY\"",
-    "mtime": "2024-11-26T21:14:29.410Z",
-    "size": 44653,
-    "path": "../../.output/public/img/light-red-gradient-blur-template-vector.jpg"
-  },
-  "/img/MIRLogotype.png": {
-    "type": "image/png",
-    "etag": "\"26f-7Ih3yXsLC+oMxznhv/yQdG7qVd4\"",
-    "mtime": "2023-04-23T15:17:54.000Z",
-    "size": 623,
-    "path": "../../.output/public/img/MIRLogotype.png"
-  },
-  "/img/photo_2022-07-14_15-.jpg": {
-    "type": "image/jpeg",
-    "etag": "\"38ead-O32+aKsBD8hwCRU8MRDSp4L0iQk\"",
-    "mtime": "2024-11-24T15:55:37.004Z",
-    "size": 233133,
-    "path": "../../.output/public/img/photo_2022-07-14_15-.jpg"
-  },
-  "/img/photo_2023-01-20_09-.jpg": {
-    "type": "image/jpeg",
-    "etag": "\"2e91a-LRSSCotmO98RjNYFU3TW8uFNoBo\"",
-    "mtime": "2024-11-24T18:38:32.072Z",
-    "size": 190746,
-    "path": "../../.output/public/img/photo_2023-01-20_09-.jpg"
-  },
-  "/img/PVC-Flexible-Plastic-Sheet.avif": {
-    "type": "image/avif",
-    "etag": "\"adf5-yCBdBF1oic34JpkTafqHJJXk/M4\"",
-    "mtime": "2024-11-30T21:00:29.307Z",
-    "size": 44533,
-    "path": "../../.output/public/img/PVC-Flexible-Plastic-Sheet.avif"
-  },
-  "/img/remeshok-dlya-fiksacii-shtory.jpg": {
-    "type": "image/jpeg",
-    "etag": "\"22788a-k8Xyt8EShi7CuW0JqA7twdDJffc\"",
-    "mtime": "2024-11-30T21:23:28.163Z",
-    "size": 2259082,
-    "path": "../../.output/public/img/remeshok-dlya-fiksacii-shtory.jpg"
-  },
-  "/img/VISALogotype.png": {
-    "type": "image/png",
-    "etag": "\"341-v486uwfmbTLhlbymcpbArx5Deuc\"",
-    "mtime": "2023-04-23T15:18:12.000Z",
-    "size": 833,
-    "path": "../../.output/public/img/VISALogotype.png"
-  },
-  "/img/XXL_height.webp": {
-    "type": "image/webp",
-    "etag": "\"1736c-UhwB6Fp835i0K/a592MnMECHTSg\"",
-    "mtime": "2024-11-30T20:51:26.737Z",
-    "size": 95084,
-    "path": "../../.output/public/img/XXL_height.webp"
-  },
-  "/img/XXL_height1.webp": {
-    "type": "image/webp",
-    "etag": "\"24860-IU0fx5QMgDalctvnt+p6kxpYIBs\"",
-    "mtime": "2024-11-30T21:22:16.388Z",
-    "size": 149600,
-    "path": "../../.output/public/img/XXL_height1.webp"
-  },
-  "/img/_.jfif": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"47c4c-SStAMux0jjw/kVTVzTLSFiEVkDk\"",
-    "mtime": "2024-11-24T15:55:15.343Z",
-    "size": 293964,
-    "path": "../../.output/public/img/_.jfif"
-  },
-  "/_nuxt/76636daefdd44b058addb6c6bd1ac107.CkryDl_V.jpg": {
-    "type": "image/jpeg",
-    "etag": "\"36dc4-5eydGWUS1P4CT83wq9lnegOcuv8\"",
-    "mtime": "2024-12-09T22:11:02.980Z",
-    "size": 224708,
-    "path": "../../.output/public/_nuxt/76636daefdd44b058addb6c6bd1ac107.CkryDl_V.jpg"
-  },
-  "/_nuxt/BNRwoZOI.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"15e0-iQdGj7Xl2/1W/tXok79lHmD40fg\"",
-    "mtime": "2024-12-09T22:11:02.982Z",
-    "size": 5600,
-    "path": "../../.output/public/_nuxt/BNRwoZOI.js"
-  },
-  "/_nuxt/BxTacili.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"180-uZ7n89kwc8dbEgftT6hGf9ZLa50\"",
-    "mtime": "2024-12-09T22:11:02.976Z",
-    "size": 384,
-    "path": "../../.output/public/_nuxt/BxTacili.js"
-  },
-  "/_nuxt/C-MttyxE.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"d52-7zy64AisfkNkiluM10UoLwL5epk\"",
-    "mtime": "2024-12-09T22:11:02.981Z",
-    "size": 3410,
-    "path": "../../.output/public/_nuxt/C-MttyxE.js"
-  },
-  "/_nuxt/C9TT5QfX.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"2a613-SOZHuLDyQ6QF3GnkbRWmqZLiGQM\"",
-    "mtime": "2024-12-09T22:11:02.981Z",
-    "size": 173587,
-    "path": "../../.output/public/_nuxt/C9TT5QfX.js"
-  },
-  "/_nuxt/CpYWBUaW.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"2ac6-/TkxyoNm14aQV/n64eIBZH+89dA\"",
-    "mtime": "2024-12-09T22:11:02.981Z",
-    "size": 10950,
-    "path": "../../.output/public/_nuxt/CpYWBUaW.js"
-  },
-  "/_nuxt/CvTjs3FE.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"ec4-OwQiQBfsj+Mu+do5O5yf1Rm3M6Q\"",
-    "mtime": "2024-12-09T22:11:02.981Z",
-    "size": 3780,
-    "path": "../../.output/public/_nuxt/CvTjs3FE.js"
-  },
-  "/_nuxt/CxZrXy87.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"12873-dUBp2ieMfKehF5nqR40fUnXO1+s\"",
-    "mtime": "2024-12-09T22:11:02.981Z",
-    "size": 75891,
-    "path": "../../.output/public/_nuxt/CxZrXy87.js"
-  },
-  "/_nuxt/D2D9KHN_.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"19beb-5ODVViLmPXRLM6ar3VS3mDMy2OI\"",
-    "mtime": "2024-12-09T22:11:02.981Z",
-    "size": 105451,
-    "path": "../../.output/public/_nuxt/D2D9KHN_.js"
-  },
-  "/_nuxt/DoOONX9U.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"b1-lDM83XlcIRR0idT7k9NQjX5Ncqg\"",
-    "mtime": "2024-12-09T22:11:02.982Z",
-    "size": 177,
-    "path": "../../.output/public/_nuxt/DoOONX9U.js"
-  },
-  "/_nuxt/entry.DcxLIIR3.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"421-9B+VSxZ5asKkV2jLWVDOZIZosi0\"",
-    "mtime": "2024-12-09T22:11:02.980Z",
-    "size": 1057,
-    "path": "../../.output/public/_nuxt/entry.DcxLIIR3.css"
-  },
-  "/_nuxt/error-404.CH_uCZw2.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"de4-jD4XVxebsw8cdweejQ0dqIfhsWo\"",
-    "mtime": "2024-12-09T22:11:02.980Z",
-    "size": 3556,
-    "path": "../../.output/public/_nuxt/error-404.CH_uCZw2.css"
-  },
-  "/_nuxt/error-500.CglkGuaW.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"75c-Gg9aaTxSzn6yMCWvPiF0uTtTMiM\"",
-    "mtime": "2024-12-09T22:11:02.980Z",
-    "size": 1884,
-    "path": "../../.output/public/_nuxt/error-500.CglkGuaW.css"
-  },
-  "/_nuxt/Frame.B4Do8DPS.png": {
-    "type": "image/png",
-    "etag": "\"4bb9-dY1t1BVOdu0Dg0yFk+//R0YgqAo\"",
-    "mtime": "2024-12-09T22:11:02.978Z",
-    "size": 19385,
-    "path": "../../.output/public/_nuxt/Frame.B4Do8DPS.png"
-  },
-  "/_nuxt/IconQuickOrderInstagram.CzdbabZm.png": {
-    "type": "image/png",
-    "etag": "\"125e-NC8R05Utny+QgiEjLd8FGgVnmLs\"",
-    "mtime": "2024-12-09T22:11:02.978Z",
-    "size": 4702,
-    "path": "../../.output/public/_nuxt/IconQuickOrderInstagram.CzdbabZm.png"
-  },
-  "/_nuxt/IMG_7449.mab56Xug.jfif": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"c398f-G3inH64eoaKzpp/NPJU6jjvbR/E\"",
-    "mtime": "2024-12-09T22:11:02.981Z",
-    "size": 801167,
-    "path": "../../.output/public/_nuxt/IMG_7449.mab56Xug.jfif"
-  },
-  "/_nuxt/IMG_7823.CCTgAkut.jfif": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"51a65-V9aHwGpswvbo47i/zfSwQOryUbE\"",
-    "mtime": "2024-12-09T22:11:02.978Z",
-    "size": 334437,
-    "path": "../../.output/public/_nuxt/IMG_7823.CCTgAkut.jfif"
-  },
-  "/_nuxt/index.Cty3Bu89.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"147aa-Gql+g3g1IJEak5H88ALIYm8o2p0\"",
-    "mtime": "2024-12-09T22:11:02.981Z",
-    "size": 83882,
-    "path": "../../.output/public/_nuxt/index.Cty3Bu89.css"
-  },
-  "/_nuxt/logo.C0Kok8DY.svg": {
-    "type": "image/svg+xml",
-    "etag": "\"1423-SklCHPv2HNCA0QTg44Ych6CjgyY\"",
-    "mtime": "2024-12-09T22:11:02.980Z",
-    "size": 5155,
-    "path": "../../.output/public/_nuxt/logo.C0Kok8DY.svg"
-  },
-  "/_nuxt/LPfATR2w.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"15a1e-cRdChjh1u+iwMpegOQcgT1ZFKlc\"",
-    "mtime": "2024-12-09T22:11:02.981Z",
-    "size": 88606,
-    "path": "../../.output/public/_nuxt/LPfATR2w.js"
-  },
-  "/_nuxt/photo_2022-07-14_15-.CIBk-ypB.jpg": {
-    "type": "image/jpeg",
-    "etag": "\"38ead-O32+aKsBD8hwCRU8MRDSp4L0iQk\"",
-    "mtime": "2024-12-09T22:11:02.978Z",
-    "size": 233133,
-    "path": "../../.output/public/_nuxt/photo_2022-07-14_15-.CIBk-ypB.jpg"
-  },
-  "/_nuxt/photo_2023-01-20_09-.tZ8Wh7D2.jpg": {
-    "type": "image/jpeg",
-    "etag": "\"2e91a-LRSSCotmO98RjNYFU3TW8uFNoBo\"",
-    "mtime": "2024-12-09T22:11:02.980Z",
-    "size": 190746,
-    "path": "../../.output/public/_nuxt/photo_2023-01-20_09-.tZ8Wh7D2.jpg"
-  },
-  "/_nuxt/_.D3P5tEjR.jfif": {
-    "type": "text/plain; charset=utf-8",
-    "etag": "\"47c4c-SStAMux0jjw/kVTVzTLSFiEVkDk\"",
-    "mtime": "2024-12-09T22:11:02.980Z",
-    "size": 293964,
-    "path": "../../.output/public/_nuxt/_.D3P5tEjR.jfif"
-  },
-  "/_nuxt/builds/latest.json": {
-    "type": "application/json",
-    "etag": "\"47-Vu37Nehh5qu0+F+4uRrBbHlhoHE\"",
-    "mtime": "2024-12-09T22:11:04.675Z",
-    "size": 71,
-    "path": "../../.output/public/_nuxt/builds/latest.json"
-  },
-  "/_nuxt/builds/meta/f6e87b22-829f-4431-a89e-8234b48b368f.json": {
-    "type": "application/json",
-    "etag": "\"8b-2aSl4BNE/CXLeFuMnk2U5PWvHqU\"",
-    "mtime": "2024-12-09T22:11:04.675Z",
-    "size": 139,
-    "path": "../../.output/public/_nuxt/builds/meta/f6e87b22-829f-4431-a89e-8234b48b368f.json"
-  }
-};
+const assets$1 = {};
 
 function readAsset (id) {
   const serverDir = dirname(fileURLToPath(globalThis._importMeta_.url));
@@ -893,7 +188,7 @@ function getAsset (id) {
 
 const METHODS = /* @__PURE__ */ new Set(["HEAD", "GET"]);
 const EncodingMap = { gzip: ".gz", br: ".br" };
-const _vHBGKU = eventHandler((event) => {
+const _r28OL2 = eventHandler((event) => {
   if (event.method && !METHODS.has(event.method)) {
     return;
   }
@@ -960,7 +255,7 @@ const _vHBGKU = eventHandler((event) => {
   return readAsset(id);
 });
 
-const _b7yeCe = eventHandler((event) => {
+const _Qrbp2G = eventHandler((event) => {
   const env = event.context.cloudflare?.env || {};
   for (const key in env) {
     if (typeof process.env[key] === "undefined" && typeof env[key] === "string") {
@@ -969,21 +264,407 @@ const _b7yeCe = eventHandler((event) => {
   }
 });
 
-const _lazy_9MoWCY = () => import('../routes/api/send-message.mjs');
-const _lazy_sIH8OQ = () => import('../routes/api/_hub/_...feature_.mjs');
-const _lazy_2aIpJQ = () => import('../routes/api/index.head.mjs');
-const _lazy_IKJYpc = () => import('../routes/api/_hub/manifest.get.mjs');
-const _lazy_Su5swv = () => import('./renderer.mjs').then(function (n) { return n.r; });
+const inlineAppConfig = {
+  "nuxt": {},
+  "__swiper": {
+    "bundled": true
+  },
+  "icon": {
+    "provider": "server",
+    "class": "",
+    "aliases": {},
+    "iconifyApiEndpoint": "https://api.iconify.design",
+    "localApiEndpoint": "/api/_nuxt_icon",
+    "fallbackToApi": true,
+    "cssSelectorPrefix": "i-",
+    "cssWherePseudo": true,
+    "mode": "css",
+    "attrs": {
+      "aria-hidden": true
+    },
+    "collections": [
+      "academicons",
+      "akar-icons",
+      "ant-design",
+      "arcticons",
+      "basil",
+      "bi",
+      "bitcoin-icons",
+      "bpmn",
+      "brandico",
+      "bx",
+      "bxl",
+      "bxs",
+      "bytesize",
+      "carbon",
+      "catppuccin",
+      "cbi",
+      "charm",
+      "ci",
+      "cib",
+      "cif",
+      "cil",
+      "circle-flags",
+      "circum",
+      "clarity",
+      "codicon",
+      "covid",
+      "cryptocurrency",
+      "cryptocurrency-color",
+      "dashicons",
+      "devicon",
+      "devicon-plain",
+      "ei",
+      "el",
+      "emojione",
+      "emojione-monotone",
+      "emojione-v1",
+      "entypo",
+      "entypo-social",
+      "eos-icons",
+      "ep",
+      "et",
+      "eva",
+      "f7",
+      "fa",
+      "fa-brands",
+      "fa-regular",
+      "fa-solid",
+      "fa6-brands",
+      "fa6-regular",
+      "fa6-solid",
+      "fad",
+      "fe",
+      "feather",
+      "file-icons",
+      "flag",
+      "flagpack",
+      "flat-color-icons",
+      "flat-ui",
+      "flowbite",
+      "fluent",
+      "fluent-emoji",
+      "fluent-emoji-flat",
+      "fluent-emoji-high-contrast",
+      "fluent-mdl2",
+      "fontelico",
+      "fontisto",
+      "formkit",
+      "foundation",
+      "fxemoji",
+      "gala",
+      "game-icons",
+      "geo",
+      "gg",
+      "gis",
+      "gravity-ui",
+      "gridicons",
+      "grommet-icons",
+      "guidance",
+      "healthicons",
+      "heroicons",
+      "heroicons-outline",
+      "heroicons-solid",
+      "hugeicons",
+      "humbleicons",
+      "ic",
+      "icomoon-free",
+      "icon-park",
+      "icon-park-outline",
+      "icon-park-solid",
+      "icon-park-twotone",
+      "iconamoon",
+      "iconoir",
+      "icons8",
+      "il",
+      "ion",
+      "iwwa",
+      "jam",
+      "la",
+      "lets-icons",
+      "line-md",
+      "logos",
+      "ls",
+      "lucide",
+      "lucide-lab",
+      "mage",
+      "majesticons",
+      "maki",
+      "map",
+      "marketeq",
+      "material-symbols",
+      "material-symbols-light",
+      "mdi",
+      "mdi-light",
+      "medical-icon",
+      "memory",
+      "meteocons",
+      "mi",
+      "mingcute",
+      "mono-icons",
+      "mynaui",
+      "nimbus",
+      "nonicons",
+      "noto",
+      "noto-v1",
+      "octicon",
+      "oi",
+      "ooui",
+      "openmoji",
+      "oui",
+      "pajamas",
+      "pepicons",
+      "pepicons-pencil",
+      "pepicons-pop",
+      "pepicons-print",
+      "ph",
+      "pixelarticons",
+      "prime",
+      "ps",
+      "quill",
+      "radix-icons",
+      "raphael",
+      "ri",
+      "rivet-icons",
+      "si-glyph",
+      "simple-icons",
+      "simple-line-icons",
+      "skill-icons",
+      "solar",
+      "streamline",
+      "streamline-emojis",
+      "subway",
+      "svg-spinners",
+      "system-uicons",
+      "tabler",
+      "tdesign",
+      "teenyicons",
+      "token",
+      "token-branded",
+      "topcoat",
+      "twemoji",
+      "typcn",
+      "uil",
+      "uim",
+      "uis",
+      "uit",
+      "uiw",
+      "unjs",
+      "vaadin",
+      "vs",
+      "vscode-icons",
+      "websymbol",
+      "weui",
+      "whh",
+      "wi",
+      "wpf",
+      "zmdi",
+      "zondicons"
+    ],
+    "fetchTimeout": 1500
+  },
+  "ui": {
+    "primary": "green",
+    "gray": "cool",
+    "colors": [
+      "red",
+      "orange",
+      "amber",
+      "yellow",
+      "lime",
+      "green",
+      "emerald",
+      "teal",
+      "cyan",
+      "sky",
+      "blue",
+      "indigo",
+      "violet",
+      "purple",
+      "fuchsia",
+      "pink",
+      "rose",
+      "primary"
+    ],
+    "strategy": "merge"
+  }
+};
 
-const handlers = [
-  { route: '', handler: _vHBGKU, lazy: false, middleware: true, method: undefined },
-  { route: '/api/send-message', handler: _lazy_9MoWCY, lazy: true, middleware: false, method: undefined },
-  { route: '/api/_hub/**:feature', handler: _lazy_sIH8OQ, lazy: true, middleware: false, method: undefined },
-  { route: '/api/_hub', handler: _lazy_2aIpJQ, lazy: true, middleware: false, method: "head" },
-  { route: '/api/_hub/manifest', handler: _lazy_IKJYpc, lazy: true, middleware: false, method: "get" },
-  { route: '', handler: _b7yeCe, lazy: false, middleware: true, method: undefined },
-  { route: '/**', handler: _lazy_Su5swv, lazy: true, middleware: false, method: undefined }
-];
+
+
+const appConfig = defuFn(inlineAppConfig);
+
+function getEnv(key, opts) {
+  const envKey = snakeCase(key).toUpperCase();
+  return destr(
+    process.env[opts.prefix + envKey] ?? process.env[opts.altPrefix + envKey]
+  );
+}
+function _isObject(input) {
+  return typeof input === "object" && !Array.isArray(input);
+}
+function applyEnv(obj, opts, parentKey = "") {
+  for (const key in obj) {
+    const subKey = parentKey ? `${parentKey}_${key}` : key;
+    const envValue = getEnv(subKey, opts);
+    if (_isObject(obj[key])) {
+      if (_isObject(envValue)) {
+        obj[key] = { ...obj[key], ...envValue };
+        applyEnv(obj[key], opts, subKey);
+      } else if (envValue === void 0) {
+        applyEnv(obj[key], opts, subKey);
+      } else {
+        obj[key] = envValue ?? obj[key];
+      }
+    } else {
+      obj[key] = envValue ?? obj[key];
+    }
+    if (opts.envExpansion && typeof obj[key] === "string") {
+      obj[key] = _expandFromEnv(obj[key]);
+    }
+  }
+  return obj;
+}
+const envExpandRx = /{{(.*?)}}/g;
+function _expandFromEnv(value) {
+  return value.replace(envExpandRx, (match, key) => {
+    return process.env[key] || match;
+  });
+}
+
+const _inlineRuntimeConfig = {
+  "app": {
+    "baseURL": "/",
+    "buildId": "0f6bf1a3-1cc5-4109-9d5b-c0649d1eac61",
+    "buildAssetsDir": "/_nuxt/",
+    "cdnURL": ""
+  },
+  "nitro": {
+    "openAPI": {
+      "production": "runtime",
+      "route": "/api/_hub/openapi.json",
+      "ui": {
+        "scalar": false,
+        "swagger": false
+      }
+    },
+    "envPrefix": "NUXT_",
+    "routeRules": {
+      "/__nuxt_error": {
+        "cache": false
+      },
+      "/api/**": {
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        }
+      },
+      "/api/_hub/**": {
+        "csurf": false
+      },
+      "/_nuxt/builds/meta/**": {
+        "headers": {
+          "cache-control": "public, max-age=31536000, immutable"
+        }
+      },
+      "/_nuxt/builds/**": {
+        "headers": {
+          "cache-control": "public, max-age=1, immutable"
+        }
+      },
+      "/_nuxt/**": {
+        "headers": {
+          "cache-control": "public, max-age=31536000, immutable"
+        }
+      }
+    }
+  },
+  "public": {
+    "hub": {}
+  },
+  "hub": {
+    "projectUrl": "",
+    "projectSecretKey": "",
+    "url": "https://admin.hub.nuxt.com",
+    "projectKey": "nuxt3-smm-7tm1",
+    "userToken": "user_p8dsPGWVVhEtxjGTWwx7TtWm43ARvp",
+    "remote": "",
+    "remoteManifest": "",
+    "dir": ".data/hub",
+    "ai": false,
+    "analytics": false,
+    "blob": false,
+    "browser": false,
+    "cache": false,
+    "database": false,
+    "kv": false,
+    "vectorize": {},
+    "version": "0.8.7",
+    "env": "production",
+    "openapi": true,
+    "bindings": {
+      "hyperdrive": {},
+      "compatibilityFlags": ""
+    },
+    "cloudflareAccess": {
+      "clientId": "",
+      "clientSecret": ""
+    },
+    "openAPIRoute": "/api/_hub/openapi.json"
+  },
+  "icon": {
+    "serverKnownCssClasses": []
+  }
+};
+const envOptions = {
+  prefix: "NITRO_",
+  altPrefix: _inlineRuntimeConfig.nitro.envPrefix ?? process.env.NITRO_ENV_PREFIX ?? "_",
+  envExpansion: _inlineRuntimeConfig.nitro.envExpansion ?? process.env.NITRO_ENV_EXPANSION ?? false
+};
+const _sharedRuntimeConfig = _deepFreeze(
+  applyEnv(klona(_inlineRuntimeConfig), envOptions)
+);
+function useRuntimeConfig(event) {
+  if (!event) {
+    return _sharedRuntimeConfig;
+  }
+  if (event.context.nitro.runtimeConfig) {
+    return event.context.nitro.runtimeConfig;
+  }
+  const runtimeConfig = klona(_inlineRuntimeConfig);
+  applyEnv(runtimeConfig, envOptions);
+  event.context.nitro.runtimeConfig = runtimeConfig;
+  return runtimeConfig;
+}
+const _sharedAppConfig = _deepFreeze(klona(appConfig));
+function useAppConfig(event) {
+  {
+    return _sharedAppConfig;
+  }
+}
+function _deepFreeze(object) {
+  const propNames = Object.getOwnPropertyNames(object);
+  for (const name of propNames) {
+    const value = object[name];
+    if (value && typeof value === "object") {
+      _deepFreeze(value);
+    }
+  }
+  return Object.freeze(object);
+}
+new Proxy(/* @__PURE__ */ Object.create(null), {
+  get: (_, prop) => {
+    console.warn(
+      "Please use `useRuntimeConfig()` instead of accessing config directly."
+    );
+    const runtimeConfig = useRuntimeConfig();
+    if (prop in runtimeConfig) {
+      return runtimeConfig[prop];
+    }
+    return void 0;
+  }
+});
 
 const serverAssets = [{"baseName":"server","dir":"D:/nuxt3-vuetify3-starter-main/server/assets"}];
 
@@ -997,7 +678,7 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets);
 
-storage.mount('internal:nuxt:prerender', file_58_47_47_47D_58_47nuxt3_45vuetify3_45starter_45main_47node_modules_47_46pnpm_47nuxt_643_4614_461592__64parcel_43watcher_642_465_460__64types_43node_6422_4610_461_ioredis_645_464_461_magicast_640_463_465_rollup_64_wkb5vlqe3fydsakbajvypkvc54_47node_modules_47nuxt_47dist_47core_47runtime_47nitro_47cache_45driver_46js({"driver":"file:///D:/nuxt3-vuetify3-starter-main/node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/core/runtime/nitro/cache-driver.js","base":"D:/nuxt3-vuetify3-starter-main/.nuxt/cache/nitro/prerender"}));
+storage.mount('internal:nuxt:prerender', file_58_47_47_47D_58_47nuxt3_45vuetify3_45starter_45main_47node_modules_47nuxt_47dist_47core_47runtime_47nitro_47cache_45driver_46js({"driver":"file:///D:/nuxt3-vuetify3-starter-main/node_modules/nuxt/dist/core/runtime/nitro/cache-driver.js","base":"D:/nuxt3-vuetify3-starter-main/.nuxt/cache/nitro/prerender"}));
 storage.mount('data', unstorage_47drivers_47fs_45lite({"driver":"fsLite","base":"D:\\nuxt3-vuetify3-starter-main\\.data\\kv"}));
 storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"D:\\nuxt3-vuetify3-starter-main","ignore":["**/node_modules/**","**/.git/**"]}));
 storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"D:\\nuxt3-vuetify3-starter-main\\server","ignore":["**/node_modules/**","**/.git/**"]}));
@@ -1342,176 +1023,44 @@ function cloneWithProxy(obj, overrides) {
 }
 const cachedEventHandler = defineCachedEventHandler;
 
-const inlineAppConfig = {
-  "nuxt": {},
-  "__swiper": {
-    "bundled": true
-  }
-};
-
-
-
-const appConfig = defuFn(inlineAppConfig);
-
-function getEnv(key, opts) {
-  const envKey = snakeCase(key).toUpperCase();
-  return destr(
-    process.env[opts.prefix + envKey] ?? process.env[opts.altPrefix + envKey]
-  );
-}
-function _isObject(input) {
-  return typeof input === "object" && !Array.isArray(input);
-}
-function applyEnv(obj, opts, parentKey = "") {
-  for (const key in obj) {
-    const subKey = parentKey ? `${parentKey}_${key}` : key;
-    const envValue = getEnv(subKey, opts);
-    if (_isObject(obj[key])) {
-      if (_isObject(envValue)) {
-        obj[key] = { ...obj[key], ...envValue };
-        applyEnv(obj[key], opts, subKey);
-      } else if (envValue === void 0) {
-        applyEnv(obj[key], opts, subKey);
-      } else {
-        obj[key] = envValue ?? obj[key];
+function defineRenderHandler(render) {
+  const runtimeConfig = useRuntimeConfig();
+  return eventHandler(async (event) => {
+    const nitroApp = useNitroApp();
+    const ctx = { event, render, response: void 0 };
+    await nitroApp.hooks.callHook("render:before", ctx);
+    if (!ctx.response) {
+      if (event.path === `${runtimeConfig.app.baseURL}favicon.ico`) {
+        setResponseHeader(event, "Content-Type", "image/x-icon");
+        return send(
+          event,
+          "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        );
       }
-    } else {
-      obj[key] = envValue ?? obj[key];
+      ctx.response = await ctx.render(event);
+      if (!ctx.response) {
+        const _currentStatus = getResponseStatus(event);
+        setResponseStatus(event, _currentStatus === 200 ? 500 : _currentStatus);
+        return send(
+          event,
+          "No response returned from render handler: " + event.path
+        );
+      }
     }
-    if (opts.envExpansion && typeof obj[key] === "string") {
-      obj[key] = _expandFromEnv(obj[key]);
+    await nitroApp.hooks.callHook("render:response", ctx.response, ctx);
+    if (ctx.response.headers) {
+      setResponseHeaders(event, ctx.response.headers);
     }
-  }
-  return obj;
-}
-const envExpandRx = /{{(.*?)}}/g;
-function _expandFromEnv(value) {
-  return value.replace(envExpandRx, (match, key) => {
-    return process.env[key] || match;
+    if (ctx.response.statusCode || ctx.response.statusMessage) {
+      setResponseStatus(
+        event,
+        ctx.response.statusCode,
+        ctx.response.statusMessage
+      );
+    }
+    return ctx.response.body;
   });
 }
-
-const _inlineRuntimeConfig = {
-  "app": {
-    "baseURL": "/",
-    "buildId": "d2b77914-31f5-4129-8bf4-6270c27e6188",
-    "buildAssetsDir": "/_nuxt/",
-    "cdnURL": ""
-  },
-  "nitro": {
-    "envPrefix": "NUXT_",
-    "routeRules": {
-      "/__nuxt_error": {
-        "cache": false
-      },
-      "/api/**": {
-        "headers": {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization"
-        }
-      },
-      "/api/_hub/**": {
-        "csurf": false
-      },
-      "/_nuxt/builds/meta/**": {
-        "headers": {
-          "cache-control": "public, max-age=31536000, immutable"
-        }
-      },
-      "/_nuxt/builds/**": {
-        "headers": {
-          "cache-control": "public, max-age=1, immutable"
-        }
-      },
-      "/_nuxt/**": {
-        "headers": {
-          "cache-control": "public, max-age=31536000, immutable"
-        }
-      }
-    }
-  },
-  "public": {
-    "hub": {}
-  },
-  "hub": {
-    "projectUrl": "",
-    "projectSecretKey": "",
-    "url": "https://admin.hub.nuxt.com",
-    "projectKey": "nuxt3-smm-7tm1",
-    "userToken": "user_p8dsPGWVVhEtxjGTWwx7TtWm43ARvp",
-    "remote": "",
-    "remoteManifest": "",
-    "dir": ".data/hub",
-    "ai": false,
-    "analytics": false,
-    "blob": false,
-    "browser": false,
-    "cache": false,
-    "database": false,
-    "kv": false,
-    "vectorize": {},
-    "version": "0.8.7",
-    "env": "production",
-    "openapi": false,
-    "bindings": {
-      "hyperdrive": {},
-      "compatibilityFlags": ""
-    },
-    "cloudflareAccess": {
-      "clientId": "",
-      "clientSecret": ""
-    }
-  }
-};
-const envOptions = {
-  prefix: "NITRO_",
-  altPrefix: _inlineRuntimeConfig.nitro.envPrefix ?? process.env.NITRO_ENV_PREFIX ?? "_",
-  envExpansion: _inlineRuntimeConfig.nitro.envExpansion ?? process.env.NITRO_ENV_EXPANSION ?? false
-};
-const _sharedRuntimeConfig = _deepFreeze(
-  applyEnv(klona(_inlineRuntimeConfig), envOptions)
-);
-function useRuntimeConfig(event) {
-  if (!event) {
-    return _sharedRuntimeConfig;
-  }
-  if (event.context.nitro.runtimeConfig) {
-    return event.context.nitro.runtimeConfig;
-  }
-  const runtimeConfig = klona(_inlineRuntimeConfig);
-  applyEnv(runtimeConfig, envOptions);
-  event.context.nitro.runtimeConfig = runtimeConfig;
-  return runtimeConfig;
-}
-_deepFreeze(klona(appConfig));
-function _deepFreeze(object) {
-  const propNames = Object.getOwnPropertyNames(object);
-  for (const name of propNames) {
-    const value = object[name];
-    if (value && typeof value === "object") {
-      _deepFreeze(value);
-    }
-  }
-  return Object.freeze(object);
-}
-new Proxy(/* @__PURE__ */ Object.create(null), {
-  get: (_, prop) => {
-    console.warn(
-      "Please use `useRuntimeConfig()` instead of accessing config directly."
-    );
-    const runtimeConfig = useRuntimeConfig();
-    if (prop in runtimeConfig) {
-      return runtimeConfig[prop];
-    }
-    return void 0;
-  }
-});
-
-const nitroAsyncContext = getContext("nitro-app", {
-  asyncContext: true,
-  AsyncLocalStorage: AsyncLocalStorage 
-});
 
 const config = useRuntimeConfig();
 const _routeRulesMatcher = toRouteMatcher(
@@ -1570,6 +1119,402 @@ function getRouteRules(event) {
 function getRouteRulesForPath(path) {
   return defu({}, ..._routeRulesMatcher.matchAll(path).reverse());
 }
+
+const nitroAsyncContext = getContext("nitro-app", {
+  asyncContext: true,
+  AsyncLocalStorage: AsyncLocalStorage 
+});
+
+function baseURL() {
+  return useRuntimeConfig().app.baseURL;
+}
+function buildAssetsDir() {
+  return useRuntimeConfig().app.buildAssetsDir;
+}
+function buildAssetsURL(...path) {
+  return joinRelativeURL(publicAssetsURL(), buildAssetsDir(), ...path);
+}
+function publicAssetsURL(...path) {
+  const app = useRuntimeConfig().app;
+  const publicBase = app.cdnURL || app.baseURL;
+  return path.length ? joinRelativeURL(publicBase, ...path) : publicBase;
+}
+
+function createRemoteCollection(fetchEndpoint) {
+  let _cache;
+  return async () => {
+    if (_cache)
+      return _cache
+    const res = await fetch(fetchEndpoint).then(r => r.json());
+    _cache = res;
+    return res
+  }
+}
+
+const collections = {
+  'academicons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/academicons/icons.json"),
+  'akar-icons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/akar-icons/icons.json"),
+  'ant-design': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/ant-design/icons.json"),
+  'arcticons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/arcticons/icons.json"),
+  'basil': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/basil/icons.json"),
+  'bi': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/bi/icons.json"),
+  'bitcoin-icons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/bitcoin-icons/icons.json"),
+  'bpmn': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/bpmn/icons.json"),
+  'brandico': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/brandico/icons.json"),
+  'bx': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/bx/icons.json"),
+  'bxl': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/bxl/icons.json"),
+  'bxs': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/bxs/icons.json"),
+  'bytesize': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/bytesize/icons.json"),
+  'carbon': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/carbon/icons.json"),
+  'catppuccin': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/catppuccin/icons.json"),
+  'cbi': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/cbi/icons.json"),
+  'charm': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/charm/icons.json"),
+  'ci': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/ci/icons.json"),
+  'cib': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/cib/icons.json"),
+  'cif': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/cif/icons.json"),
+  'cil': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/cil/icons.json"),
+  'circle-flags': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/circle-flags/icons.json"),
+  'circum': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/circum/icons.json"),
+  'clarity': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/clarity/icons.json"),
+  'codicon': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/codicon/icons.json"),
+  'covid': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/covid/icons.json"),
+  'cryptocurrency': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/cryptocurrency/icons.json"),
+  'cryptocurrency-color': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/cryptocurrency-color/icons.json"),
+  'dashicons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/dashicons/icons.json"),
+  'devicon': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/devicon/icons.json"),
+  'devicon-plain': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/devicon-plain/icons.json"),
+  'ei': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/ei/icons.json"),
+  'el': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/el/icons.json"),
+  'emojione': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/emojione/icons.json"),
+  'emojione-monotone': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/emojione-monotone/icons.json"),
+  'emojione-v1': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/emojione-v1/icons.json"),
+  'entypo': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/entypo/icons.json"),
+  'entypo-social': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/entypo-social/icons.json"),
+  'eos-icons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/eos-icons/icons.json"),
+  'ep': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/ep/icons.json"),
+  'et': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/et/icons.json"),
+  'eva': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/eva/icons.json"),
+  'f7': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/f7/icons.json"),
+  'fa': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/fa/icons.json"),
+  'fa-brands': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/fa-brands/icons.json"),
+  'fa-regular': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/fa-regular/icons.json"),
+  'fa-solid': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/fa-solid/icons.json"),
+  'fa6-brands': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/fa6-brands/icons.json"),
+  'fa6-regular': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/fa6-regular/icons.json"),
+  'fa6-solid': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/fa6-solid/icons.json"),
+  'fad': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/fad/icons.json"),
+  'fe': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/fe/icons.json"),
+  'feather': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/feather/icons.json"),
+  'file-icons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/file-icons/icons.json"),
+  'flag': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/flag/icons.json"),
+  'flagpack': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/flagpack/icons.json"),
+  'flat-color-icons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/flat-color-icons/icons.json"),
+  'flat-ui': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/flat-ui/icons.json"),
+  'flowbite': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/flowbite/icons.json"),
+  'fluent': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/fluent/icons.json"),
+  'fluent-emoji': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/fluent-emoji/icons.json"),
+  'fluent-emoji-flat': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/fluent-emoji-flat/icons.json"),
+  'fluent-emoji-high-contrast': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/fluent-emoji-high-contrast/icons.json"),
+  'fluent-mdl2': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/fluent-mdl2/icons.json"),
+  'fontelico': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/fontelico/icons.json"),
+  'fontisto': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/fontisto/icons.json"),
+  'formkit': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/formkit/icons.json"),
+  'foundation': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/foundation/icons.json"),
+  'fxemoji': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/fxemoji/icons.json"),
+  'gala': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/gala/icons.json"),
+  'game-icons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/game-icons/icons.json"),
+  'geo': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/geo/icons.json"),
+  'gg': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/gg/icons.json"),
+  'gis': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/gis/icons.json"),
+  'gravity-ui': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/gravity-ui/icons.json"),
+  'gridicons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/gridicons/icons.json"),
+  'grommet-icons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/grommet-icons/icons.json"),
+  'guidance': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/guidance/icons.json"),
+  'healthicons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/healthicons/icons.json"),
+  'heroicons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/heroicons/icons.json"),
+  'heroicons-outline': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/heroicons-outline/icons.json"),
+  'heroicons-solid': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/heroicons-solid/icons.json"),
+  'hugeicons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/hugeicons/icons.json"),
+  'humbleicons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/humbleicons/icons.json"),
+  'ic': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/ic/icons.json"),
+  'icomoon-free': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/icomoon-free/icons.json"),
+  'icon-park': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/icon-park/icons.json"),
+  'icon-park-outline': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/icon-park-outline/icons.json"),
+  'icon-park-solid': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/icon-park-solid/icons.json"),
+  'icon-park-twotone': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/icon-park-twotone/icons.json"),
+  'iconamoon': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/iconamoon/icons.json"),
+  'iconoir': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/iconoir/icons.json"),
+  'icons8': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/icons8/icons.json"),
+  'il': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/il/icons.json"),
+  'ion': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/ion/icons.json"),
+  'iwwa': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/iwwa/icons.json"),
+  'jam': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/jam/icons.json"),
+  'la': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/la/icons.json"),
+  'lets-icons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/lets-icons/icons.json"),
+  'line-md': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/line-md/icons.json"),
+  'logos': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/logos/icons.json"),
+  'ls': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/ls/icons.json"),
+  'lucide': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/lucide/icons.json"),
+  'lucide-lab': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/lucide-lab/icons.json"),
+  'mage': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/mage/icons.json"),
+  'majesticons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/majesticons/icons.json"),
+  'maki': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/maki/icons.json"),
+  'map': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/map/icons.json"),
+  'marketeq': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/marketeq/icons.json"),
+  'material-symbols': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/material-symbols/icons.json"),
+  'material-symbols-light': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/material-symbols-light/icons.json"),
+  'mdi': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/mdi/icons.json"),
+  'mdi-light': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/mdi-light/icons.json"),
+  'medical-icon': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/medical-icon/icons.json"),
+  'memory': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/memory/icons.json"),
+  'meteocons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/meteocons/icons.json"),
+  'mi': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/mi/icons.json"),
+  'mingcute': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/mingcute/icons.json"),
+  'mono-icons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/mono-icons/icons.json"),
+  'mynaui': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/mynaui/icons.json"),
+  'nimbus': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/nimbus/icons.json"),
+  'nonicons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/nonicons/icons.json"),
+  'noto': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/noto/icons.json"),
+  'noto-v1': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/noto-v1/icons.json"),
+  'octicon': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/octicon/icons.json"),
+  'oi': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/oi/icons.json"),
+  'ooui': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/ooui/icons.json"),
+  'openmoji': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/openmoji/icons.json"),
+  'oui': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/oui/icons.json"),
+  'pajamas': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/pajamas/icons.json"),
+  'pepicons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/pepicons/icons.json"),
+  'pepicons-pencil': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/pepicons-pencil/icons.json"),
+  'pepicons-pop': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/pepicons-pop/icons.json"),
+  'pepicons-print': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/pepicons-print/icons.json"),
+  'ph': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/ph/icons.json"),
+  'pixelarticons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/pixelarticons/icons.json"),
+  'prime': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/prime/icons.json"),
+  'ps': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/ps/icons.json"),
+  'quill': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/quill/icons.json"),
+  'radix-icons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/radix-icons/icons.json"),
+  'raphael': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/raphael/icons.json"),
+  'ri': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/ri/icons.json"),
+  'rivet-icons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/rivet-icons/icons.json"),
+  'si-glyph': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/si-glyph/icons.json"),
+  'simple-icons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/simple-icons/icons.json"),
+  'simple-line-icons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/simple-line-icons/icons.json"),
+  'skill-icons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/skill-icons/icons.json"),
+  'solar': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/solar/icons.json"),
+  'streamline': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/streamline/icons.json"),
+  'streamline-emojis': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/streamline-emojis/icons.json"),
+  'subway': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/subway/icons.json"),
+  'svg-spinners': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/svg-spinners/icons.json"),
+  'system-uicons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/system-uicons/icons.json"),
+  'tabler': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/tabler/icons.json"),
+  'tdesign': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/tdesign/icons.json"),
+  'teenyicons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/teenyicons/icons.json"),
+  'token': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/token/icons.json"),
+  'token-branded': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/token-branded/icons.json"),
+  'topcoat': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/topcoat/icons.json"),
+  'twemoji': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/twemoji/icons.json"),
+  'typcn': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/typcn/icons.json"),
+  'uil': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/uil/icons.json"),
+  'uim': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/uim/icons.json"),
+  'uis': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/uis/icons.json"),
+  'uit': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/uit/icons.json"),
+  'uiw': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/uiw/icons.json"),
+  'unjs': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/unjs/icons.json"),
+  'vaadin': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/vaadin/icons.json"),
+  'vs': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/vs/icons.json"),
+  'vscode-icons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/vscode-icons/icons.json"),
+  'websymbol': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/websymbol/icons.json"),
+  'weui': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/weui/icons.json"),
+  'whh': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/whh/icons.json"),
+  'wi': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/wi/icons.json"),
+  'wpf': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/wpf/icons.json"),
+  'zmdi': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/zmdi/icons.json"),
+  'zondicons': createRemoteCollection("https://cdn.jsdelivr.net/npm/@iconify-json/zondicons/icons.json"),
+};
+
+const DEFAULT_ENDPOINT = "https://api.iconify.design";
+const _gZjzYp = defineCachedEventHandler(async (event) => {
+  const url = getRequestURL(event);
+  if (!url)
+    return createError({ status: 400, message: "Invalid icon request" });
+  const options = useAppConfig().icon;
+  const collectionName = event.context.params?.collection?.replace(/\.json$/, "");
+  const collection = collectionName ? await collections[collectionName]?.() : null;
+  const apiEndPoint = options.iconifyApiEndpoint || DEFAULT_ENDPOINT;
+  const icons = url.searchParams.get("icons")?.split(",");
+  if (collection) {
+    if (icons?.length) {
+      const data = getIcons(
+        collection,
+        icons
+      );
+      consola.debug(`[Icon] serving ${(icons || []).map((i) => "`" + collectionName + ":" + i + "`").join(",")} from bundled collection`);
+      return data;
+    }
+  }
+  if (options.fallbackToApi === true || options.fallbackToApi === "server-only") {
+    const apiUrl = new URL("./" + basename(url.pathname) + url.search, apiEndPoint);
+    consola.debug(`[Icon] fetching ${(icons || []).map((i) => "`" + collectionName + ":" + i + "`").join(",")} from iconify api`);
+    if (apiUrl.host !== new URL(apiEndPoint).host) {
+      return createError({ status: 400, message: "Invalid icon request" });
+    }
+    try {
+      const data = await $fetch(apiUrl.href);
+      return data;
+    } catch (e) {
+      consola.error(e);
+      if (e.status === 404)
+        return createError({ status: 404 });
+      else
+        return createError({ status: 500, message: "Failed to fetch fallback icon" });
+    }
+  }
+  return createError({ status: 404 });
+}, {
+  group: "nuxt",
+  name: "icon",
+  getKey(event) {
+    const collection = event.context.params?.collection?.replace(/\.json$/, "") || "unknown";
+    const icons = String(getQuery$1(event).icons || "");
+    return `${collection}_${icons.split(",")[0]}_${icons.length}_${hash(icons)}`;
+  },
+  swr: true,
+  maxAge: 60 * 60 * 24 * 7
+  // 1 week
+});
+
+const _qiZF3KMeta = null;
+
+const _9MoWCYMeta = null;
+
+const _u3VhjpMeta = null;
+
+const _ykpnxAMeta = null;
+
+const _7bOdWNMeta = null;
+
+const _4Dg8j5Meta = null;
+
+const _Qrbp2GMeta = null;
+
+const _gZjzYpMeta = null;
+
+const _vVMWEvMeta = null;
+
+const handlersMeta = [
+  { route: "/api/images", method: undefined, meta: _qiZF3KMeta },
+{ route: "/api/send-message", method: undefined, meta: _9MoWCYMeta },
+{ route: "/api/_hub/**:feature", method: undefined, meta: _u3VhjpMeta },
+{ route: "/api/_hub", method: "head", meta: _ykpnxAMeta },
+{ route: "/api/_hub/manifest", method: "get", meta: _7bOdWNMeta },
+{ route: "/api/_hub/openapi", method: "get", meta: _4Dg8j5Meta },
+{ route: undefined, method: undefined, meta: _Qrbp2GMeta },
+{ route: "/api/_nuxt_icon/:collection", method: undefined, meta: _gZjzYpMeta },
+{ route: "/api/_hub/openapi.json", method: undefined, meta: _vVMWEvMeta }
+  ];
+
+const _vVMWEv = eventHandler((event) => {
+  const runtimeConfig = useRuntimeConfig(event);
+  const base = runtimeConfig.app?.baseURL;
+  const url = joinURL(getRequestURL(event).origin, base);
+  const meta = {
+    title: "Nitro Server Routes",
+    ...runtimeConfig.nitro?.openAPI?.meta
+  };
+  return {
+    openapi: "3.1.0",
+    info: {
+      title: meta?.title,
+      version: meta?.version,
+      description: meta?.description
+    },
+    servers: [
+      {
+        url,
+        description: "Local Development Server",
+        variables: {}
+      }
+    ],
+    paths: getPaths()
+  };
+});
+function getPaths() {
+  const paths = {};
+  for (const h of handlersMeta) {
+    const { route, parameters } = normalizeRoute(h.route || "");
+    const tags = defaultTags(h.route || "");
+    const method = (h.method || "get").toLowerCase();
+    const item = {
+      [method]: {
+        tags,
+        parameters,
+        responses: {
+          200: { description: "OK" }
+        },
+        ...h.meta?.openAPI
+      }
+    };
+    if (paths[route] === void 0) {
+      paths[route] = item;
+    } else {
+      Object.assign(paths[route], item);
+    }
+  }
+  return paths;
+}
+function normalizeRoute(_route) {
+  const parameters = [];
+  let anonymousCtr = 0;
+  const route = _route.replace(/:(\w+)/g, (_, name) => `{${name}}`).replace(/\/(\*)\//g, () => `/{param${++anonymousCtr}}/`).replace(/\*\*{/, "{").replace(/\/(\*\*)$/g, () => `/{*param${++anonymousCtr}}`);
+  const paramMatches = route.matchAll(/{(\*?\w+)}/g);
+  for (const match of paramMatches) {
+    const name = match[1];
+    if (!parameters.some((p) => p.name === name)) {
+      parameters.push({
+        name,
+        in: "path",
+        required: true,
+        schema: { type: "string" }
+      });
+    }
+  }
+  return {
+    route,
+    parameters
+  };
+}
+function defaultTags(route) {
+  const tags = [];
+  if (route.startsWith("/api/")) {
+    tags.push("API Routes");
+  } else if (route.startsWith("/_")) {
+    tags.push("Internal");
+  } else {
+    tags.push("App Routes");
+  }
+  return tags;
+}
+
+const _lazy_qiZF3K = () => import('../routes/api/images.mjs').then(function (n) { return n.i; });
+const _lazy_9MoWCY = () => import('../routes/api/send-message.mjs');
+const _lazy_u3Vhjp = () => import('../routes/api/_hub/_...feature_.mjs');
+const _lazy_ykpnxA = () => import('../routes/api/index.head.mjs');
+const _lazy_7bOdWN = () => import('../routes/api/_hub/manifest.get.mjs');
+const _lazy_4Dg8j5 = () => import('../routes/api/_hub/openapi.get.mjs');
+const _lazy_dfOaj4 = () => import('./renderer.mjs').then(function (n) { return n.a; });
+
+const handlers = [
+  { route: '', handler: _r28OL2, lazy: false, middleware: true, method: undefined },
+  { route: '/api/images', handler: _lazy_qiZF3K, lazy: true, middleware: false, method: undefined },
+  { route: '/api/send-message', handler: _lazy_9MoWCY, lazy: true, middleware: false, method: undefined },
+  { route: '/api/_hub/**:feature', handler: _lazy_u3Vhjp, lazy: true, middleware: false, method: undefined },
+  { route: '/api/_hub', handler: _lazy_ykpnxA, lazy: true, middleware: false, method: "head" },
+  { route: '/api/_hub/manifest', handler: _lazy_7bOdWN, lazy: true, middleware: false, method: "get" },
+  { route: '/api/_hub/openapi', handler: _lazy_4Dg8j5, lazy: true, middleware: false, method: "get" },
+  { route: '', handler: _Qrbp2G, lazy: false, middleware: true, method: undefined },
+  { route: '/api/_nuxt_icon/:collection', handler: _gZjzYp, lazy: false, middleware: false, method: undefined },
+  { route: '/api/_hub/openapi.json', handler: _vVMWEv, lazy: false, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_dfOaj4, lazy: true, middleware: false, method: undefined }
+];
 
 function createNitroApp() {
   const config = useRuntimeConfig();
@@ -1705,44 +1650,5 @@ function useNitroApp() {
 }
 runNitroPlugins(nitroApp);
 
-function defineRenderHandler(render) {
-  const runtimeConfig = useRuntimeConfig();
-  return eventHandler(async (event) => {
-    const nitroApp = useNitroApp();
-    const ctx = { event, render, response: void 0 };
-    await nitroApp.hooks.callHook("render:before", ctx);
-    if (!ctx.response) {
-      if (event.path === `${runtimeConfig.app.baseURL}favicon.ico`) {
-        setResponseHeader(event, "Content-Type", "image/x-icon");
-        return send(
-          event,
-          "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-        );
-      }
-      ctx.response = await ctx.render(event);
-      if (!ctx.response) {
-        const _currentStatus = getResponseStatus(event);
-        setResponseStatus(event, _currentStatus === 200 ? 500 : _currentStatus);
-        return send(
-          event,
-          "No response returned from render handler: " + event.path
-        );
-      }
-    }
-    await nitroApp.hooks.callHook("render:response", ctx.response, ctx);
-    if (ctx.response.headers) {
-      setResponseHeaders(event, ctx.response.headers);
-    }
-    if (ctx.response.statusCode || ctx.response.statusMessage) {
-      setResponseStatus(
-        event,
-        ctx.response.statusCode,
-        ctx.response.statusMessage
-      );
-    }
-    return ctx.response.body;
-  });
-}
-
-export { useRuntimeConfig as a, useStorage as b, defineRenderHandler as d, getRouteRules as g, trapUnhandledNodeErrors as t, useNitroApp as u };
+export { baseURL as a, buildAssetsURL as b, useStorage as c, defineRenderHandler as d, useNitroApp as e, getRouteRules as g, publicAssetsURL as p, trapUnhandledNodeErrors as t, useRuntimeConfig as u };
 //# sourceMappingURL=nitro.mjs.map

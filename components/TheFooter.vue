@@ -7,44 +7,6 @@
             <div class="footer__logo">
               <a href="#"><img src="../assets/svg/logo.svg" alt="Logo" /></a>
             </div>
-            <nav class="footer__list-wrapper">
-              <ul class="footer__list">
-                <li class="footer__list-item">
-                  <a class="footer__list-item-link" href="#">Услуги</a>
-                </li>
-                <li class="footer__list-item">
-                  <a class="footer__list-item-link" href="#">Отзывы</a>
-                </li>
-              </ul>
-              <ul class="footer__list">
-                <li class="footer__list-item">
-                  <a class="footer__list-item-link" href="#"
-                    >Как это работает</a
-                  >
-                </li>
-                <li class="footer__list-item">
-                  <a class="footer__list-item-link" href="#">Преимущества</a>
-                </li>
-              </ul>
-              <ul class="footer__list">
-                <li class="footer__list-item">
-                  <a class="footer__list-item-link" href="#"
-                    >SMMFlow vs Другие сайты</a
-                  >
-                </li>
-                <li class="footer__list-item">
-                  <a class="footer__list-item-link" href="#">Частые вопросы</a>
-                </li>
-              </ul>
-              <ul class="footer__list">
-                <li class="footer__list-item">
-                  <a class="footer__list-item-link" href="#">Правила сервиса</a>
-                </li>
-                <li class="footer__list-item">
-                  <a class="footer__list-item-link" href="#">Контакты</a>
-                </li>
-              </ul>
-            </nav>
           </div>
 
         </div>
@@ -118,15 +80,9 @@
 
   &__top {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
   }
 
-  &__left-column {
-  }
-
-  &__logo {
-    margin-bottom: 2.4rem;
-  }
 
   &__text {
     font-family: "Nunito Sans";

@@ -32,10 +32,7 @@ export default defineNuxtConfig({
 
   ssr: true,
 
-  modules: [
-    "nuxt-swiper",
-    "@nuxthub/core"
-  ],
+  modules: ["nuxt-swiper", "@nuxthub/core", "@nuxt/image", "@nuxt/ui", "@vueuse/nuxt"],
   nitro: {
     preset: 'cloudflare-pages', // Или другое, если необходимо
     routeRules: {
@@ -52,6 +49,9 @@ export default defineNuxtConfig({
       routes: ['/'],
       // Then crawl all the links on the page
       crawlLinks: true
+    },
+    experimental: {
+      openAPI: true
     }
   },
 

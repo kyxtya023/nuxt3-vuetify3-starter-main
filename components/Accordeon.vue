@@ -4,9 +4,10 @@
     :class="{ active: activeIndex === index }"
     v-for="(item, index) in questions"
     :key="index"
-    @click="toggleActive(index)"
   >
-    <h3 class="question__title">
+    <h3 class="question__title"
+    @click="toggleActive(index)"
+    >
       {{ item.name }}
     </h3>
     <div
@@ -28,6 +29,10 @@
         <template v-if="block.type === 'highlighted-text'">
           <p class="highlighted-text" v-html="splitText(block.text)"></p>
         </template>
+         <!-- Типа как бейдж, но не бейдж -->
+        <template v-if="block.type === 'highlighted-background-text'">
+          <p class="highlighted-background-text" v-html="splitText(block.text)"></p>
+        </template>
 
         <!-- Обычный текст с жирным выделением -->
         <template v-if="block.type === 'text'">
@@ -36,11 +41,22 @@
 
         <!-- Список -->
         <template v-if="block.type === 'list'">
-          <ul class="question__list">
-            <li class="question__list-item" v-for="(listItem, listIndex) in block.items" :key="listIndex">
-              {{ listItem }}
-            </li>
-          </ul>
+          <div class="question__list-wrapper">
+            <div class="list-container">
+              <!-- Перебираем все списки внутри блока -->
+              <div v-for="(list, listIndex) in block.lists" :key="listIndex" class="list-column">
+                <!-- Заголовок для каждого списка -->
+                <p v-if="list.title" class="question__list-title" v-html="splitText(list.title)"></p>
+                <!-- Список -->
+                <ul class="question__list">
+                  <li class="question__list-item" v-for="(listItem, itemIndex) in list.items" :key="itemIndex">
+                    <!-- Обрабатываем каждый item с заменой жирного текста -->
+                    <p v-html="splitText(listItem)"></p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </template>
       </div>
     </div>
@@ -76,7 +92,7 @@ const splitText = (text) => {
 
   // Заменяем **жирный текст** на <strong>жирный текст</strong>
   const boldTextRegex = /\*\*(.*?)\*\*/g;
-  text = text.replace(boldTextRegex, '<strong style="font-size: 2rem;">$1</strong>');
+  text = text.replace(boldTextRegex, '<strong style="font-weight: 600; font-size: 1.8rem;line-height: 150%;font-family: Unbounded;font-weight: 500;color: #212121;">$1</strong>');
 
   // Заменяем переводы строк с отступами сверху (\n+) на <span с отступом сверху>
   text = text.replace(/\n\+/g, "<span style='display:block; margin-top: 2rem;'></span>");
@@ -95,6 +111,7 @@ const splitText = (text) => {
 
 
 
+
 onMounted(() => {
   contentHeights.value = contents.value.map((el) => (el ? `${el.scrollHeight}px` : "0px"));
 });
@@ -110,8 +127,12 @@ watch(activeIndex, () => {
 
 <style scoped lang="scss">
 strong {
-  font-weight: 400;
+  font-weight: 600;
   font-size: 2rem;
+  line-height: 150%;
+  font-family: Unbounded;
+  font-weight: 500;
+  color: #212121;
 }
 .text-line,
 .highlighted-line {
@@ -166,7 +187,7 @@ strong {
 
   &__image {
     text-align: center;
-    margin-top: 1rem;
+    margin-bottom: 2rem;
 
     img {
       max-width: 100%;
@@ -189,6 +210,34 @@ strong {
     font-weight: 500;
     color: #212121;
   }
+
+  .highlighted-background-text {
+    display: block;
+    padding: 1rem 1.5rem;
+    font-size: 1.7rem;
+    font-family: Unbounded;
+    font-weight: 500;
+    line-height: 150%;
+    background-color: rgba(130, 220, 247, 0.400);
+    color: #212121;
+    border-radius: 8px;
+  }
+
+  .list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Настройка отступа между списками */
+  justify-content: space-between;
+  }
+
+  &__list-title {
+    font-family: "Nunito Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 160%;
+    color: #676767;
+  }
   
   &__text {
     font-family: "Nunito Sans";
@@ -206,11 +255,22 @@ strong {
 
   &__steps-list-item {}
 
+  &__list-wrapper {
+    margin-bottom: 1rem; /* Отступ между списками */
+  }
+
+/* Убираем отступ у последнего списка */
+  &__list-wrapper:last-child {
+    margin-bottom: 0;
+  }
+
+
   &__list {
     list-style: disc;
     padding-left: 20px;
     margin: 1rem 0;
   }
+  
 
   &__list-item {
     font-family: "Nunito Sans";
@@ -241,4 +301,10 @@ strong {
       font-size: 1.5rem;
     }
 }
+
+  @media (max-width: 379.98px) {
+    .question {
+      padding: 0 1.5rem;
+    }
+  }
 </style>

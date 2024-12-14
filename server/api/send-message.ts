@@ -20,7 +20,7 @@ interface Answers {
   doorways: {
     text: string;
   };
-  mosquito: string;
+  // mosquito: string;
   installation: string;
   mount: string;
   schedule: string;
@@ -39,7 +39,6 @@ export default defineEventHandler(async (event) => {
 - Площадь: ${answers.area}
 - Конфигурация: ${answers.configuration.name} (${answers.configuration.title})
 - Количество проемов: ${answers.doorways.text}
-- Москитные сетки: ${answers.mosquito === "yes" ? "Да" : "Нет"}
 - Тип установки: ${answers.installation}
 - Тип крепления: ${answers.mount}
 - График: ${answers.schedule}
@@ -73,3 +72,5 @@ ${contactInfo.message ? `Дополнительное сообщение: ${cont
     return sendError(event, createError({ statusCode: 500, message: 'Ошибка при отправке сообщения.' }));
   }
 });
+
+// - Москитные сетки: ${answers.mosquito === "yes" ? "Да" : "Нет"}

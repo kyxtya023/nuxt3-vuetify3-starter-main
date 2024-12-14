@@ -24,7 +24,7 @@ export const tabContents: Record<string, TabContent> = {
     items: [
       {
         img: "https://optim.tildacdn.com/tild3737-3032-4234-b233-646164643562/-/resize/560x430/-/format/webp/10.jpg",
-        title: "Пленка для окон ПВХ 700 микрон Ю.Корея",
+        title: "Пленка для окон ПВХ 700 микрон",
         details: [
           "Толщина пленки 700 мкм",
           "Повышенная прочность",
@@ -32,16 +32,6 @@ export const tabContents: Record<string, TabContent> = {
         ],
         description: ""
       },
-      {
-        img: "https://optim.tildacdn.com/tild6636-3435-4834-b235-656137366362/-/resize/560x430/-/format/webp/IMG_4801.JPG",
-        title: "Пленка для окон ПВХ 700 микрон Китай",
-        details: [
-          "Толщина пленки 700 мкм",
-          "Повышенная прочность",
-          "Количество пластификатора: 37-40%, 55PHR"
-        ],
-        description: "Отличный выбор для средних и крупногабаритных строений. Повышенная прочность на разрыв. Возможность перекрывать широкие проемы."
-      }
     ]
   },
   vue: {

@@ -1,6 +1,6 @@
 declare global {
-  const __buildAssetsURL: typeof import('../../node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/core/runtime/nitro/paths')['buildAssetsURL']
-  const __publicAssetsURL: typeof import('../../node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/core/runtime/nitro/paths')['publicAssetsURL']
+  const __buildAssetsURL: typeof import('../../node_modules/nuxt/dist/core/runtime/nitro/paths')['buildAssetsURL']
+  const __publicAssetsURL: typeof import('../../node_modules/nuxt/dist/core/runtime/nitro/paths')['publicAssetsURL']
   const appendCorsHeaders: typeof import('../../node_modules/h3')['appendCorsHeaders']
   const appendCorsPreflightHeaders: typeof import('../../node_modules/h3')['appendCorsPreflightHeaders']
   const appendHeader: typeof import('../../node_modules/h3')['appendHeader']
@@ -20,7 +20,7 @@ declare global {
   const createEventStream: typeof import('../../node_modules/h3')['createEventStream']
   const createRouter: typeof import('../../node_modules/h3')['createRouter']
   const defaultContentType: typeof import('../../node_modules/h3')['defaultContentType']
-  const defineAppConfig: typeof import('../../node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/core/runtime/nitro/config')['defineAppConfig']
+  const defineAppConfig: typeof import('../../node_modules/nuxt/dist/core/runtime/nitro/config')['defineAppConfig']
   const defineCachedEventHandler: typeof import('../../node_modules/nitropack/dist/runtime/internal/cache')['defineCachedEventHandler']
   const defineCachedFunction: typeof import('../../node_modules/nitropack/dist/runtime/internal/cache')['defineCachedFunction']
   const defineEventHandler: typeof import('../../node_modules/h3')['defineEventHandler']
@@ -70,7 +70,7 @@ declare global {
   const getValidatedRouterParams: typeof import('../../node_modules/h3')['getValidatedRouterParams']
   const handleCacheHeaders: typeof import('../../node_modules/h3')['handleCacheHeaders']
   const handleCors: typeof import('../../node_modules/h3')['handleCors']
-  const hubHooks: typeof import('../../node_modules/.pnpm/@nuxthub+core@0.8.7_ioredis@5.4.1_magicast@0.3.5_rollup@4.28.1_vite@5.4.11_@types+node@22.10._xj7oxkn3yz2jxrlphmssqd7g7q/node_modules/@nuxthub/core/dist/runtime/base/server/utils/hooks')['hubHooks']
+  const hubHooks: typeof import('../../node_modules/@nuxthub/core/dist/runtime/base/server/utils/hooks')['hubHooks']
   const isCorsOriginAllowed: typeof import('../../node_modules/h3')['isCorsOriginAllowed']
   const isError: typeof import('../../node_modules/h3')['isError']
   const isEvent: typeof import('../../node_modules/h3')['isEvent']
@@ -81,7 +81,7 @@ declare global {
   const isWebResponse: typeof import('../../node_modules/h3')['isWebResponse']
   const lazyEventHandler: typeof import('../../node_modules/h3')['lazyEventHandler']
   const nitroPlugin: typeof import('../../node_modules/nitropack/dist/runtime/internal/plugin')['nitroPlugin']
-  const onHubReady: typeof import('../../node_modules/.pnpm/@nuxthub+core@0.8.7_ioredis@5.4.1_magicast@0.3.5_rollup@4.28.1_vite@5.4.11_@types+node@22.10._xj7oxkn3yz2jxrlphmssqd7g7q/node_modules/@nuxthub/core/dist/runtime/base/server/utils/hooks')['onHubReady']
+  const onHubReady: typeof import('../../node_modules/@nuxthub/core/dist/runtime/base/server/utils/hooks')['onHubReady']
   const parseCookies: typeof import('../../node_modules/h3')['parseCookies']
   const promisifyNodeListener: typeof import('../../node_modules/h3')['promisifyNodeListener']
   const proxyRequest: typeof import('../../node_modules/h3')['proxyRequest']
@@ -130,8 +130,8 @@ declare global {
 // for type re-export
 declare global {
   // @ts-ignore
-  export type { HubHooks } from 'D:/nuxt3-vuetify3-starter-main/node_modules/.pnpm/@nuxthub+core@0.8.7_ioredis@5.4.1_magicast@0.3.5_rollup@4.28.1_vite@5.4.11_@types+node@22.10._xj7oxkn3yz2jxrlphmssqd7g7q/node_modules/@nuxthub/core/dist/runtime/base/server/utils/hooks.js'
-  import('D:/nuxt3-vuetify3-starter-main/node_modules/.pnpm/@nuxthub+core@0.8.7_ioredis@5.4.1_magicast@0.3.5_rollup@4.28.1_vite@5.4.11_@types+node@22.10._xj7oxkn3yz2jxrlphmssqd7g7q/node_modules/@nuxthub/core/dist/runtime/base/server/utils/hooks.js')
+  export type { HubHooks } from 'D:/nuxt3-vuetify3-starter-main/node_modules/@nuxthub/core/dist/runtime/base/server/utils/hooks.d.ts'
+  import('D:/nuxt3-vuetify3-starter-main/node_modules/@nuxthub/core/dist/runtime/base/server/utils/hooks.d.ts')
 }
 export { useNitroApp } from 'nitropack/runtime/internal/app';
 export { useRuntimeConfig, useAppConfig } from 'nitropack/runtime/internal/config';
@@ -145,6 +145,6 @@ export { useEvent } from 'nitropack/runtime/internal/context';
 export { defineTask, runTask } from 'nitropack/runtime/internal/task';
 export { defineNitroErrorHandler } from 'nitropack/runtime/internal/error';
 export { appendCorsHeaders, appendCorsPreflightHeaders, appendHeader, appendHeaders, appendResponseHeader, appendResponseHeaders, assertMethod, callNodeListener, clearResponseHeaders, clearSession, createApp, createAppEventHandler, createError, createEvent, createEventStream, createRouter, defaultContentType, defineEventHandler, defineLazyEventHandler, defineNodeListener, defineNodeMiddleware, defineRequestMiddleware, defineResponseMiddleware, defineWebSocket, defineWebSocketHandler, deleteCookie, dynamicEventHandler, eventHandler, fetchWithEvent, fromNodeMiddleware, fromPlainHandler, fromWebHandler, getCookie, getHeader, getHeaders, getMethod, getProxyRequestHeaders, getQuery, getRequestFingerprint, getRequestHeader, getRequestHeaders, getRequestHost, getRequestIP, getRequestPath, getRequestProtocol, getRequestURL, getRequestWebStream, getResponseHeader, getResponseHeaders, getResponseStatus, getResponseStatusText, getRouterParam, getRouterParams, getSession, getValidatedQuery, getValidatedRouterParams, handleCacheHeaders, handleCors, isCorsOriginAllowed, isError, isEvent, isEventHandler, isMethod, isPreflightRequest, isStream, isWebResponse, lazyEventHandler, parseCookies, promisifyNodeListener, proxyRequest, readBody, readFormData, readMultipartFormData, readRawBody, readValidatedBody, removeResponseHeader, sanitizeStatusCode, sanitizeStatusMessage, sealSession, send, sendError, sendIterable, sendNoContent, sendProxy, sendRedirect, sendStream, sendWebResponse, serveStatic, setCookie, setHeader, setHeaders, setResponseHeader, setResponseHeaders, setResponseStatus, splitCookiesString, toEventHandler, toNodeListener, toPlainHandler, toWebHandler, toWebRequest, unsealSession, updateSession, useBase, useSession, writeEarlyHints } from 'h3';
-export { buildAssetsURL as __buildAssetsURL, publicAssetsURL as __publicAssetsURL } from '../../node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/core/runtime/nitro/paths';
-export { defineAppConfig } from '../../node_modules/.pnpm/nuxt@3.14.1592_@parcel+watcher@2.5.0_@types+node@22.10.1_ioredis@5.4.1_magicast@0.3.5_rollup@_wkb5vlqe3fydsakbajvypkvc54/node_modules/nuxt/dist/core/runtime/nitro/config';
-export { hubHooks, onHubReady } from '../../node_modules/.pnpm/@nuxthub+core@0.8.7_ioredis@5.4.1_magicast@0.3.5_rollup@4.28.1_vite@5.4.11_@types+node@22.10._xj7oxkn3yz2jxrlphmssqd7g7q/node_modules/@nuxthub/core/dist/runtime/base/server/utils/hooks';
+export { buildAssetsURL as __buildAssetsURL, publicAssetsURL as __publicAssetsURL } from '../../node_modules/nuxt/dist/core/runtime/nitro/paths';
+export { defineAppConfig } from '../../node_modules/nuxt/dist/core/runtime/nitro/config';
+export { hubHooks, onHubReady } from '../../node_modules/@nuxthub/core/dist/runtime/base/server/utils/hooks';

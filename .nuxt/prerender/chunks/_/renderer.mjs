@@ -1,28 +1,13 @@
 import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/vue-bundle-renderer/dist/runtime.mjs';
 import { getQuery, createError, appendResponseHeader, getResponseStatus, getResponseStatusText } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/h3/dist/index.mjs';
 import { stringify, uneval } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/devalue/index.js';
-import { joinRelativeURL, joinURL, withoutTrailingSlash } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/ufo/dist/index.mjs';
-import { renderToString } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/.pnpm/vue@3.5.13_typescript@5.7.2/node_modules/vue/server-renderer/index.mjs';
+import { joinURL, withoutTrailingSlash } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/ufo/dist/index.mjs';
+import { renderToString } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/vue/server-renderer/index.mjs';
 import { propsToString, renderSSRHead } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/@unhead/ssr/dist/index.mjs';
-import { createServerHead as createServerHead$1, CapoPlugin } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/unhead/dist/index.mjs';
-import { a as useRuntimeConfig, d as defineRenderHandler, b as useStorage, g as getRouteRules, u as useNitroApp } from './nitro.mjs';
-import { version, unref } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/.pnpm/vue@3.5.13_typescript@5.7.2/node_modules/vue/index.mjs';
+import { createServerHead as createServerHead$1, getActiveHead, CapoPlugin } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/unhead/dist/index.mjs';
+import { d as defineRenderHandler, b as buildAssetsURL, p as publicAssetsURL, c as useStorage, g as getRouteRules, u as useRuntimeConfig, e as useNitroApp } from './nitro.mjs';
+import { version, unref, inject } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/vue/index.mjs';
 import { defineHeadPlugin } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/@unhead/shared/dist/index.mjs';
-
-function baseURL() {
-  return useRuntimeConfig().app.baseURL;
-}
-function buildAssetsDir() {
-  return useRuntimeConfig().app.buildAssetsDir;
-}
-function buildAssetsURL(...path) {
-  return joinRelativeURL(publicAssetsURL(), buildAssetsDir(), ...path);
-}
-function publicAssetsURL(...path) {
-  const app = useRuntimeConfig().app;
-  const publicBase = app.cdnURL || app.baseURL;
-  return path.length ? joinRelativeURL(publicBase, ...path) : publicBase;
-}
 
 const Vue3 = version[0] === "3";
 
@@ -81,6 +66,21 @@ function createServerHead(options = {}) {
   head.use(VueReactivityPlugin);
   head.install = vueInstall(head);
   return head;
+}
+
+const _global = typeof globalThis !== "undefined" ? globalThis : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
+const globalKey = "__unhead_injection_handler__";
+function setHeadInjectionHandler(handler) {
+  _global[globalKey] = handler;
+}
+function injectHead() {
+  if (globalKey in _global) {
+    return _global[globalKey]();
+  }
+  const head = inject(headSymbol);
+  if (!head && "prerender" !== "production")
+    console.warn("Unhead is missing Vue context, falling back to shared context. This may have unexpected results.");
+  return head || getActiveHead();
 }
 
 const unheadPlugins = true ? [CapoPlugin({ track: true })] : [];
@@ -415,5 +415,5 @@ const renderer$1 = /*#__PURE__*/Object.freeze({
   default: renderer
 });
 
-export { buildAssetsURL as a, baseURL as b, renderer$1 as r };
+export { renderer$1 as a, injectHead as i, resolveUnrefHeadInput as r, setHeadInjectionHandler as s };
 //# sourceMappingURL=renderer.mjs.map

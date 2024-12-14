@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, provide } from "vue";
 
 import TheHeader from "../components/TheHeader.vue";
 import Accordeon from "../components/Accordeon.vue";
@@ -7,6 +7,8 @@ import TheFooter from "../components/TheFooter.vue";
 import vBtn from "../components/AppButton.vue";
 import TabContent from "../components/TabContent.vue";
 import btnFloating from "../components/btnFloating.vue";
+import Notification from "~/components/Notification.vue";
+
 
 import { tabContents } from "@/data/tabContents";
 import { questions } from "../data/questionsAccordeon";
@@ -38,7 +40,7 @@ interface DoorOption {
 interface Answer {
   area: number | string | null; // Модифицированная обработка не требует изменения
   doorways: DoorOption | null;  // Структура doorways остается
-  mosquito: string | null;
+  // mosquito: string | null;
   mount: string | null;
   configuration: Configuration | null;
   installation: string | null; // Извлекаемый текст заменяет значение
@@ -52,14 +54,13 @@ interface ContactInfo {
   message: string;
 }
 
-// Локальные состояния
-const isMobile = ref(false);
+
 const currentStep = ref(1);
 
 const answers = ref<Answer>({
   area: 1,
   doorways: null,
-  mosquito: null,
+  // mosquito: null,
   mount: null,
   configuration: null,
   installation: null,
@@ -76,13 +77,23 @@ const contactInfo = ref<ContactInfo>({
 const steps = [
   "area",
   "doorways",
-  "mosquito",
+  // "mosquito",
   "mount",
   "configuration",
   "installation",
   "schedule",
   "contact",
 ];
+
+// Создаем хук для управления уведомлениями
+const { notifications, addNotification, closeNotification } = useNotifications({
+  playNotificationSound: () => { /* функция для воспроизведения звука */ },
+});
+
+// Пробрасываем данные через provide
+provide('notifications', notifications);
+provide('addNotification', addNotification);
+provide('closeNotification', closeNotification);
 
 
 const sliderProgressStyle = computed(() => ({
@@ -92,7 +103,7 @@ const sliderProgressStyle = computed(() => ({
 
 // Проверка, можно ли двигаться дальше
 const canProceed = computed(() => {
-  if (currentStep.value < 8) {
+  if (currentStep.value < 7) {
     return !!answers.value[steps[currentStep.value - 1] as keyof Answer];
   } else {
     const isPhoneValid =
@@ -116,7 +127,7 @@ const prevStep = () => {
 
 // Обработка кнопки "Далее/Отправить"
 const handleNext = async () => {
-  if (currentStep.value < 8) {
+  if (currentStep.value < 7) {
     nextStep();
   } else {
     await sendRequest();
@@ -126,6 +137,27 @@ const handleNext = async () => {
 // Универсальная функция для получения текста по значению
 const getOptionText = (value: string | null, options: Array<{ value: string; text: string }>) => {
   return options.find(option => option.value === value)?.text || value || '';
+};
+
+const resetQuiz = () => {
+  currentStep.value = 1;
+  
+  // Сброс answers в начальное состояние
+  answers.value = {
+    area: 1,
+    doorways: null,
+    mount: null,
+    configuration: null,
+    installation: null,
+    schedule: null,
+  };
+  
+  // Сброс информации о контакте
+  contactInfo.value = {
+    name: "",
+    phone: "",
+    message: "",
+  };
 };
 
 // Функция обработки данных
@@ -142,6 +174,7 @@ const processAnswers = (answers: Answer): Answer => {
 
 };
 
+// Функция для отправки запроса
 const sendRequest = async () => {
   try {
     const processedAnswers = processAnswers(answers.value);
@@ -152,23 +185,28 @@ const sendRequest = async () => {
 
     console.log("Отправляемые данные:", payload);
 
-    // Используем $fetch
-    const response = await useFetch('/api/send-message', {
+    const response = await $fetch('/api/send-message', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: payload, // JSON.stringify здесь не требуется
+      body: JSON.stringify(payload),  // Не забудьте сериализовать данные в JSON
     });
 
     if (response) {
-      alert("Сообщение успешно отправлено!");
+      // Уведомление об успешной отправке
+      addNotification('Сообщение успешно отправлено!', 'success', false);
+      resetQuiz();  // Сброс этапов и данных
     } else {
-      alert(response || 'Ошибка при отправке сообщения.');
+      // Уведомление об ошибке при отправке
+      addNotification('Ошибка при отправке сообщения. Пожалуйста, попробуйте позже.', 'error');
+      resetQuiz();  // Сброс этапов и данных
     }
   } catch (err) {
     console.error("Ошибка при отправке:", err);
-    alert("Ошибка при отправке сообщения. Пожалуйста, попробуйте позже.");
+    // Уведомление об ошибке
+    addNotification('Ошибка при отправке сообщения. Пожалуйста, попробуйте позже.', 'error');
+    resetQuiz();  // Сброс этапов и данных
   }
 };
 
@@ -191,16 +229,6 @@ function scrollToSection(id: string): void {
   }
 }
 
-// Обработка окна
-const updateIsMobile = () => {
-  isMobile.value = window.innerWidth <= 979.98;
-};
-
-// Вызов при монтировании компонента
-onMounted(() => {
-  updateIsMobile();
-  window.addEventListener("resize", updateIsMobile);
-});
 
 
 const doorOptions: DoorOption[] = [
@@ -210,11 +238,11 @@ const doorOptions: DoorOption[] = [
   {id: 4, image: "https://cdn.media.marquiz.ru/v1/image/upload/8vEA7fnjvSASoyFyA3WGBf.jpeg?format=webp&func=auto&fit=cover&width=420&height=420&dpr=1", text: "4 и более проемов" },
 ];
 
-const mosquitoOptions = [
-  { value: "yes", text: "Да" },
-  { value: "no", text: "Нет" },
-  { value: "unknown", text: "Пока не знаю" },
-];
+// const mosquitoOptions = [
+//   { value: "yes", text: "Да" },
+//   { value: "no", text: "Нет" },
+//   { value: "unknown", text: "Пока не знаю" },
+// ];
 
 const mountOptions = ["Брус", "Сайдинг","Оцилиндрованный брус","Плитка","Бетонное основание","Конструкция из металла","Кирпичное основание", "Другое"];
 
@@ -240,32 +268,32 @@ const recomendationItem = [
   {
     title: "АБСОЛЮТНО БЕЗОПАСНЫ ДЛЯ ДЕТЕЙ",
     text: "Мягкое окно нельзя разбить и пораниться, они не имеют запаха",
-    icon: "/img/icons8-безопасная-зона-для-детей-96.png", // Путь к изображению иконки
+    icon: "/img/icons8-zona-dlya-detei-96.png", // Путь к изображению иконки
   },
   {
     title: "ДЕШЕВЛЕ ПЛАСТИКОВЫХ ОКОН В НЕСКОЛЬКО РАЗ",
     text: `Стоимость мягких окон минимум в 2 раза ниже`,
-    icon: "/img/icons8-кошелек-96.png",
+    icon: "/img/icons8-koshelek-96.png",
   },
   {
     title: "ЭСТЕТИЧНЫЕ И ПРИВЛЕКАТЕЛЬНЫЕ",
     text: `Прозрачная пленка ПВХ обладает идеальной светопропускаемостью`,
-    icon: "/img/icons8-сердце-96.png",
+    icon: "/img/icons8-serdce-96.png",
   },
   {
     title: "НЕ ЖЕЛТЕЕТ НА СОЛНЦЕ",
     text: `Задерживает до 95% ультрафиолета`,
-    icon: "/img/icons8-солнце-96.png",
+    icon: "/img/icons8-solnce-96.png",
   },
   {
     title: "СРОК СЛУЖБЫ БОЛЕЕ 10 ЛЕТ",
     text: `Реально проверенный срок эксплуатации`,
-    icon: "/img/icons8-календарь-961.png",
+    icon: "/img/icons8-kalendar-961.png",
   },
   {
     title: "НАДЕЖНАЯ ЗАВЕСА",
     text: `Не деформируется, прочные, эластичные и морозостойкие `,
-    icon: "/img/icons8-защита-96.png",
+    icon: "/img/icons8-defence-96.png",
   },
 ];
 
@@ -273,40 +301,26 @@ const services = [
   {
     title: "Комплект «Эконом»",
     image: "/img/IMG_5912.jfif",
-    // image: new URL("~/assets/img/IMG_5912.jfif", import.meta.url).href,
-    description:
-      "пленка Ю. Корея 700 мкм, морозостойкая до -30°C, окантовка ПВХ без фурнитуры",
-    prices: ["от 800 руб.", "от 750 руб.", "от 700 руб."],
+    description: "Пленка 700 мкм, морозостойкая до -39°C, окантовка ПВХ без фурнитуры",
+    prices: ["от 1090 руб.", "от 990 руб.", "от 890 руб."],
+    size: ["до 15 м²", "от 15 м² до 50 м²", "более 50 м²"]
   },
   {
     title: "Комплект «Стандарт»",
     image: "/img/IMG_5910.jfif",
-    description:
-      "пленка Германия 900 мкм, устойчивость к ультрафиолету, окантовка ПВХ с фурнитурой",
-    prices: ["от 1200 руб.", "от 1100 руб.", "от 1000 руб."],
+    description: "Пленка 700 мкм, устойчивость к ультрафиолету, окантовка ПВХ с фурнитурой.",
+    prices: ["от 2190 руб.", "от 2090 руб.", "от 1990 руб."],
+    size: ["до 15 м²", "от 15 м² до 30 м²", "более 30 м²"]
   },
   {
-    title: "Комплект «Премиум»",
-    image: "/img/IMG_5909.jfif",
-    description:
-      "пленка Германия 1200 мкм, морозостойкая до -40°C, окантовка ПВХ с усиленной фурнитурой",
-    prices: ["от 1500 руб.", "от 1400 руб.", "от 1300 руб."],
-  },
-  {
-    title: "Комплект «Люкс»",
+    title: "Под ключ",
     image: "/img/IMG_5872.jfif",
-    description:
-      "пленка Франция 1500 мкм, устойчивая к механическим повреждениям, двойная окантовка ПВХ",
-    prices: ["от 2000 руб.", "от 1800 руб.", "от 1600 руб."],
-  },
-  {
-    title: "Комплект «Люкс»",
-    image: "/img/IMG_5911.jfif",
-    description:
-      " пленка Франция 1500 мкм, устойчивая к механическим повреждениям, двойная окантовка ПВХ",
-    prices: ["от 2000 руб.", "от 1800 руб.", "от 1600 руб."],
-  },
+    description: "Пленка 700 мкм, морозостойкая до -39°C, окантовка ПВХ с фурнитурой и с монтажом",
+    prices: ["29900 руб.", "45000 руб.", "от 2990 руб."],
+    size: ["до 10 м²", "от 10 м² до 15 м²", "от 15 м² до 40 м²"]
+  }
 ];
+
 const cards = [
   {
     image: "/img/XXL_height.webp",
@@ -386,6 +400,112 @@ const changeTab = (tabName: string) => {
   selectedTab.value = tabName;
 };
 
+interface ImageWithWatermark {
+  src: string;
+  watermark: string;
+}
+
+const images = ref<ImageWithWatermark[]>([
+  { src: '/img/gallery/gallery1.jpeg', watermark: '/img/watermarks/watermark1.png' },
+  { src: '/img/gallery/gallery2.jpeg', watermark: '/img/watermarks/watermark2.png' },
+  { src: '/img/gallery/gallery3.jpeg', watermark: '/img/watermarks/watermark3.png' },
+  { src: '/img/gallery/gallery4.jpeg', watermark: '/img/watermarks/watermark4.png' },
+  { src: '/img/gallery/gallery5.jpeg', watermark: '/img/watermarks/watermark5.png' },
+  { src: '/img/gallery/gallery6.jpeg', watermark: '/img/watermarks/watermark6.png' },
+  { src: '/img/gallery/gallery7.jpeg', watermark: '/img/watermarks/watermark7.png' },
+  { src: '/img/gallery/gallery8.jpeg', watermark: '/img/watermarks/watermark8.png' },
+  { src: '/img/gallery/gallery9.jpeg', watermark: '/img/watermarks/watermark9.png' },
+  { src: '/img/gallery/gallery10.jpeg', watermark: '/img/watermarks/watermark10.png' },
+  { src: '/img/gallery/gallery11.jpeg', watermark: '/img/watermarks/watermark11.png' },
+  { src: '/img/gallery/gallery12.jpeg', watermark: '/img/watermarks/watermark12.png' },
+  { src: '/img/gallery/gallery13.jpeg', watermark: '/img/watermarks/watermark13.png' },
+  { src: '/img/gallery/gallery14.jpeg', watermark: '/img/watermarks/watermark14.png' },
+  { src: '/img/gallery/gallery15.jpeg', watermark: '/img/watermarks/watermark15.png' },
+  { src: '/img/gallery/gallery16.jpeg', watermark: '/img/watermarks/watermark16.png' },
+  { src: '/img/gallery/gallery17.jpeg', watermark: '/img/watermarks/watermark17.png' },
+  { src: '/img/gallery/gallery18.jpeg', watermark: '/img/watermarks/watermark18.png' },
+  { src: '/img/gallery/gallery19.jpeg', watermark: '/img/watermarks/watermark19.png' },
+  { src: '/img/gallery/gallery20.jpeg', watermark: '/img/watermarks/watermark20.png' },
+  { src: '/img/gallery/gallery21.jpeg', watermark: '/img/watermarks/watermark21.png' },
+  { src: '/img/gallery/gallery22.jpeg', watermark: '/img/watermarks/watermark22.png' },
+  { src: '/img/gallery/gallery23.jpeg', watermark: '/img/watermarks/watermark23.png' },
+  { src: '/img/gallery/gallery24.jpeg', watermark: '/img/watermarks/watermark24.png' },
+  { src: '/img/gallery/gallery25.jpeg', watermark: '/img/watermarks/watermark25.png' },
+  { src: '/img/gallery/gallery26.jpeg', watermark: '/img/watermarks/watermark26.png' },
+  { src: '/img/gallery/gallery27.jpeg', watermark: '/img/watermarks/watermark27.png' },
+  { src: '/img/gallery/gallery28.jpeg', watermark: '/img/watermarks/watermark28.png' },
+  { src: '/img/gallery/gallery29.jpeg', watermark: '/img/watermarks/watermark29.png' },
+  { src: '/img/gallery/gallery30.jpeg', watermark: '/img/watermarks/watermark30.png' },
+  { src: '/img/gallery/gallery31.jpeg', watermark: '/img/watermarks/watermark31.png' },
+  { src: '/img/gallery/gallery32.jpeg', watermark: '/img/watermarks/watermark32.png' },
+  { src: '/img/gallery/gallery33.jpeg', watermark: '/img/watermarks/watermark33.png' },
+  { src: '/img/gallery/gallery34.jpeg', watermark: '/img/watermarks/watermark34.png' },
+  { src: '/img/gallery/gallery35.jpeg', watermark: '/img/watermarks/watermark35.png' },
+  { src: '/img/gallery/gallery36.jpeg', watermark: '/img/watermarks/watermark36.png' },
+  { src: '/img/gallery/gallery37.jpeg', watermark: '/img/watermarks/watermark37.png' },
+  { src: '/img/gallery/gallery38.jpeg', watermark: '/img/watermarks/watermark38.png' },
+  { src: '/img/gallery/gallery39.jpeg', watermark: '/img/watermarks/watermark39.png' },
+  { src: '/img/gallery/gallery40.jpeg', watermark: '/img/watermarks/watermark40.png' },
+  { src: '/img/gallery/gallery41.jpeg', watermark: '/img/watermarks/watermark41.png' },
+  { src: '/img/gallery/gallery42.jpeg', watermark: '/img/watermarks/watermark42.png' },
+  { src: '/img/gallery/gallery43.jpeg', watermark: '/img/watermarks/watermark43.png' },
+  { src: '/img/gallery/gallery44.jpeg', watermark: '/img/watermarks/watermark44.png' },
+  { src: '/img/gallery/gallery45.jpeg', watermark: '/img/watermarks/watermark45.png' },
+  { src: '/img/gallery/gallery46.jpeg', watermark: '/img/watermarks/watermark46.png' },
+  { src: '/img/gallery/gallery47.jpeg', watermark: '/img/watermarks/watermark47.png' },
+  { src: '/img/gallery/gallery48.jpeg', watermark: '/img/watermarks/watermark48.png' },
+  { src: '/img/gallery/gallery49.jpeg', watermark: '/img/watermarks/watermark49.png' },
+  { src: '/img/gallery/gallery50.jpeg', watermark: '/img/watermarks/watermark50.png' },
+  { src: '/img/gallery/gallery51.jpeg', watermark: '/img/watermarks/watermark51.png' },
+  { src: '/img/gallery/gallery52.jpeg', watermark: '/img/watermarks/watermark51.png' },
+]);
+
+// Фильтруем изображения, проверяя, существуют ли они
+const validImages = ref<ImageWithWatermark[]>([]);
+
+const checkImagesExistence = async () => {
+  for (const image of images.value) {
+    try {
+      const img = new Image();
+      img.src = image.src;
+      img.onload = () => {
+        validImages.value.push(image); // Добавляем изображение, если оно успешно загружено
+      };
+      img.onerror = () => {
+        // Если изображение не существует или не может быть загружено, просто пропускаем
+        console.log(`Image not found: ${image.src}`);
+      };
+    } catch (error) {
+      console.error(`Error loading image: ${image.src}`, error);
+    }
+  }
+};
+
+// Вызываем проверку при монтировании
+onMounted(() => {
+  checkImagesExistence();
+});
+
+// const images = ref<ImageWithWatermark[]>([]);  // Объявляем тип для images
+
+// const fetchImages = async () => {
+//   try {
+//     const data = await $fetch<ImageWithWatermark[]>('/api/images');
+//     if (data && Array.isArray(data)) {
+//       images.value = data.filter(item => item.src); // Проверка на корректность src
+//     } else {
+//       console.error('Некорректные данные от сервера');
+//     }
+//   } catch (error) {
+//     console.error('Ошибка при загрузке изображений:', error);
+//   }
+// };
+
+
+// onMounted(() => {
+//   fetchImages();
+// });
+import { useNotifications } from '~/composables/useNotifications';
 </script>
 
 <template>
@@ -403,27 +523,27 @@ const changeTab = (tabName: string) => {
               Элегантное решение для вашего комфорта: мягкие окна из гибкого ПВХ от производителя — идеальный выбор для веранд, беседок и террас, защищающих от ветра, дождя и холода.
             </h2>
             <div class="hero__buttons">
-              <v-btn
-                class="hero__button"
-                title="Расчет стоимости"
-                :disabled="false"
-                :success="true"
-                :orange="true"
-              >
-              </v-btn>
+              <nuxt-link       
+                class="hero__btn" 
+                href="https://wa.me/+1234567890" 
+                target="_blank" 
+                aria-label="Написать в WhatsApp"
+                >Расчет стоимости</nuxt-link>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <div class="feedback-customer">
+    <div    
+
+    class="feedback-customer">
       <div class="container">
         <div class="feedback-customer__inner">
           <!-- <div class="feedback-customer__title-buttons-wrapper">
             <h2 class="feedback-customer__title">Отзывы клиентов</h2>
           </div> -->
           <div class="feedback-customer__items">
-            <div class="feedback" @click="scrollToSection('works')">
+            <div class="feedback" @click="scrollToSection('watermark')">
               <div class="feedback__item">
                 <div class="feedback__item-image" style="position: relative">
                   <img
@@ -519,7 +639,7 @@ const changeTab = (tabName: string) => {
               <div class="feedback__item">
                 <div class="feedback__item-image" style="position: relative">
                   <img
-                    src="~/assets/img/icons8-sum-96.png"
+                    src="~/assets/img/icons8-sum-100.png"
                     style="width: 60px; height: 60px"
                     alt=""
                   />
@@ -651,13 +771,6 @@ const changeTab = (tabName: string) => {
           комплектации
         </h2>
         <div class="price-table">
-          <!-- Заголовки таблицы -->
-          <div class="price-table__row price-table__header">
-            <div class="header__cell">Наименование</div>
-            <div class="header__cell">До 15 м²</div>
-            <div class="header__cell">От 15 м² до 50 м²</div>
-            <div class="header__cell">Более 50 м²</div>
-          </div>
           <!-- Перебор строк с услугами -->
           <div
             class="price-table__row"
@@ -680,22 +793,22 @@ const changeTab = (tabName: string) => {
               </div>
             </div>
             <div class="price-table__cell">
-              <span v-if="isMobile">
-                {{ item.prices[0] }} <span class="price-table__cell-text-gray">До 15 м²</span>
+              <span>
+                {{ item.prices[0] }}
             </span>
-              <span v-else>{{ item.prices[0] }}</span>
+            <span class="price-table__cell-text-gray">{{ item.size[0] }}</span>
             </div>
             <div class="price-table__cell">
-              <span v-if="isMobile">
-                {{ item.prices[1] }} <span class="price-table__cell-text-gray">От 15 м² до 50 м²</span>
+              <span>
+                {{ item.prices[1] }}
               </span>
-              <span v-else>{{ item.prices[1] }}</span>
+              <span class="price-table__cell-text-gray">{{ item.size[1] }}</span>
             </div>
             <div class="price-table__cell">
-              <span v-if="isMobile">
-                {{ item.prices[2] }} <span class="price-table__cell-text-gray">Более 50 м²</span>
+              <span>
+                {{ item.prices[2] }}
               </span>
-              <span v-else>{{ item.prices[2] }}</span>
+              <span class="price-table__cell-text-gray">{{ item.size[2] }}</span>
             </div>
           </div>
         </div>
@@ -703,7 +816,7 @@ const changeTab = (tabName: string) => {
     </div>
   </div>
 
-    <div class="mosquito-table">
+    <!-- <div class="mosquito-table">
       <div class="container">
         <div class="mosquito-table__inner">
           <h2 class="price__title">
@@ -758,7 +871,7 @@ const changeTab = (tabName: string) => {
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="estimates">
 
@@ -840,7 +953,7 @@ const changeTab = (tabName: string) => {
                 </div>
               </div>
 
-              <div v-if="currentStep === 3" class="quiz__step">
+              <!-- <div v-if="currentStep === 3" class="quiz__step">
                 <h2 class="quiz__title">Потребуется ли москитная сетка?</h2>
                 <div class="quiz__radio-group">
                   <label
@@ -860,9 +973,9 @@ const changeTab = (tabName: string) => {
     <p class="text">{{ option.text }}</p>
                   </label>
                 </div>
-              </div>
+              </div> -->
 
-              <div v-if="currentStep === 4" class="quiz__step">
+              <div v-if="currentStep === 3" class="quiz__step">
                 <h2 class="quiz__title">
                   На что будут монтироваться мягкие окна?
                 </h2>
@@ -886,7 +999,7 @@ const changeTab = (tabName: string) => {
                 </div>
               </div>
 
-              <div v-if="currentStep === 5" class="quiz__step">
+              <div v-if="currentStep === 4" class="quiz__step">
                 <h2 class="quiz__title">Какая комплектация необходима?</h2>
                 <div class="quiz__equipments">
                   <div
@@ -914,7 +1027,7 @@ const changeTab = (tabName: string) => {
                 </div>
               </div>
 
-              <div v-if="currentStep === 6" class="quiz__step">
+              <div v-if="currentStep === 5" class="quiz__step">
                 <h2 class="quiz__title">Установите сами или нужен монтаж?</h2>
                 <div class="quiz__radio-group">
                   <label 
@@ -935,7 +1048,7 @@ const changeTab = (tabName: string) => {
                 </div>
               </div>
 
-              <div v-if="currentStep === 7" class="quiz__step">
+              <div v-if="currentStep === 6" class="quiz__step">
                 <h2 class="quiz__title">
                   Когда планируете устанавливать мягкие окна?
                 </h2>
@@ -959,7 +1072,7 @@ const changeTab = (tabName: string) => {
                 </div>
               </div>
 
-              <div v-if="currentStep === 8" class="quiz__step">
+              <div v-if="currentStep === 7" class="quiz__step">
       <p class="quiz__title">
         Заполните контактную информацию и с вами обязательно свяжутся в ближайшее время
       </p>
@@ -1012,12 +1125,12 @@ const changeTab = (tabName: string) => {
                   Назад
                 </button>
                 <button
-        class="quiz__button quiz__button--next"
-        @click="handleNext"
-        :disabled="!canProceed"
-      >
-        {{ currentStep < 8 ? "Далее" : "Отправить" }}
-      </button>
+                  class="quiz__button quiz__button--next"
+                  @click="handleNext"
+                  :disabled="!canProceed"
+                >
+                  {{ currentStep < 7 ? "Далее" : "Отправить" }}
+                </button>
               </div>
             </div>
           </div>
@@ -1141,6 +1254,18 @@ const changeTab = (tabName: string) => {
     </div>
   </section>
 
+  <section class="watermark" id="watermark">
+    <div class="container">
+      <div class="watermark__inner">
+        <h2 class="watermark__title">Наши <span class="orange">работы</span></h2>
+        <div class="watermark__images">
+
+          <WatermarkImg :images="images" />
+        </div>
+      </div>
+    </div>
+  </section>
+
     <section class="faq" id="faq">
       <div class="container">
         <div class="faq__inner">
@@ -1151,13 +1276,16 @@ const changeTab = (tabName: string) => {
         </div>
       </div>
     </section>
-
+    
     <btnFloating/>
+    <Notification/>
   </main>
   <TheFooter />
 </template>
 
 <style lang="scss" scoped>
+
+
 .tabs {
   margin-bottom: 14rem;
 
@@ -1195,6 +1323,39 @@ const changeTab = (tabName: string) => {
 }
 }
 
+.watermark {
+  margin-bottom: 14rem;
+
+		&__title {
+      font-family: "Unbounded";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 3.6rem;
+      line-height: 150%;
+      color: #212121;
+      margin-bottom: 4rem;
+		}
+
+
+
+    @media (max-width: 979.98px) {
+    &__title {
+        font-size: 3.2rem;
+      }
+    }
+
+    @media (max-width: 767.98px) {
+    &__title {
+        font-size: 2.8rem;
+      }
+    }
+
+    @media (max-width: 479.98px) {
+    &__title {
+        font-size: 2.3rem;
+      }
+    }
+}
 
 
 .material {
@@ -1600,6 +1761,7 @@ const changeTab = (tabName: string) => {
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background: #fff;
 		}
 
     &__input-textarea {
@@ -2086,10 +2248,32 @@ position: relative;
     align-items: center;
   }
 
+  &__btn {
+    font-family: "Nunito Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 133%;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition-duration: 0.15s;
+    max-width: 45rem;
+    background: #82DBF7;
+    padding: 1.5rem 3rem;
+    width: 100%;
+    color: #212121;
+    &:hover {
+      background: rgb(167 229 247);
+    }
+  }
+
   &__image {
     position: absolute;
     width: 100%;
-    background-image: url("https://static.tildacdn.com/tild6135-3165-4262-b134-396131346664/2024-08-08_16-22-52.JPG");
+    background-image: url("/img/fb1ba1a1-82fb-4f70-a0a4-14917676aef0.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -2103,12 +2287,19 @@ position: relative;
     width: 100%;
   }
 
+  @media (max-width: 767.98px) {
+    &__content {
+      padding-top: 9rem;
+      padding-bottom: 9rem;
+    }
+  }
+  
   @media (max-width: 575.98px) {
     &__title {
       font-size: 3rem;
     }
   }
-
+ 
   @media (max-width: 379.98px) {
     &__title {
       font-size: 2.5rem;
@@ -2423,6 +2614,8 @@ position: relative;
     font-size: 1.8rem;
     line-height: 150%;
     display: flex;
+    flex-direction: column;
+    gap: 1rem;
     align-items: center;
     color: #212121;
   }
@@ -2547,9 +2740,9 @@ position: relative;
   }
 }
 
-.mosquito-table {
-  margin-bottom: 14rem;
-}
+// .mosquito-table {
+//   margin-bottom: 14rem;
+// }
 
 .value {
   background: #fff;
@@ -2861,8 +3054,7 @@ position: relative;
   &__item-image {
     border-radius: 50%;
     margin-right: 1.6rem;
-    width: 4.6rem;
-    height: 4.6rem;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2878,6 +3070,7 @@ position: relative;
     align-items: center;
     text-align: center;
     color: #212121;
+    max-width: 19rem;
   }
 
   &__item-image-img {
@@ -2926,6 +3119,12 @@ position: relative;
       width: 48px !important;
       height: 48px !important;
     }
+    }
+  }
+
+  @media (max-width: 979.98px) {
+    &__item-title {
+      max-width: none;
     }
   }
 
@@ -3132,4 +3331,6 @@ position: relative;
 .swiper-slide {
   height: auto !important;
 }
+
+
 </style>
