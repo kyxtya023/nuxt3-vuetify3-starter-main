@@ -1,9 +1,11 @@
 <template>
   <!-- Основная круглая кнопка -->
   <div class="floating-btn" @click="toggleMenu">
-    <i class="phone"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <i class="phone">
+      <img src="/public/img/whatsapp.png" alt="">
+      <!-- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M12 5V12M12 12V19M12 12H19M12 12H5" stroke="#222222" stroke-width="1.5" stroke-linecap="round"/>
-</svg>
+</svg> -->
 </i>
   </div>
 
@@ -53,11 +55,13 @@ body._lock .floating-btn {
   position: fixed;
   bottom: 20px;
   right: 30px;
-  background-color: #82dbf7;
+  // background-color: #82dbf7;
   color: white;
   border-radius: 50%;
-  padding: 2rem;
+  // padding: 2rem;
   font-size: 24px;
+  width: 6.5rem;
+  height: 6.5rem;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   z-index: 1000;
@@ -76,7 +80,8 @@ body._lock .floating-btn {
 .floating-btn-menu {
   position: fixed;
   bottom: 100px; /* Чуть выше кнопки */
-  right: 40px;
+  // right: 40px;
+  right: 38px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -95,25 +100,8 @@ body._lock .floating-btn {
   align-items: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, opacity 0.3s ease;
-  width: 5rem;
-  height: 5rem;
-}
-
-@media (max-width:479.98px) {
-  .floating-btn {
-  bottom: 15px;
-  right: 15px;
-  padding: 1.5rem;
-  &>i>svg {
-    width: 3rem;
-    height: 3rem;
-  }
-}
-
-.floating-btn-menu {
-  bottom: 90px; /* Чуть выше кнопки */
-  right: 20px;
-}
+  width: 5.5rem;
+  height: 5.5rem;
 }
 
 .floating-btn-item.phone-btn {
@@ -141,6 +129,34 @@ body._lock .floating-btn {
 .fa.fa-phone img{
   width: 100%;
   height: 100%;
+}
+
+@media (max-width:479.98px) {
+  .floating-btn {
+    &>i>svg {
+      width: 3rem;
+      height: 3rem;
+    } 
+  }
+
+  .floating-btn-menu {
+    right: 2.1rem;
+    bottom: 9rem;
+  }
+
+  .floating-btn {
+    width: 5.5rem;
+    height: 5.5rem;
+    right: 16px;
+  }
+  .floating-btn-item.phone-btn {
+    height: 4.5rem;
+    width: 4.5rem;
+  }
+  .floating-btn-item.whatsapp-btn {
+    height: 4.5rem;
+    width: 4.5rem;
+  }
 }
 
 /* Анимация для появления кнопок */

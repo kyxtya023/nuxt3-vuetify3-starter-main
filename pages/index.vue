@@ -195,7 +195,7 @@ const sendRequest = async () => {
 
     if (response) {
       // Уведомление об успешной отправке
-      addNotification('Сообщение успешно отправлено!', 'success', false);
+      addNotification('Сообщение успешно отправлено!', 'success', true);
       resetQuiz();  // Сброс этапов и данных
     } else {
       // Уведомление об ошибке при отправке
@@ -249,12 +249,13 @@ const mountOptions = ["Брус", "Сайдинг","Оцилиндрованны
 const configurationOptions = [
   {id: 1, image: "https://cdn.media.marquiz.ru/v1/image/upload/hqfjcwjdgpvpnskasrdj.jpg?format=webp&func=auto&fit=cover&width=480&height=303&dpr=1", name: "Эконом", title: "Без фурнитуры. Пленка 0,7 микрон + окантовка ПВХ" },
   {id: 2, image: "https://cdn.media.marquiz.ru/v1/image/upload/mmtjr4bcfvtkaa4mr7s9.jpg?format=webp&func=auto&fit=cover&width=480&height=303&dpr=1", name: "Стандарт", title: "Пленка 0,7 микрон + окантовка ПВХ + крепления" },
-  {id: 3, image: "https://cdn.media.marquiz.ru/v1/image/upload/cpzaow7heqm5xgcsw0v7.jpg?format=webp&func=auto&fit=cover&width=480&height=303&dpr=1", name: "Премиум", title: "Пленка 0,7 микрон + окантовка OXFORD + крепления" },
-  {id: 4, image: "https://cdn.media.marquiz.ru/v1/image/upload/kuckrag3tnm7fhaht4sz.jpg?format=webp&func=auto&fit=cover&width=480&height=303&dpr=1", name: "Люкс", title: "Пленка 0,7 микрон + окантовка OXFORD LUX  + крепления" },
+  {id: 3, image: "https://cdn.media.marquiz.ru/v1/image/upload/cpzaow7heqm5xgcsw0v7.jpg?format=webp&func=auto&fit=cover&width=480&height=303&dpr=1", name: "Под ключ", title: "Пленка 0,7 микрон + окантовка ПВХ + крепления и монтаж" },
+  {id: 4, image: "https://cdn.media.marquiz.ru/v1/image/upload/kuckrag3tnm7fhaht4sz.jpg?format=webp&func=auto&fit=cover&width=480&height=303&dpr=1", name: "Премиум Под ключ", title: "Пленка 0,7 микрон + окантовка ПВХ + крепления и монтаж. Срок изготовления от 1 до 3-х дней. За срочность +30% от суммы заказа" },
 ];
 
 const scheduleOptions = [
-  { value: "soon", text: "В ближайшее время" },
+  { value: "soon", text: "В ближайшее время (10-14 дней)" },
+  { value: "express", text: "Кратчайшие сроки (1-3 дней)" },
   { value: "interest", text: "Пока просто интересуюсь" },
 ];
 
@@ -268,32 +269,32 @@ const recomendationItem = [
   {
     title: "АБСОЛЮТНО БЕЗОПАСНЫ ДЛЯ ДЕТЕЙ",
     text: "Мягкое окно нельзя разбить и пораниться, они не имеют запаха",
-    icon: "/img/icons8-zona-dlya-detei-96.png", // Путь к изображению иконки
+    icon: "/svg/icons8-zona-dlya-detei-96.png", // Путь к изображению иконки
   },
   {
     title: "ДЕШЕВЛЕ ПЛАСТИКОВЫХ ОКОН В НЕСКОЛЬКО РАЗ",
     text: `Стоимость мягких окон минимум в 2 раза ниже`,
-    icon: "/img/icons8-koshelek-96.png",
+    icon: "/svg/icons8-wallet-96.png",
   },
   {
     title: "ЭСТЕТИЧНЫЕ И ПРИВЛЕКАТЕЛЬНЫЕ",
     text: `Прозрачная пленка ПВХ обладает идеальной светопропускаемостью`,
-    icon: "/img/icons8-serdce-96.png",
+    icon: "/svg/icons8-heart-961.png",
   },
   {
     title: "НЕ ЖЕЛТЕЕТ НА СОЛНЦЕ",
     text: `Задерживает до 95% ультрафиолета`,
-    icon: "/img/icons8-solnce-96.png",
+    icon: "/svg/icons8-sun-96.png",
   },
   {
     title: "СРОК СЛУЖБЫ БОЛЕЕ 10 ЛЕТ",
     text: `Реально проверенный срок эксплуатации`,
-    icon: "/img/icons8-kalendar-961.png",
+    icon: "/svg/icons8-calendar-96.png",
   },
   {
     title: "НАДЕЖНАЯ ЗАВЕСА",
     text: `Не деформируется, прочные, эластичные и морозостойкие `,
-    icon: "/img/icons8-defence-96.png",
+    icon: "/svg/icons8-protect-96.png",
   },
 ];
 
@@ -323,9 +324,21 @@ const services = [
 
 const cards = [
   {
+    image: "/img/13647644.jpg",
+    title: "Выезд замерщика",
+    text: "В любой день и время (даже в праздники и выходные), произведем бесплатные замеры и предложим лучшие варианты производства и установки мягких окон.",
+    // button: "Заказать рассчет"
+  },
+  {
     image: "/img/XXL_height.webp",
     title: "ОПЫТНЫЕ БРИГАДЫ МОНТАЖНИКОВ",
     text: "Опыт, который мы нарабатывали, будет применен к Вашему заказу, чтобы результат радовал Вас долгие годы."
+  },
+  {
+    image: "/img/XXL_height1.webp",
+    title: "Установка",
+    text: "Гарантируем качественный монтаж мягких окон лучшими специалистами, любой сложности, формы и метража",
+    // button: "Заказать"
   },
   {
     image: "/img/istock-187398417.jpg",
@@ -338,6 +351,12 @@ const cards = [
     text: "Мы предоставляем гарантию на все выполненные работы."
   },
   {
+    image: "/img/remeshok-dlya-fiksacii-shtory.jpg",
+    title: "Доставка",
+    text: "При заказе монтажа доставка бесплатно",
+    // button: "Заказать"
+  },
+  {
     image: "/img/PVC-Flexible-Plastic-Sheet.avif",
     title: "ВЫСОКОЕ КАЧЕСТВО МАТЕРИАЛОВ",
     text: "Мы используем только проверенные материалы, которые выдержат испытание временем."
@@ -348,29 +367,15 @@ const cards = [
     text: "Мы работаем быстро и качественно, не нарушая оговоренные сроки."
   },
   {
+    image: "/img/13.png",
+    title: "Производство",
+    text: "Изготовим мягкие окна по размерам и требованиям заказчика в кратчайшие сроки",
+    // button: "Заказать рассчет"
+  },
+  {
     image: "/img/541549a6-a184-4cab-8.jpg",
     title: "ИНДИВИДУАЛЬНЫЙ ПОДХОД",
     text: "Каждый клиент для нас особенный, и мы учитываем все ваши пожелания."
-  },
-  {
-    image: "/img/13647644.jpg",
-    title: "Выезд замерщика",
-    text: "В любой день и время (даже в праздники и выходные), произведем бесплатные замеры и предложим лучшие варианты производства и установки мягких окон."
-  },
-  {
-    image: "/img/13.png",
-    title: "Производство",
-    text: "Изготовим мягкие окна по размерам и требованиям заказчика в кратчайшие сроки"
-  },
-  {
-    image: "/img/XXL_height1.webp",
-    title: "Установка",
-    text: "Гарантируем качественный монтаж мягких окон лучшими специалистами, любой сложности, формы и метража"
-  },
-  {
-    image: "/img/remeshok-dlya-fiksacii-shtory.jpg",
-    title: "Доставка",
-    text: "При заказе монтажа доставка бесплатно"
   },
 ];
 
@@ -388,7 +393,7 @@ function selectDoorway(item: DoorOption) {  // Указываем тип для 
 const tabs = [
   { name: "tape", label: "Пленка" },
   { name: "vue", label: "Окантовка" },
-  { name: "grid", label: "Москитная сетка" },
+  // { name: "grid", label: "Москитная сетка" },
   { name: "accessories", label: "Фурнитура" },
 ];
 
@@ -547,11 +552,11 @@ import { useNotifications } from '~/composables/useNotifications';
               <div class="feedback__item">
                 <div class="feedback__item-image" style="position: relative">
                   <img
-                    src="../assets/img/icons8-handmade-96.png"
-                    style="width: 60px; height: 60px"
+                    src="~/assets/svg/4db54979-24dc-4cb4-a0fa-54c3e03ab58d.jpg"
+                    style="width: 80px; height: 80px; border-radius: 50%;"
                     alt=""
                   />
-                  <svg
+                  <!-- <svg
                     width="90"
                     height="90"
                     viewBox="0 0 170 170"
@@ -584,7 +589,7 @@ import { useNotifications } from '~/composables/useNotifications';
                         />
                       </linearGradient>
                     </defs>
-                  </svg>
+                  </svg> -->
                 </div>
                 <h2 class="feedback__item-title">Наши работы</h2>
               </div>
@@ -593,11 +598,11 @@ import { useNotifications } from '~/composables/useNotifications';
               <div class="feedback__item">
                 <div class="feedback__item-image" style="position: relative">
                   <img
-                    src="~/assets/img/icons8-tools-96.png"
-                    style="width: 60px; height: 60px"
+                    src="~/assets/svg/3cb75436-2636-4a15-98f2-01f5116a54b6.jpg"
+                    style="width: 80px; height: 80px; border-radius: 50%;"
                     alt=""
                   />
-                  <svg
+                  <!-- <svg
                     width="90"
                     height="90"
                     viewBox="0 0 170 170"
@@ -630,7 +635,7 @@ import { useNotifications } from '~/composables/useNotifications';
                         />
                       </linearGradient>
                     </defs>
-                  </svg>
+                  </svg> -->
                 </div>
                 <h2 class="feedback__item-title">Услуги</h2>
               </div>
@@ -639,11 +644,11 @@ import { useNotifications } from '~/composables/useNotifications';
               <div class="feedback__item">
                 <div class="feedback__item-image" style="position: relative">
                   <img
-                    src="~/assets/img/icons8-sum-100.png"
-                    style="width: 60px; height: 60px"
+                    src="~/assets/svg/8df28ea8-26c3-4e68-8248-ebbf33ff55a4.jpg"
+                    style="width: 80px; height: 80px; border-radius: 50%;"
                     alt=""
                   />
-                  <svg
+                  <!-- <svg
                     width="90"
                     height="90"
                     viewBox="0 0 170 170"
@@ -676,7 +681,7 @@ import { useNotifications } from '~/composables/useNotifications';
                         />
                       </linearGradient>
                     </defs>
-                  </svg>
+                  </svg> -->
                 </div>
                 <h2 class="feedback__item-title">Наши Преимущества</h2>
               </div>
@@ -693,11 +698,11 @@ import { useNotifications } from '~/composables/useNotifications';
           </h2>
           <div class="recomendation__block-image">
             <img
-              src="~/assets/img/photo_2022-07-14_15-.jpg"
+              src="~/assets/img/e2e51fae-f4df-4a6b-ad8a-78d5f228a5ad.jpg"
               class="recomendation__block-top-image"
               alt=""
             />
-            <img
+            <!-- <img
               src="~/assets/img/IMG_7449.jfif"
               class="recomendation__block-bottom-images"
               alt=""
@@ -711,7 +716,7 @@ import { useNotifications } from '~/composables/useNotifications';
               src="~/assets/img/_.jfif"
               class="recomendation__block-bottom-images"
               alt=""
-            />
+            /> -->
           </div>
           <div class="recomendation__block-text">
             <p>
@@ -873,13 +878,13 @@ import { useNotifications } from '~/composables/useNotifications';
       </div>
     </div> -->
 
-    <div class="estimates">
+    <div class="estimates" id="smeta">
 
         <div class="estimates__inner">
           <div class="estimates-form-wrapper">
             <div class="estimates__image"></div>
-            <div class="div">
-            <h2 class="price__title" style="display: flex; justify-content: center">
+            <div class="estimates__block">
+            <h2 class="estimates__title" style="display: flex; justify-content: center">
       Получить смету
     </h2>
             <p class="estimates__subtitle">
@@ -1138,7 +1143,7 @@ import { useNotifications } from '~/composables/useNotifications';
 
     </div>
 
-    <section class="why">
+    <section class="why" id="why">
     <h2 class="why__title">Почему выбирают <span class="orange">нас?</span></h2>
       <div class="why__inner">
         <ClientOnly>
@@ -1193,6 +1198,9 @@ import { useNotifications } from '~/composables/useNotifications';
               </svg>
               <h3 class="why__card-title">{{ card.title }}</h3>
               <p class="why__card-text">{{ card.text }}</p>
+              <!-- <div v-if="card.button" class="why__card-button-wrapper">
+                <button class="why__card-button">{{ card.button }}</button>
+              </div> -->
             </div>
           </swiper-slide>
         </swiper-container>
@@ -1290,7 +1298,7 @@ import { useNotifications } from '~/composables/useNotifications';
   margin-bottom: 14rem;
 
 &__inner {
-  background-color: #fff;
+  background-color: #212121;
   border-radius: 2rem;
   gap: 3rem;
   display: flex;
@@ -1304,12 +1312,12 @@ import { useNotifications } from '~/composables/useNotifications';
 }
 
 &__button {
-  font-family: Unbounded;
+    font-family: Unbounded;
     font-style: normal;
     font-weight: 500;
     font-size: 1.8rem;
     line-height: 150%;
-    color: #212121;
+    color: #fff;
     padding: 2rem 3rem;
     border-radius: 10px;
     transition: all 0.25s;
@@ -1332,7 +1340,7 @@ import { useNotifications } from '~/composables/useNotifications';
       font-weight: 600;
       font-size: 3.6rem;
       line-height: 150%;
-      color: #212121;
+      color: #fff;
       margin-bottom: 4rem;
 		}
 
@@ -1370,7 +1378,7 @@ import { useNotifications } from '~/composables/useNotifications';
     font-weight: 600;
     font-size: 3.6rem;
     line-height: 150%;
-    color: #212121;
+    color: #fff;
     margin-bottom: 4rem;
 }
 
@@ -1382,7 +1390,7 @@ import { useNotifications } from '~/composables/useNotifications';
     line-height: 160%;
     display: flex;
     align-items: center;
-    color: #676767;
+    color: #cfcfcf;
     margin-bottom: 4rem;
 }
 
@@ -1401,7 +1409,7 @@ import { useNotifications } from '~/composables/useNotifications';
     font-weight: 500;
     font-size: 2rem;
     line-height: 150%;
-    color: #212121;
+    color: #fff;
     margin-bottom: 1.5rem;
 }
 
@@ -1411,7 +1419,7 @@ import { useNotifications } from '~/composables/useNotifications';
     font-weight: 400;
     font-size: 1.8rem;
     line-height: 160%;
-    color: #676767;
+    color: #cfcfcf;
 }
 
 &__list-item-strong {
@@ -1419,7 +1427,7 @@ import { useNotifications } from '~/composables/useNotifications';
     font-style: normal;
     font-weight: 500;
     font-size: 1.8rem;
-    color: #212121;
+    color: #fff;
 }
 
 &__images {
@@ -1504,7 +1512,7 @@ import { useNotifications } from '~/composables/useNotifications';
     font-size: 3.6rem;
     line-height: 150%;
     margin: 0 auto;
-    color: #212121;
+    color: #ffffff;
     text-align: center;
     margin-bottom: 4rem;
 }
@@ -1548,8 +1556,9 @@ import { useNotifications } from '~/composables/useNotifications';
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: #fff;
+  background-color: #212121;
   border-radius: 2.5rem 0rem 2.5rem 2.5rem;
+  // padding: 15px 25px;
   padding: 15px;
   width: 100%;
 }
@@ -1562,7 +1571,7 @@ import { useNotifications } from '~/composables/useNotifications';
     line-height: 150%;
     display: flex;
     text-align: start;
-    color: #212121;
+    color: #fff;
     text-transform:uppercase
 }
 
@@ -1574,8 +1583,30 @@ import { useNotifications } from '~/composables/useNotifications';
     line-height: 160%;
     text-align: start;
     display: flex;
-    color: #676767;
+    color: #cfcfcf;
 }
+
+// &__card-button-wrapper {
+//   width: 100%;
+//   display: flex;
+//   justify-content: end;
+// }
+
+// &__card-button {
+//   margin-top: 1.5rem;
+//   font-family: Unbounded;
+//     font-style: normal;
+//     font-weight: 500;
+//     line-height: 150%;
+//     padding: 13px 25px;
+//     font-size: 1.6rem;
+//     border: none;
+//     border-radius: 8px;
+//     cursor: pointer;
+//     transition: background-color 0.3s ease;
+//     background-color: #212121;
+//     color: #fff;
+// }
 
 @media (max-width: 979.98px) {
     &__title {
@@ -1608,12 +1639,14 @@ import { useNotifications } from '~/composables/useNotifications';
 }
 
 @media (max-width: 479.98px) {
+  // &__card-button {
+  //   padding: 10px 20px;
+  //   font-size: 1.4rem;
+
+  // }
+
   &__title {
     font-size: 2.3rem;
-  }
-
-  .why__image {
-    height: 40rem !important;
   }
 
   .why__card-title {
@@ -1657,10 +1690,26 @@ import { useNotifications } from '~/composables/useNotifications';
   padding: 0px 15px;
   padding-bottom: 14rem;
   &__inner {
-    background: #fff;
+    background: #212121;
     display: flex;
     padding: 2rem;
     border-radius: 30px;
+  }
+
+  &__block {
+    position: relative;
+  z-index: 1;
+  max-width: 60rem;
+  }
+
+  &__title {
+    font-family: "Unbounded";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 3rem;
+    line-height: 150%;
+    color: #212121;
+    margin-bottom: 3rem;
   }
 
   &__subtitle {
@@ -1691,7 +1740,8 @@ import { useNotifications } from '~/composables/useNotifications';
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 100vh;
+  min-height: 80rem;
   background-size: cover;
   background-position: center;
   width: 40%;
@@ -1700,6 +1750,7 @@ import { useNotifications } from '~/composables/useNotifications';
   overflow: hidden;
   border-radius: 20px 0px 0px 20px;
   padding: 2rem;
+  background: #fff;
 }
 
 @media (max-width:1199.98px) {
@@ -1720,11 +1771,6 @@ import { useNotifications } from '~/composables/useNotifications';
     filter: blur(160px);
 }
 
-.div {
-  position: relative;
-  z-index: 1;
-  max-width: 60rem;
-}
 
 .contact-form {
 		&__form {
@@ -1745,13 +1791,12 @@ import { useNotifications } from '~/composables/useNotifications';
 		}
 
 		&__label {
-  color: #333;
   font-family: "Unbounded";
     font-style: normal;
     font-weight: 500;
     font-size: 1.4rem;
     line-height: 150%;
-    color: #212121;
+    color: #fff;
     margin-bottom: 1rem;
 		}
 
@@ -1759,9 +1804,9 @@ import { useNotifications } from '~/composables/useNotifications';
       width: 100%;
   padding: 10px;
   font-size: 14px;
-  border: 1px solid #ccc;
+  border: 1px solid #393939;
   border-radius: 5px;
-  background: #fff;
+  background: #212121;
 		}
 
     &__input-textarea {
@@ -1788,12 +1833,13 @@ import { useNotifications } from '~/composables/useNotifications';
 /* Основной контейнер квиза */
 .quiz {
   width: 60%;
-    background: #f5f5f5;
+    background: #191919;
     border-radius: 0px 20px 20px 0px;
     padding: 5rem 7rem;
-    max-height: 1059.15px;
+    height: 100vh;
+    min-height: 80rem;
   &__inner {
-    background: #ffffff;
+    background: #212121;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -1816,20 +1862,20 @@ import { useNotifications } from '~/composables/useNotifications';
     font-size: 1.8rem;
     font-weight: bold;
     margin-bottom: 8px;
-    color: #333; /* Цвет текста процента */
+    color: #fff; /* Цвет текста процента */
   }
 
   &__progress-bar {
     width: 100%;
     height: 1.5rem;
-    background-color: #e0e0e0; /* Цвет фона шкалы */
+    background-color: #393939; /* Цвет фона шкалы */
     border-radius: 8px;
     position: relative;
   }
 
   &__progress-bar-fill {
     height: 100%;
-    background-color: #212121; /* Фиолетовый цвет заполненной части */
+    background-color: #82DBF7; /* Фиолетовый цвет заполненной части */
     border-radius: 8px;
     transition: width 0.15s ease;
   }
@@ -1843,7 +1889,7 @@ import { useNotifications } from '~/composables/useNotifications';
     display: flex;
     align-items: center;
     text-align: center;
-    color: #212121;
+    color: #fff;
     margin-bottom: 5rem;
   }
 
@@ -1862,7 +1908,7 @@ import { useNotifications } from '~/composables/useNotifications';
     line-height: 150%;
     display: flex;
     align-items: center;
-    color: #212121;
+    color: #fff;
     margin-bottom: 2rem;
   }
 
@@ -1899,7 +1945,7 @@ import { useNotifications } from '~/composables/useNotifications';
     width: 100%; /* Ширина слайдера */
     max-width: none;
     height: 26px;
-    background-color: #e0e0e0; /* Серый фон шкалы */
+    background-color: #393939; /* Серый фон шкалы */
     border-radius: 8px;
     outline: none;
     position: relative;
@@ -1925,30 +1971,27 @@ import { useNotifications } from '~/composables/useNotifications';
     font-weight: 500;
     font-size: 1.6rem;
     line-height: 150%;
-    color: #212121;
     margin-top: 10px;
-    color: #606060;
+    color: #fff;
   }
 
   &__options {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto auto;
+    grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
     width: 100%;
     gap: 20px;
   }
 
   &__option {
     cursor: pointer;
-  border: 2px solid #e0e0e0;
+  border: 2px solid #393939;
   text-align: center;
   border-radius: 1rem;
   transition: all 0.3s ease;
 
   &--selected {
-    border-color: #212121;
-    background-color: #f5f5f5;
-    position: relative;
+    border-color: #676767;
+    background-color: #393939;
 
     &::before {
       content: "";
@@ -2000,15 +2043,16 @@ import { useNotifications } from '~/composables/useNotifications';
     font-weight: 500;
     font-size: 1.5rem;
     line-height: 150%;
-    color: #212121;
+    color: #fff;
     padding: 15px 0px
   }
 
-  &__equipments {    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto auto;
+  &__equipments {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
     width: 100%;
-    gap: 20px;}
+    gap: 20px;
+  }
 
   &__equipment-item {
     display: flex;
@@ -2035,7 +2079,7 @@ import { useNotifications } from '~/composables/useNotifications';
     font-style: normal;
     font-weight: 500;
     line-height: 150%;
-    color: #212121;
+    color: #fff;
     font-size: 1.8rem;
     text-align: start;
   }
@@ -2047,7 +2091,7 @@ import { useNotifications } from '~/composables/useNotifications';
     font-size: 1.6rem;
     line-height: 160%;
     text-align: start;
-    color: #676767;
+    color: #cfcfcf;
   }
 
   &__radio-group {
@@ -2062,7 +2106,7 @@ import { useNotifications } from '~/composables/useNotifications';
     font-weight: 500;
     font-size: 1.4rem;
     line-height: 150%;
-    color: #212121;
+    color: #fff;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -2077,7 +2121,7 @@ import { useNotifications } from '~/composables/useNotifications';
   display: inline-block;
   transition: all linear 0.3s;
 fill: #007bff;
-border: 1px solid #212121;
+border: 1px solid #393939;
 position: relative;
 
   &>svg {
@@ -2132,16 +2176,16 @@ position: relative;
     color: #676767;
 
     &:hover {
-    color: #212121;
+    color: #fff;
     }
   }
 
   &__button--next {
-    background-color: #212121;
-    color: #fff;
+    background-color: #fff;
+    color: #212121;
 
     &:hover {
-      background-color: #404040;
+      background-color: #cccccc;
     }
   }
 }
@@ -2170,9 +2214,9 @@ position: relative;
 @media (max-width:1199.98px) {
     .quiz {
       width: 100%;
-      background: #f5f5f5;
+      background: #191919;
       padding: 3rem 5rem;
-      height: 80vh;
+      height: 100vh;
       border-radius: 20px;
     }
   }
@@ -2190,6 +2234,16 @@ position: relative;
   .quiz__inner {
     padding: 2rem;
     border-radius: 30px;
+  }
+
+  .quiz__equipments {
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+  }
+
+  .quiz__options {
+    grid-template-columns: auto;
+    grid-template-rows: auto;
   }
 
   .quiz__title {
@@ -2210,7 +2264,8 @@ position: relative;
   background: #f9f9f9;
   border-radius: 0px 0px 72px 72px;
   position: relative;
-  height: 75vh;
+  height: 100vh;
+  width: 100%;
 
   &__content {
     padding-top: 21.7rem;
@@ -2277,7 +2332,7 @@ position: relative;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 75vh;
+    height: 100vh;
     filter: brightness(0.5);
   }
 
@@ -2293,10 +2348,22 @@ position: relative;
       padding-bottom: 9rem;
     }
   }
+
+  @media (max-height: 650px) {
+    &__content {
+      padding-top: 5rem;
+    }
+  }
   
   @media (max-width: 575.98px) {
     &__title {
       font-size: 3rem;
+    }
+  }
+  
+  @media (max-height: 470px) {
+    &__content {
+      padding-top: 2rem;
     }
   }
  
@@ -2326,7 +2393,7 @@ position: relative;
     font-weight: 600;
     font-size: 3.6rem;
     line-height: 150%;
-    color: #212121;
+    color: #fff;
     margin-bottom: 4rem;
   }
 
@@ -2366,7 +2433,7 @@ position: relative;
       line-height: 160%;
       display: flex;
       align-items: center;
-      color: #676767;
+      color: #cfcfcf;
     }
   }
 
@@ -2383,7 +2450,7 @@ position: relative;
     line-height: 160%;
     display: flex;
     align-items: center;
-    color: #676767;
+    color: #cfcfcf;
     position: relative;
     padding-left: 15px;
   }
@@ -2395,7 +2462,7 @@ position: relative;
     height: 5px;
     top: 11.5px;
     left: 0;
-    background-color: #676767;
+    background-color: #cfcfcf;
     border-radius: 50%;
   }
 
@@ -2410,11 +2477,11 @@ position: relative;
   &__item {
     width: 100%;
     padding: 3rem;
-    background-color: #fff;
+    background-color: #212121;
     position: relative;
     overflow: hidden;
     border-radius: 15px;
-    border: 1px solid #dadadabe;
+    border: 1px solid #393838;
   }
 
   &__item::before {
@@ -2424,7 +2491,7 @@ position: relative;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #dddbdb13;
+    background-color: #292929;
     filter: blur(10px); /* Применить эффект размытия */
     z-index: -1; /* Поместить за контент */
     border-radius: 15px;
@@ -2432,7 +2499,7 @@ position: relative;
 
   &__item-icon {
     margin-bottom: 3rem;
-    background-color: #e6e6e634;
+    background-color: #292929;
     display: inline-flex;
     padding: 1rem;
     border-radius: 10px;
@@ -2451,7 +2518,7 @@ position: relative;
     line-height: 150%;
     display: flex;
     align-items: center;
-    color: #212121;
+    color: #fff;
     margin-bottom: 1rem;
   }
 
@@ -2463,7 +2530,7 @@ position: relative;
     line-height: 160%;
     display: flex;
     align-items: center;
-    color: #676767;
+    color: #cfcfcf;
     max-width: 46.1rem;
   }
 
@@ -2558,7 +2625,7 @@ position: relative;
     font-weight: 600;
     font-size: 3.6rem;
     line-height: 150%;
-    color: #212121;
+    color: #fff;
     margin-bottom: 4rem;
   } 
   @media (max-width: 1365.98px) {
@@ -2602,9 +2669,9 @@ position: relative;
   }
 
   &__cell {
-    background-color: white;
+    background-color: #212121;
     padding: 1.5rem;
-    border: 1px solid #ddd; /* Граница ячеек */
+    border: 1px solid #393838; /* Граница ячеек */
     text-align: center;
     border-radius: 15px;
     justify-content: center;
@@ -2617,11 +2684,11 @@ position: relative;
     flex-direction: column;
     gap: 1rem;
     align-items: center;
-    color: #212121;
+    color: #fff;
   }
 
   &__cell-text-gray {
-  color: gray;
+  color: #bebebe;
   margin-left: 1rem;
   }
 
@@ -2694,7 +2761,7 @@ position: relative;
     height: 100px;
     object-fit: cover;
     border-radius: 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #292929;
   }
 
   &__block {
@@ -2708,7 +2775,7 @@ position: relative;
     line-height: 150%;
     display: flex;
     text-align: start;
-    color: #212121;
+    color: #fff;
   }
 
   &__description {
@@ -2719,7 +2786,7 @@ position: relative;
     line-height: 160%;
     text-align: start;
     display: flex;
-    color: #676767;
+    color: #cfcfcf;
   }
 
   @media (max-width:479.98px) {
@@ -3023,13 +3090,15 @@ position: relative;
     box-shadow: 0px 4px 28px 7px rgb(130 219 247 / 50%);
   }
   &__item {
-    background: #ffffff;
+    background: #212121;
     box-shadow: 0px 4px 35px 12px rgba(0, 0, 0, 0.04);
     border-radius: 16px;
-    padding: 4rem;
+    // padding: 4rem;
+    padding: 3rem;
     gap: 3rem;
     display: flex;
     height: 100%;
+    border: 1px solid #393838;
   }
 
   &__item-text {
@@ -3040,7 +3109,7 @@ position: relative;
     line-height: 160%;
     display: flex;
     align-items: center;
-    color: #676767;
+    color: #fff;
     padding: 1.6rem 0.7rem 1.6rem 1.6rem;
     background: #f9f9f9;
     border-radius: 12px;
@@ -3069,7 +3138,7 @@ position: relative;
     display: flex;
     align-items: center;
     text-align: center;
-    color: #212121;
+    color: #fff;
     max-width: 19rem;
   }
 
@@ -3221,7 +3290,7 @@ position: relative;
     font-weight: 600;
     font-size: 3.6rem;
     line-height: 150%;
-    color: #212121;
+    color: #fff;
     margin-bottom: 4rem;
   }
 

@@ -62,7 +62,7 @@ defineProps({
     font-weight: 500;
     font-size: 2rem;
     line-height: 150%;
-    color: #212121;
+    color: #fff;
     margin-bottom: 2.5rem;
   }
 
@@ -79,7 +79,7 @@ defineProps({
     font-weight: 400;
     font-size: 1.8rem;
     line-height: 160%;
-    color: #676767;
+    color: #cfcfcf;
   }
 
   &__items {
@@ -90,8 +90,8 @@ defineProps({
   }
 
   &__item {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: #212121;
+    border: 1px solid #393939;
     border-radius: 2rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -117,7 +117,7 @@ defineProps({
     font-weight: 500;
     font-size: 1.8rem;
     line-height: 150%;
-    color: #212121;
+    color: #fff;
     margin-bottom: 2.5rem;
   }
 
@@ -131,7 +131,7 @@ defineProps({
     font-weight: 400;
     font-size: 1.8rem;
     line-height: 160%;
-    color: #676767;
+    color: #cfcfcf;
   }
 
   &__item-descr {
@@ -140,7 +140,7 @@ defineProps({
     font-weight: 400;
     font-size: 1.8rem;
     line-height: 160%;
-    color: #676767;
+    color: #cfcfcf;
   }
 
   @media (max-width: 479.98px) {

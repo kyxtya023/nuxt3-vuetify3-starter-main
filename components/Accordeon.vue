@@ -92,7 +92,7 @@ const splitText = (text) => {
 
   // Заменяем **жирный текст** на <strong>жирный текст</strong>
   const boldTextRegex = /\*\*(.*?)\*\*/g;
-  text = text.replace(boldTextRegex, '<strong style="font-weight: 600; font-size: 1.8rem;line-height: 150%;font-family: Unbounded;font-weight: 500;color: #212121;">$1</strong>');
+  text = text.replace(boldTextRegex, '<strong style="font-weight: 600; font-size: 1.8rem;line-height: 150%;font-family: Unbounded;font-weight: 500;color: #fff;">$1</strong>');
 
   // Заменяем переводы строк с отступами сверху (\n+) на <span с отступом сверху>
   text = text.replace(/\n\+/g, "<span style='display:block; margin-top: 2rem;'></span>");
@@ -126,27 +126,20 @@ watch(activeIndex, () => {
 
 
 <style scoped lang="scss">
-strong {
-  font-weight: 600;
-  font-size: 2rem;
-  line-height: 150%;
-  font-family: Unbounded;
-  font-weight: 500;
-  color: #212121;
-}
+
 .text-line,
 .highlighted-line {
   margin-bottom: 0.5rem; /* Расстояние между строками */
 }
 .question {
-  border: 1px solid rgba(224, 224, 224, 0.7);
+  border: 1px solid #393939;
   border-radius: 16px;
   padding: 0 2.4rem;
   transition: background 0.25s ease-in-out;
-  background: #f9f9f9;
+  background: #212121;
 
   &.active {
-    background: #fff;
+    background: #393939;
     padding-bottom: 2.4rem; // Из-за этого может лагать
   }
 
@@ -156,13 +149,14 @@ strong {
     line-height: 150%;
     font-family: Unbounded;
     font-weight: 500;
-    color: #212121;
+    color: #fff;
     cursor: pointer;
     padding: 2.4rem 0;
     position: relative;
+    padding-right: 4rem;
 
     &::before {
-      content: url(../assets/svg/Arrow-spoiler.svg);
+      content: url(../assets/svg/plus.svg);
       position: absolute;
       top: 50%;
       right: 0;
@@ -197,7 +191,7 @@ strong {
 
     &-description {
       font-size: 0.9rem;
-      color: #555;
+      color: #fff;
       margin-top: 0.5rem;
     }
   }
@@ -208,7 +202,7 @@ strong {
     line-height: 150%;
     font-family: Unbounded;
     font-weight: 500;
-    color: #212121;
+    color: #fff;
   }
 
   .highlighted-background-text {
@@ -219,7 +213,7 @@ strong {
     font-weight: 500;
     line-height: 150%;
     background-color: rgba(130, 220, 247, 0.400);
-    color: #212121;
+    color: #fff;
     border-radius: 8px;
   }
 
@@ -236,7 +230,7 @@ strong {
     font-weight: 400;
     font-size: 1.8rem;
     line-height: 160%;
-    color: #676767;
+    color: #fff;
   }
   
   &__text {
@@ -245,7 +239,7 @@ strong {
     font-weight: 400;
     font-size: 1.8rem;
     line-height: 160%;
-    color: #676767;
+    color: #cfcfcf;
   }
 
   &__steps-list {
@@ -278,7 +272,7 @@ strong {
     font-weight: 400;
     font-size: 1.8rem;
     line-height: 160%;
-    color: #676767;
+    color: #cfcfcf;
   }
 
   @media (max-width: 479.98px) {

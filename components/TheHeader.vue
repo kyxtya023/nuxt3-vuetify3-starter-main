@@ -91,6 +91,7 @@ const menuList: MenuItem[] = [
   { name: "Почему мы?", path: "#why" },
   { name: "Преимущества", path: "#advantages" },
   { name: "Частые вопросы", path: "#faq" },
+  { name: "Получить смету", path: "#smeta" },
 ];
 
 // Состояния
@@ -115,7 +116,7 @@ const scrollToElement = (target: string) => {
 
 <style scoped lang="scss">
 .header {
-  background-color: #fff;
+  background-color: #191919;
   @media (max-width: 1099.98px) {
     &__burger {
       z-index: 6;
@@ -196,7 +197,7 @@ const scrollToElement = (target: string) => {
       flex-direction: column;
       justify-content: space-between;
       overflow: auto;
-      background: #1e252b;
+      background: #191919;
       transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
       transform: translate(-100%);
     }
@@ -213,6 +214,14 @@ const scrollToElement = (target: string) => {
 
     &__contacts {
       display: none;
+    }
+
+    &__menu-block {
+      justify-content: space-between;
+    }
+
+    &__button {
+      margin-right: 75px;
     }
 
     .header__buttons {
@@ -241,7 +250,7 @@ const scrollToElement = (target: string) => {
   }
 
   @media (max-width: 575.98px) {
-    &__button {
+    .header__button {
       display: none;
     }
   }
@@ -277,7 +286,7 @@ const scrollToElement = (target: string) => {
   &__contacts {
     width: 100%;
     padding: 1.5rem 0;
-    border-bottom: 1px solid #f9f9f9;
+    border-bottom: 1px solid #292929;
   }
 
   &__buttons {
@@ -329,7 +338,7 @@ const scrollToElement = (target: string) => {
     display: flex;
     align-items: center;
     text-align: center;
-    color: #212121;
+    color: #fff;
     transition: all 0.2s;
 
     &:hover {
@@ -346,7 +355,7 @@ const scrollToElement = (target: string) => {
   display: flex;
   align-items: center;
   text-align: center;
-  color: #212121;
+  color: #fff;
 }
 
 .menu {
@@ -378,7 +387,7 @@ const scrollToElement = (target: string) => {
     line-height: 160%;
     display: flex;
     align-items: center;
-    color: #212121;
+    color: #fff;
     transition-duration: 0.15s;
     border-radius: 10px;
     &:hover {

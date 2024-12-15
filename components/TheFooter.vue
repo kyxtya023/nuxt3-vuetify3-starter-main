@@ -8,7 +8,19 @@
               <a href="#"><img src="../assets/svg/logo.svg" alt="Logo" /></a>
             </div>
           </div>
-
+          <div class="footer__right-column">
+            <p class="footer__list-title">Контакты</p>
+            <div class="block-text" style="display: flex; flex-direction: column; gap: 0.5rem">
+              <a
+                class="footer__button-link"
+                href="tel:+1234567890"
+                target="_blank"
+                aria-label="Позвонить"
+                >+7 (977) 263-40-00</a
+              >
+              <a class="footer__button-link" href="mailto:">yt@ya.ru</a>
+            </div>
+          </div>
         </div>
         <div class="footer__bottom">
           <p class="footer__text">
@@ -72,7 +84,7 @@
 
 <style scoped lang="scss">
 .footer {
-  background: #f9f9f9;
+  background: #212121;
   &__inner {
     padding-top: 3.2rem;
     padding-bottom: 2.4rem;
@@ -80,7 +92,30 @@
 
   &__top {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4rem;
+  }
+
+  &__button-link {
+    font-family: "Unbounded";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 160%;
+    color: #fff;
+    &:hover {
+      color: #82dbf7;
+    }
+  }
+
+  &__list-title {
+    font-family: "Unbounded";
+    font-weight: 500;
+    font-size: 1.8rem;
+    line-height: 150%;
+    color: #fff;
+    margin-bottom: 1.5rem;
   }
 
 
@@ -90,7 +125,7 @@
     font-weight: 400;
     font-size: 1.8rem;
     line-height: 160%;
-    color: #676767;
+    color: #cfcfcf;
     margin-top: 4.8rem;
   }
 

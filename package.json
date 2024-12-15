@@ -20,6 +20,7 @@
     "@nuxt/ui": "^2.20.0",
     "@nuxthub/core": "^0.8.7",
     "@nuxtjs/google-fonts": "^3.2.0",
+    "@nuxtjs/tailwindcss": "^6.12.2",
     "@types/node-telegram-bot-api": "^0.64.7",
     "@vite-pwa/nuxt": "^0.10.6",
     "@vueuse/nuxt": "^12.0.0",
