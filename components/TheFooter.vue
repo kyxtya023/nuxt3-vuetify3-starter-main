@@ -5,7 +5,7 @@
         <div class="footer__top">
           <div class="footer__left-column">
             <div class="footer__logo">
-              <a href="#"><img src="../assets/svg/logo.svg" alt="Logo" /></a>
+              <a href="#"><img style="width: 180px; height: 70px;" src="~/assets/svg/logo.png" alt="Logo" /></a>
             </div>
           </div>
           <div class="footer__right-column">
@@ -13,12 +13,12 @@
             <div class="block-text" style="display: flex; flex-direction: column; gap: 0.5rem">
               <a
                 class="footer__button-link"
-                href="tel:+1234567890"
+                href="tel:+79661266606"
                 target="_blank"
                 aria-label="Позвонить"
-                >+7 (977) 263-40-00</a
+                >+7 (966) 126-66-06</a
               >
-              <a class="footer__button-link" href="mailto:">yt@ya.ru</a>
+              <a class="footer__button-link" href="mailto:plenochnieokna@mail.ru">plenochnieokna@mail.ru</a>
             </div>
           </div>
         </div>

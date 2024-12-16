@@ -14,7 +14,7 @@
     <!-- Ссылка для WhatsApp -->
     <a 
       class="floating-btn-item whatsapp-btn" 
-      href="https://wa.me/+1234567890" 
+      href="https://wa.me/+79661266606" 
       target="_blank" 
       aria-label="Написать в WhatsApp"
     >
@@ -24,11 +24,19 @@
     <!-- Ссылка для вызова -->
     <a 
       class="floating-btn-item phone-btn" 
-      href="tel:+1234567890" 
+      href="tel:+79661266606" 
       target="_blank" 
       aria-label="Позвонить"
     >
       <i class="fa fa-whatsapp"><img src="/public/img/phone.png" alt=""></i>
+    </a>
+    <a 
+      class="floating-btn-item tg-btn" 
+      href="https://t.me/plenochnyeOkna"
+      target="_blank" 
+      aria-label="Позвонить"
+    >
+      <i class="fa fa-tg"><img src="/public/img/icons8-telegram-logo-67.png" alt=""></i>
     </a>
   </div>
 </template>
@@ -131,6 +139,11 @@ body._lock .floating-btn {
   height: 100%;
 }
 
+.fa.fa-tg img{
+  width: 100%;
+  height: 100%;
+}
+
 @media (max-width:479.98px) {
   .floating-btn {
     &>i>svg {
@@ -173,6 +186,11 @@ body._lock .floating-btn {
 /* Анимация появления кнопки для звонка */
 .floating-btn-menu a:nth-child(2) {
   animation: slideInSecond 0.3s forwards 0.2s; /* Задержка для первой кнопки */
+}
+
+/* Анимация появления кнопки для звонка */
+.floating-btn-menu a:nth-child(3) {
+  animation: slideInSecond 0.4s forwards 0.1s; /* Задержка для первой кнопки */
 }
 
 /* Анимация выдвижения кнопки WhatsApp */

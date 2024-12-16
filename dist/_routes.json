@@ -6,7 +6,6 @@
   "exclude": [
     "/_nuxt/*",
     "/",
-    "/_payload.json",
     "/base.css",
     "/favicon.ico",
     "/fonts.css",
@@ -102,6 +101,7 @@
     "/img/gallery/gallery1.jpeg",
     "/img/gallery/gallery10.jpeg",
     "/img/gallery/gallery11.jpeg",
-    "/img/gallery/gallery12.jpeg"
+    "/img/gallery/gallery12.jpeg",
+    "/img/gallery/gallery13.jpeg"
   ]
 }

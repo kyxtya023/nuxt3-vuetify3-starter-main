@@ -32,9 +32,9 @@ export default defineNuxtConfig({
 
   ssr: true,
 
-  modules: ["nuxt-swiper", "@nuxt/image", "@nuxt/ui", "@vueuse/nuxt"],
+  modules: ["nuxt-swiper", "@nuxthub/core", "@nuxt/image", "@nuxt/ui", "@vueuse/nuxt"],
   nitro: {
-    preset: 'vercel_edge', // Или другое, если необходимо
+    preset: 'cloudflare-pages', // Или другое, если необходимо
     routeRules: {
       '/api/**': {
         headers: {

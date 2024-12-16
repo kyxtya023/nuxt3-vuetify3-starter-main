@@ -1,7 +1,11 @@
 node_modules
 *.log*
+.nuxt
 .nitro
 .cache
+.output
+.env
+dist
 
 # File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,node,nuxtjs,windows
@@ -131,6 +135,8 @@ web_modules/
 out
 
 # Nuxt.js build / generate output
+.nuxt
+dist
 
 # Gatsby files
 .cache/
@@ -180,6 +186,8 @@ out
 
 ### NuxtJS ###
 # Generated dirs
+.nuxt-*
+.output
 .gen
 
 # Node dependencies
@@ -235,5 +243,3 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,node,nuxtjs,windows
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
-
-.data

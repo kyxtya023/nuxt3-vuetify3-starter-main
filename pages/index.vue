@@ -530,7 +530,7 @@ import { useNotifications } from '~/composables/useNotifications';
             <div class="hero__buttons">
               <nuxt-link       
                 class="hero__btn" 
-                href="https://wa.me/+1234567890" 
+                href="https://wa.me/+79661266606" 
                 target="_blank" 
                 aria-label="Написать в WhatsApp"
                 >Расчет стоимости</nuxt-link>

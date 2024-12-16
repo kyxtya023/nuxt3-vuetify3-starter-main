@@ -4,18 +4,18 @@
       <div class="header__contacts">
         <div class="container">
           <div class="header__buttons">
-            <div class="block-text" style="display: flex; gap: 1.5rem">
+            <div class="block-text" style="display: flex; gap: 0.5rem; flex-direction: column;">
               <a
                 class="header__button-link"
-                href="tel:+1234567890"
+                href="tel:+79661266606"
                 target="_blank"
                 aria-label="Позвонить"
-                >+7 (977) 263-40-00</a
+                >+7 (966) 126-66-06</a
               >
-              <a class="header__button-link" href="mailto:">yt@ya.ru</a>
+              <a class="header__button-link" href="mailto:plenochnieokna@mail.ru">plenochnieokna@mail.ru</a>
             </div>
             <div class="header__logo">
-              <NuxtLink to="/"><img src="../assets/svg/logo.svg" alt="Logo" /></NuxtLink>
+              <NuxtLink to="/"><img src="~/assets/svg/logo.png" alt="Logo" /></NuxtLink>
             </div>
             <div class="block-text">
               <p class="text">Работаем ежедневно</p>
@@ -41,8 +41,11 @@
               </ul>
               <div class="header__buttons">
                 <div class="block-text" style="display: flex; gap: 1.5rem">
-                  <a class="header__button-link" href="#">+7 (977) 263-40-00</a>
-                  <a class="header__button-link" href="mailto:">yt@ya.ru</a>
+                  <a class="header__button-link"                 
+                    href="tel:+79661266606"
+                    target="_blank"
+                    aria-label="Позвонить">+7 (966) 126-66-06</a>
+                  <a class="header__button-link" href="mailto:plenochnieokna@mail.ru">plenochnieokna@mail.ru</a>
                 </div>
                 <div class="block-text">
                   <p class="text">Работаем ежедневно</p>
@@ -55,7 +58,7 @@
             </div>
             <NuxtLink
               class="header__button"
-              href="tel:+1234567890" 
+              href="tel:+79661266606" 
               target="_blank" 
               aria-label="Позвонить"
             >

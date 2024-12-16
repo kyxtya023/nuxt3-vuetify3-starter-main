@@ -1,9 +1,9 @@
 import { defineEventHandler, sendError, createError } from 'h3';
 
 // Токен бота и chatId
-const BOT_TOKEN = '8141959117:AAEepDUMRWkLExLZOm5nN-kjxnWdjWVYvMM';
+const BOT_TOKEN = '8056475514:AAGyEDJqqy6IARz2qQ5CHD424mO3_5NaSqw';
 const TELEGRAM_API_URL = `https://api.telegram.org/bot${BOT_TOKEN}`;
-const chatId = 6017439095;
+const chatId = 8180227527;
 
 interface ContactInfo {
   name: string;

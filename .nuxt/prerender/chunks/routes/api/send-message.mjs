@@ -1,8 +1,8 @@
 import { defineEventHandler, readBody, sendError, createError } from 'file://D:/nuxt3-vuetify3-starter-main/node_modules/h3/dist/index.mjs';
 
-const BOT_TOKEN = "8141959117:AAEepDUMRWkLExLZOm5nN-kjxnWdjWVYvMM";
+const BOT_TOKEN = "8056475514:AAGyEDJqqy6IARz2qQ5CHD424mO3_5NaSqw";
 const TELEGRAM_API_URL = `https://api.telegram.org/bot${BOT_TOKEN}`;
-const chatId = 6017439095;
+const chatId = 8180227527;
 const sendMessage = defineEventHandler(async (event) => {
   const { contactInfo, answers } = await readBody(event);
   const formattedMessage = `
